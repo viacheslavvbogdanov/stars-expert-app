@@ -1,14 +1,14 @@
-##Stars Expert Messenger
+## Stars Expert Messenger
 www.stars.expert
 
 Video Messenger for Paid Online Consultations (You set the price for incoming calls).
 
-###Prepare
+### Prepare
 Install ionic, Android SDK
 
-###Debug
+### Debug
 ```ionic serve```
 
-###Build
+### Build
 ```ionic cordova build android```
 
