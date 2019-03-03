@@ -1,0 +1,68 @@
+<ion-view title="{{'Edit Your Profile'| translate}}" id="page9">
+  <ion-content padding="true" class="has-header content-max-width">
+    <form id="editProfile-form3" class="list">
+
+      <label class="item item-input" id="editProfile-name">
+        <span class="input-label" translate>Name</span>
+        <input id="edit-profile-name" ng-model="newProfile.displayNameUnfilled" type="text"
+               placeholder="John Smith" maxlength="60">
+      </label>
+
+      <label class="item item-input" id="editProfile-nick">
+        <span class="input-label" >Star page</span>
+        <input id="edit-profile-nick" ng-model="newProfile.nick" type="text"
+               placeholder="Use latin chars only" maxlength="60">
+      </label>
+      <ion-item ng-click="shareProfileLink()">
+        <input readonly title="Link to profile" style="border: none;width: 100%" class="profile-url transparent" type="text"
+               id="myProfileLinkInput" ng-model="newProfile.link">
+      </ion-item>
+
+      <!--<ion-item class="item-divider item transparent" translate>Your profession. Describe yourself for other people</ion-item>-->
+      <label class="item item-input item-stacked-label" id="editProfile-status">
+        <span class="input-label" translate>Your profession. Briefly describe yourself</span>
+        <input ng-model="newProfile.status" type="text" maxlength="120"
+               placeholder="Rock Star, Doctor of ..., Expert in ..., Artist ">
+      </label>
+
+      <div class="spacer" style="width: 300px; height: 24px;"></div>
+
+      <label class="item item-input" id="editProfile-price">
+        <span class="input-label center-horizontally energized" translate>Set Price for Incoming Calls</span>
+      </label>
+
+      <label class="item item-input" id="editProfile-priceCall">
+        <span class="input-label">ETH <translate>per minute</translate></span>
+        <input ng-model="newProfile.priceCall" type="number" placeholder="">
+      </label>
+      <label class="item item-input" id="editProfile-donation">
+        <span class="input-label"><translate>Donation to author</translate></span>
+        <input ng-model="account.donation" type="number" placeholder="">%
+      </label>
+      <ion-item class="item-divider item transparent center-horizontally" style="font-size: 10px" translate>
+        Please support author of the service for new features and hosting.</ion-item>
+
+      <div class="spacer" style="width: 300px; height: 96px;"></div>
+
+      <!--<label class="item item-input">-->
+        <!--<span class="input-label"><translate>You will earn</translate>:</span>-->
+        <!--<input ng-model="((1-(newProfile['donation']/100))*newProfile['priceCall']).toFixed(6)" type="text" readonly placeholder="">-->
+      <!--</label>-->
+
+    </form>
+
+  </ion-content>
+
+  <div class="padding bottom-panel">
+    <div class="content-max-width">
+      <div ng-show="savingProfile"  class="row">
+        <div class="col col-center" style="height: 57px;text-align: center">
+          <ion-spinner icon="lines" class="spinner-energized"></ion-spinner>
+        </div>
+      </div>
+      <a ng-hide="savingProfile" ng-click="saveProfile()" id="editProfile-save"
+         class="button button-energized button-block" translate>Save profile</a>
+    </div>
+  </div>
+
+</ion-view>

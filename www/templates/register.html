@@ -1,0 +1,40 @@
+<ion-view title="Register" id="pageRegister">
+  <ion-content padding="true" class="has-header">
+    <!--<form id="becomeAStar-form2" class="list">-->
+      <!--<div class="profile-image">-->
+        <!--<img src="../img/profile_image.png" >-->
+      <!--</div>-->
+      <!--<button id="becomeAStar-button128" class="button button-positive button-small button-block button-clear">Choose Profile Image</button>-->
+      <!--<label class="item item-input" id="becomeAStar-input3" name="name">-->
+        <!--<span class="input-label">Name</span>-->
+        <!--<input type="text" placeholder="John Smith">-->
+      <!--</label>-->
+      <!--<label class="item item-input" id="becomeAStar-input5" name="login">-->
+        <!--<span class="input-label">Login</span>-->
+        <!--<input type="text" placeholder="johnsmith">-->
+      <!--</label>-->
+      <label class="item item-input" id="becomeAStar-input15" name="email">
+        <span class="input-label">E-mail</span>
+        <input required ng-model="newUser.email" type="email" placeholder="johnsmith@mail.com" maxlength="128"></input>
+      </label>
+      <label class="item item-input" id="becomeAStar-input4" name="pass">
+        <span class="input-label">Password</span>
+        <input required ng-model="newUser.password" type="password" minlength="8" placeholder="min 8 chars" maxlength="128"></input>
+      </label>
+      <label class="item item-input" id="becomeAStar-input6" name="pass2">
+        <span class="input-label">Password</span>
+        <input required ng-model="newUser.password2" type="password" minlength="8" placeholder="repeat password" maxlength="128"></input>
+      </label>
+      <!--<label class="item item-input" id="becomeAStar-input18" name="name">-->
+        <!--<span class="input-label">Price $/min</span>-->
+        <!--<input type="number" placeholder="1">-->
+      <!--</label>-->
+    <!--</form>-->
+
+    <div class="spacer" style="width: 300px; height: 12px;"></div>
+
+    <a ng-click="register()" id="becomeAStar-button42" class="button button-positive button-block uppercase">Register</a>
+    <div id="becomeAStar-markdown2" class="show-list-numbers-and-dots"></div>
+    <div class="spacer" style="width: 300px; height: 13px;"></div>
+  </ion-content>
+</ion-view>

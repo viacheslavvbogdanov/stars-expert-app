@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "603663026634",
+    "firebase_url": "https://stars-expert.firebaseio.com",
+    "project_id": "stars-expert",
+    "storage_bucket": "stars-expert.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603663026634:android:60cc7cd81869db37",
+        "android_client_info": {
+          "package_name": "expert.stars"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603663026634-n3h1787nm66qcjk9157957e3ogc4m4uh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5NobUQJO-CCoHH7zR-IJnp3OqfPZEuIs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

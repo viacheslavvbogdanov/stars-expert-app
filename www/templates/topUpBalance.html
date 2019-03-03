@@ -1,0 +1,38 @@
+<ion-view title="Top Up Balance" id="page15">
+  <ion-content padding="true" class="has-header content-max-width">
+
+    <!--<form>-->
+      <!--<ion-list>-->
+        <!--<ion-radio ng-model="choice" ng-value="'A'">Choose A</ion-radio>-->
+        <!--<ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio>-->
+      <!--</ion-list>-->
+    <!--</form>-->
+
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="list">
+      <label class="item item-select" id="topUpBalance-select2">
+        <span class="input-label">Amount</span>
+      <select name="os0">
+        <option value="$10">$10 USD</option>
+        <option value="$50">$50 USD</option>
+        <option value="$100">$100 USD</option>
+        <option value="$500">$500 USD</option>
+        <option value="$1000">$1000 USD</option>
+        <option value="$5000">$5000 USD</option>
+
+      </select>
+      </label>
+      <input type="hidden" name="cmd" value="_s-xclick">
+      <input type="hidden" name="hosted_button_id" value="3QRX6X4R34Y8E">
+      <input type="hidden" name="on0" value="Amount">
+      <input type="hidden" name="currency_code" value="USD">
+      <center>
+        <input type="submit" name="submit" value="Pay" id="topUpBalance-button83" class="button button-balanced button-block">
+
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <img alt="" border="0" src="https://www.paypalobjects.com/ru_RU/i/scr/pixel.gif" width="1" height="1">
+      </center>
+    </form>
+
+
+  </ion-content>
+</ion-view>

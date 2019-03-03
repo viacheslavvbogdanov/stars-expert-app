@@ -1,0 +1,24 @@
+<ion-view title="{{'Set Avatar'|translate}}" id="page-set-avatar">
+  <ion-content scroll="false" padding="true" class="has-header">
+    <div class="center-on-page input-form-width" >
+
+        <div style="height:220px">
+          <div ng-if="profile.uid" class="profile-image">
+            <img src="" onclick="document.getElementById('newAvatarFile').click()" img-fade-in-onload="{{profile.photoURL?profile.photoURL:'../img/profile_image.png'}}">
+          </div>
+        </div>
+
+        <div ng-show="uploading" class="center-horizontally" style="height: 150px;">
+            <ion-spinner icon="lines" class="spinner-energized"></ion-spinner>
+        </div>
+
+        <div ng-hide="uploading" style="height: 140px;">
+          <input id="newAvatarFile" type="file" accept="image/jpeg" name="file" style="display: none">
+          <a onclick="document.getElementById('newAvatarFile').click()" id="avatar-button-choose-image"
+             class="button button-energized button-block fadein" translate>Choose image...</a>
+          <a ng-if="continue" ui-sref="stars()" id="avatar-button-continue"
+             class="button button-balanced button-block fadein" translate>Continue</a>
+        </div>
+    </div>
+  </ion-content>
+</ion-view>

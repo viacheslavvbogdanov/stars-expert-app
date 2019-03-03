@@ -1,0 +1,93 @@
+{
+  "name": "stars",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An Ionic project",
+  "devDependencies": {
+    "@ionic/v1-toolkit": "1.0.0",
+    "cordova-xml": "^1.1.0",
+    "gulp": "^3.5.6",
+    "gulp-angular-gettext": "^2.2.0",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^3.1.0",
+    "ionic-native": "^2.9.0"
+  },
+  "dependencies": {
+    "@ionic-native/android-permissions": "^4.17.0",
+    "@ionic/app-scripts": "^3.2.1",
+    "@ionic/pro": "^2.0.3",
+    "@sentry/browser": "^4.5.3",
+    "angular": "^1.7.5",
+    "angular-gettext": "^2.4.1",
+    "com.napolitano.cordova.plugin.intent": "https://github.com/napolitano/cordova-plugin-intent",
+    "cordova-android": "7.1.4",
+    "cordova-browser": "5.0.4",
+    "cordova-fabric-plugin": "1.1.14-dev",
+    "cordova-plugin-android-permissions": "^1.0.0",
+    "cordova-plugin-appcenter-analytics": "0.2.1",
+    "cordova-plugin-appcenter-crashes": "0.2.1",
+    "cordova-plugin-appcenter-shared": "0.2.1",
+    "cordova-plugin-autostart": "^2.3.0",
+    "cordova-plugin-background-mode": "git+https://github.com/tushe/cordova-plugin-background-mode.git",
+    "cordova-plugin-buildinfo": "2.0.2",
+    "cordova-plugin-chrome-apps-audiocapture": "1.0.5",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-file": "6.0.1",
+    "cordova-plugin-file-transfer": "1.7.1",
+    "cordova-plugin-firebase": "2.0.5",
+    "cordova-plugin-headercolor": "^1.0.0",
+    "cordova-plugin-intent": "git+https://github.com/napolitano/cordova-plugin-intent.git",
+    "cordova-plugin-ionic": "5.3.0",
+    "cordova-plugin-ionic-keyboard": "^2.1.3",
+    "cordova-plugin-ionic-webview": "^3.0.0",
+    "cordova-plugin-screen-orientation": "3.0.1",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-vibration": "3.1.0",
+    "cordova-plugin-whitelist": "^1.3.3",
+    "cordova-plugin-x-socialsharing": "5.4.3",
+    "cordova-support-android-plugin": "1.0.1",
+    "es6-promise-plugin": "4.2.2",
+    "typescript": "^2.3.2"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-android-permissions": {},
+      "cordova-plugin-chrome-apps-audiocapture": {},
+      "cordova-plugin-autostart": {},
+      "cordova-plugin-headercolor": {},
+      "cordova-plugin-screen-orientation": {},
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-x-socialsharing": {
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
+      },
+      "cordova-plugin-ionic": {
+        "APP_ID": "62ab196b",
+        "CHANNEL_NAME": "master",
+        "UPDATE_METHOD": "background",
+        "MAX_STORE": "2"
+      },
+      "cordova-plugin-background-mode": {},
+      "com.napolitano.cordova.plugin.intent": {},
+      "cordova-plugin-appcenter-crashes": {},
+      "cordova-plugin-appcenter-analytics": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
+      "cordova-plugin-firebase": {},
+      "cordova-fabric-plugin": {
+        "FABRIC_API_KEY": "f59626da32258e41cf8ac2942697354e9dae6206",
+        "FABRIC_API_SECRET": "6be4c6e769d14a406572c059afd6e516e37080051876ce04fc11973f1d4f38bd"
+      },
+      "cordova-plugin-buildinfo": {}
+    },
+    "platforms": [
+      "browser",
+      "android"
+    ]
+  }
+}

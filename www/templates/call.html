@@ -1,0 +1,34 @@
+<ion-view title="{{'Call'|translate}}" hide-nav-bar="true" id="page19">
+  <ion-content scroll="false" padding="false" class="manual-ios-statusbar-padding">
+
+    <div ng-hide="joined" class="center-on-page"><ion-spinner class="call-spinner dark"></ion-spinner></div>
+
+    <video id="localVideo" style="display:none" poster="../img/whitebox.png" class="hidden fadein-long" autoplay="autoplay"></video>
+    <video id="remoteVideo" style="display:none" poster="../img/whitebox.png" class="hidden fadein-long" autoplay="autoplay"></video>
+    <audio id="localAudio" autoplay="autoplay" muted="muted"></audio>
+    <div id="tracks">
+        <!--<audio id="remoteAudio" autoplay="true" muted="false"></audio>-->
+    </div>
+
+  </ion-content>
+  <div class="bottom-panel">
+    <div id="call-button-bar19" class="button-bar">
+      <button id="call-button114"  class="button button-balanced button-large button-clear text-shadow"></button>
+      <a ng-show="connected" ng-click="finish()" id="call-button115" class="button button-assertive button-large button-clear icon ion-android-call phone-rotate text-shadow"></a>
+      <button id="call-button116"  class="button button-balanced button-large button-clear text-shadow"></button>
+    </div>
+
+    <div ng-show="bill" id="call-container8" class="callpanel">
+      <div id="call-button-bar20" class="button-bar row-no-padding">
+        <button ng-bind="(incoming?'+':'-')+'Ξ'+bill.price.toFixed(4)" id="call-price" class="button button-light button-large button-info button-clear text-shadow">$???</button>
+        <button ng-bind="bill.timeStr" id="call-time"  class="button button-light button-large button-clear button-info text-shadow">0:00</button>
+        <button ng-bind="(incoming?'+':'-')+'Ξ'+bill.total.toFixed(4)" id="call-total" class="button button-light button-large button-info button-clear text-shadow">$???</button>
+      </div>
+      <div id="call-button-bar21" class="button-bar row-no-padding">
+        <button id="call-price-text" class="button button-stable button-small button-clear text-shadow-" translate>per minute</button>
+        <button id="call-time-text" class="button button-stable button-small button-clear text-shadow-" translate>call time</button>
+        <button ng-bind="incoming?'revenues':'cost'" id="call-total-text" class="button button-stable button-small button-clear text-shadow-" translate>revenues</button>
+      </div>
+    </div>
+  </div>
+</ion-view>

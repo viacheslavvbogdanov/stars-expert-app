@@ -1,0 +1,50 @@
+<ion-view title="{{'Dialing'| translate}}" nav-transition="none" hide-nav-bar="true" id="page11">
+  <ion-content scroll="false" padding="false" class="manual-ios-statusbar-padding">
+    <!--<div class="spacer" scroll="false" style="width: 300px; height: 24px;"></div>-->
+    <div class="star-center-on-page">
+      <div class="profile-image">
+        <img ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL+'?type=large'}}">
+      </div>
+      <div ng-if="star.displayName" class="fadein">
+        <h3 ng-show="star.displayName" ng-bind="star.displayName" id="star-heading3"
+            class="profile-display-name uppercase"></h3>
+        <h4 ng-show="star.nick" ng-bind="star.nick?'@'+star.nick:''" id="star-heading4"
+            class="profile-nick"></h4>
+        <div class="spacer" style="width: 300px; height: 16px;"></div>
+
+        <!--<h5 ng-show="star.status" ng-bind="star.status" id="me-status" class="profile-status fadein"></h5-->
+        <div class="row">
+          <div class="col col-center" style="text-align: center">
+            <ion-spinner icon="lines"></ion-spinner>
+          </div>
+        </div>
+        <h4 ng-bind="call.status" id="dialing-status" style="color:#000000;font-weight:300;text-align:center;"
+            class="uppercase">dialing</h4>
+        <audio id="dialingAudio" src="sounds/dialing.mp3" loop type="audio/mpeg"></audio>
+        <audio id="callingAudio" src="sounds/calling.mp3" loop type="audio/mpeg"></audio>
+        <audio id="busyAudio" src="sounds/busy.mp3" loop type="audio/mpeg"></audio>
+        <audio id="declinedAudio" src="sounds/declined.mp3" type="audio/mpeg"></audio>
+        <audio id="errorAudio" src="sounds/error.mp3" type="audio/mpeg"></audio>
+      </div>
+    </div>
+  </ion-content>
+
+  <div class="padding-bottom bottom-panel bg-white-gradient">
+    <div class="button-bar">
+      <button ng-bind="star.priceCall?'Ξ'+star.priceCall:' '"
+              class="button button-assertive button-large button-clear">Ξ?.0000</button>
+      <a ng-disabled="call.disableCancel" ng-click="cancel()"
+         class="button button-disabled button-assertive button-large button-clear icon ion-android-call phone-rotate"></a>
+      <button class="button button-assertive button-large button-clear">Ξ0.0000</button>
+    </div>
+    <div  class="button-bar">
+      <a href-inappbrowser="page18"
+         class="button button-stable button-small button-clear" translate>per minute</a>
+      <button ng-disabled="call.disableCancel" ng-click="cancel()"
+              class="button button-stable button-small button-clear" translate>cancel
+      </button>
+      <a class="button button-stable button-small button-clear" translate>cost</a>
+    </div>
+  </div>
+
+</ion-view>

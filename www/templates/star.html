@@ -1,0 +1,58 @@
+<ion-view title="{{'Star'|translate}}" id="pageStar">
+  <ion-nav-buttons side="right" class="has-header">
+    <button title="Add to / remove from favorites" ng-if="star.uid"
+            ng-class="{'ion-ios-star-outline':private.favorites.indexOf(star.uid)==-1, 'ion-ios-star':private.favorites.indexOf(star.uid)!=-1}"
+            ng-click="toggleFavorite()" class="button button-icon icon"><span ng-hide="hideFavoritesHint" class="hint hint-for-button"><translate translate-context="Hint">Favorites +</translate>  &#x219d;</span></button>
+
+    <button title="{{'Share profile link...'|translate}}" ng-if="star.uid"
+            ng-click="shareStar()" class="button button-icon icon ion-share"><span ng-hide="hideShareStarHint" class="hint hint-for-button"><translate translate-context="Hint">Share star</translate>  &#x219d;</span></button>
+  </ion-nav-buttons>
+
+  <ion-content scroll="false" padding="false" class="has-header ">
+    <div class="star-center-on-page">
+
+      <div ng-if="star.photoURL" class="profile-image">
+        <img src="" img-fade-in-onload="{{star.photoURL}}">
+      </div>
+      <h3 ng-show="star.displayName" ng-bind="star.displayName" id="star-displayName"
+          class="profile-display-name fadein uppercase"></h3>
+
+      <h5 ng-show="star.status" ng-bind="star.status?star.status:''" id="star-status"
+          class="profile-status fadein-"></h5>
+      <ion-item ng-click="shareStar()">
+        <input title="Link to profile" readonly style="border: none;width: 100%"
+               class="profile-url transparent" type="text" id="profileLinkInput"
+               ng-model="star.link">
+      </ion-item>
+      <div ng-if="star.uid" class="row">
+        <div class="col col-center" style="height: 57px;text-align: center">
+          <span ng-bind="star.online?'online':'offline'"
+                ng-class="{'badge-positive':star.online, 'badge-dark':!star.online}"
+                class="badge fadein" translate>online</span>
+
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
+  <div ng-show="star.uid" class="padding-bottom bottom-panel bg-white-gradient">
+    <div id="star-button-bar5" class="button-bar">
+      <a nav-transition="none" ui-sref="chat({uid:'{{star.uid}}'})" id="star-button24"
+
+         class="button button-light button-large button-block button-clear icon ion-android-textsms">
+        <span ng-show="newMessages[star.uid].length>0" ng-bind="newMessages[star.uid].length"
+              class="fadein badge badge-positive" style="position: absolute; top:2px"></span></a>
+      <button class="button button-dark button-large button-block button-clear">
+        <span ng-bind="star.priceCallStr"></span>
+        <!--<span ng-bind="star.priceCallParts.dollars"></span><span class="cents" ng-bind="star.priceCallParts.cents"></span>-->
+      </button>
+      <a ng-click="dial()" id="star-button26"
+         class="button button-positive button-large button-block button-clear icon ion-android-call"></a>
+    </div>
+    <div id="star-button-bar6" class="button-bar">
+      <a ui-sref="chat({uid:'{{star.uid}}'})" id="star-button27" class="button button-stable button-small button-clear" translate>messages</a>
+      <button id="star-button28" class="button button-stable button-small button-clear" translate>per minute</button>
+      <a ng-click="dial()" id="star-button29" class="button button-stable button-small button-clear" translate>video call</a>
+    </div>
+  </div>
+</ion-view>

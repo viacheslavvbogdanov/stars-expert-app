@@ -1,0 +1,187 @@
+<ion-view title="{{'Stars'|translate}}" hide-back-button="true" id="page-stars">
+
+  <!--<ion-header-bar ng-if="searchBar.show">-->
+    <!--<div class="bar bar-header item-input-inset">-->
+      <!--<label class="item-input-wrapper">-->
+        <!--<i class="icon ion-ios-search placeholder-icon"></i>-->
+        <!--<input ng-model="searchBar.searchText" type="search" placeholder="Search">-->
+      <!--</label>-->
+      <!--<button ng-click="showSearchBar(false)"-->
+              <!--class="button button-light button-clear icon ion-close padding-left"></button>-->
+    <!--</div>-->
+  <!--</ion-header-bar>-->
+
+  <!--<ion-header-bar ng-if="!searchBar.show" class="bar-positive item-input-inset">-->
+    <!--<button title="Search a Star" ng-click="showSearchBar(true)"-->
+            <!--class="button button-icon icon ion-ios-search"></button>-->
+  <!--</ion-header-bar>-->
+
+  <ion-nav-buttons side="right" class="has-header">
+    <button title="Search for a Star" ng-click="showHideSearchBar()"
+            class="button button-icon icon ion-ios-search"></button>
+  </ion-nav-buttons>
+
+  <ion-content padding="false" class="has-header content-max-width">
+
+    <div class="bar bar-header item-input-inset" ng-if="searchBar.show" >
+      <div class="item-input-wrapper" >
+        <i class="icon -ion-load-a ion-ios-search placeholder-icon"></i>
+        <input ng-model="searchBar.searchText" type="search"
+               placeholder="{{'Search star by name or id'|translate}}" focus-me>
+
+        <!--<ion-spinner ng-show="searchBar.searching" icon="dots" class="spinner-dark" style="position: relative; padding-top:4px;"></ion-spinner>-->
+        <button title="Clear search" ng-click="clearSearchBar()"
+                class="button button-icon icon ion-ios-close-empty"></button>
+      </div>
+    </div>
+
+
+    <div ng-show="searchBar.searchText">
+
+      <div ng-show="searchBar.searching" class="row" style="padding:0;">
+        <div class="col col-center" style="text-align: center; padding:0; height:22px">
+          <ion-spinner icon="dots" class="spinner-dark" style="position: relative; padding-top:4px;"></ion-spinner>
+        </div>
+      </div>
+
+      <!--<div ng-show="!searchBar.searching && searchBar.notFound" class="row">-->
+        <!--<div class="col col-center" style="text-align: center;" translate>No stars were found.</div>-->
+      <!--</div>-->
+
+      <ion-list id="stars-found-list" ng-repeat="star in foundStars | object2Array | orderBy:'displayName':true| orderBy:'online':true" >
+        <!--<ion-list id="stars-found-by-nick-list" ng-repeat="star in foundStars" >-->
+        <ion-item class="item-avatar item-icon-right" ui-sref="star({uid:'{{star.uid}}'})">
+          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
+          <span ng-show="star.online" class="badge-online fadein"></span>
+          <h2><b ng-bind="star.nameFoundPart"></b><span ng-bind="star.nameOtherPart"></span></h2>
+          <p>@<b ng-bind="star.nickFoundPart"></b><span ng-bind="star.nickOtherPart"></span></p>
+          <i ng-if="private.favorites.indexOf(star.uid)!=-1" class="icon ion-ios-star icon-accessory"></i>
+          <!--<span ng-if="newMessages[star.uid].length>0" class="badge badge-positive fadein" ng-bind="newMessages[star.uid].length">0</span>-->
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+    <div ng-hide="searchBar.searchText">
+      <ion-list ng-show="profile.uid">
+        <!--<label class="item item-input" id="stars-search3">-->
+          <!--<i class="icon ion-search placeholder-icon"></i>-->
+          <!--<input type="search" placeholder="Search a Star">-->
+        <!--</label>-->
+
+        <ion-item ng-if="profile.uid" class="item-avatar item-icon-right" id="stars-list-item-me" ui-sref="my()">
+          <img ng-if="profile.uid" ng-src="{{profile.photoURL?profile.photoURL:'../img/profile_image.png'}}">
+          <span ng-show="profile.online" class="badge-online fadein"></span>
+          <h2 ng-show="profile.uid" ng-bind="profile.displayName?profile.displayName:'You (set Your name)'"></h2>
+          <p ng-bind="profile.nick?'@'+profile.nick:''"></p>
+          <i class="icon icon-accessory padding-right" style="font-size:12px" translate>You</i>
+        </ion-item>
+        <div ng-if="profile.uid">
+        <ion-item ng-show="!(profile.displayName && profile.nick && profile.status)" class="hint padding-left item-avatar-" ui-sref="editProfile()">
+          <h2 class="hint">&#x219c; <translate translate-context="Hint">Fill your profile</translate></h2>
+        </ion-item>
+
+        <ion-item ng-show="!profile.photoURL" class="hint padding-left item-avatar-" ui-sref="avatar()">
+          <h2 class="hint">&#x219c;  <translate translate-context="Hint">Set avatar image</translate></h2>
+        </ion-item>
+
+        <ion-item ng-hide="!profile.uid || hideShareYourProfileHint" class="hint padding-left item-avatar-" ng-click="shareProfile()">
+          <h2 class="hint">&#x219c;  <translate translate-context="Hint">Share link to profile</translate></h2>
+        </ion-item>
+        </div>
+      </ion-list>
+
+      <ion-list>
+        <label ng-show="private.favorites.length>0" class="item item-input" id="stars-search31">
+          <i class="icon ion-ios-star placeholder-icon"></i>
+          <input disabled class="transparent" ng-model="searchBar.searchTextFavorites"
+                 type="search" placeholder="{{'Favorites'|translate}}">
+        </label>
+      </ion-list>
+      <ion-list id="stars-list-favorites"
+                ng-repeat="star in favoriteStars | object2Array | filter:searchBar.searchTextFavorites | orderBy:'displayName':true| orderBy:'online':true" >
+        <ion-item class="item-avatar item-icon-right" id="stars-list-favorite-stars" ui-sref="star({uid:'{{star.uid}}'})">
+          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
+          <span ng-show="star.online" class="badge-online fadein"></span>
+          <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
+          <p ng-bind="star.nick?'@'+star.nick:''"></p>
+          <i ng-if="private.favorites.indexOf(star.uid)!=-1" class="icon ion-ios-star icon-accessory"></i>
+          <!--<span ng-if="newMessages[star.uid].length>0" class="badge badge-positive fadein" ng-bind="newMessages[star.uid].length">0</span>-->
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+    <div ng-hide="searchBar.searchText">
+      <ion-list ng-show="haveLastDialedStars" id="stars-last-div" class="">
+        <label class="item item-input" id="stars-last-search">
+          <i class="icon ion-ios-telephone placeholder-icon"></i>
+          <input disabled class="transparent" ng-model="searchBar.searchTextLastDialed"
+                 type="search" placeholder="{{'Last dialed'|translate}}">
+        </label>
+      </ion-list>
+      <ion-list id="stars-last-list"
+                ng-repeat="star in lastDialedStars  | object2Array | filter:searchBar.searchTextLastDialed |orderBy: 'created':true" >
+        <ion-item class="item-avatar item-icon-right" ui-sref="star({uid:'{{star.uid}}'})">
+          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
+          <span ng-show="star.online" class="badge-online fadein"></span>
+          <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
+          <p ng-bind="star.nick?'@'+star.nick:''"></p>
+          <!--<p ng-bind="star.lastCallDateTimeStr"></p>-->
+          <i class="icon icon-accessory padding-right" ng-bind="star.lastCallDateTimeStr" style="font-size:12px" >
+            12.31 11:20
+          </i>
+        </ion-item>
+      </ion-list>
+    </div>
+
+
+
+    <div ng-hide="searchBar.searchText">
+      <ion-list ng-show="haveLastIncomingCalls" >
+        <label class="item item-input">
+          <i class="icon ion-arrow-graph-down-left placeholder-icon"></i>
+          <input disabled class="transparent" ng-model="searchBar.searchTextLastIncoming"
+                 type="search" placeholder="{{'Last incoming'|translate}}">
+        </label>
+      </ion-list>
+      <ion-list ng-repeat="star in lastIncomingCalls  | object2Array | filter:searchBar.searchTextLastIncoming |orderBy: 'created':true" >
+        <ion-item class="item-avatar item-icon-right" ui-sref="star({uid:'{{star.uid}}'})">
+          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
+          <span ng-show="star.online" class="badge-online fadein"></span>
+          <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
+          <p ng-bind="star.nick?'@'+star.nick:''"></p>
+          <!--<p ng-bind="star.lastCallDateTimeStr"></p>-->
+          <i class="icon icon-accessory padding-right" ng-bind="star.lastCallDateTimeStr" style="font-size:12px" >
+            12.31 11:20
+          </i>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!--<div ng-show="!searchBar.searchText || searchBar.notFound">-->
+
+    <ion-list id="stars-featured-div" class="">
+      <label class="item item-input" id="stars-featured-search">
+        <i class="icon ion-ribbon-b placeholder-icon"></i>
+        <input disabled class="transparent" ng-model="searchBar.searchTextFeatured"
+               type="search" placeholder="{{'Editor\'s Choice'|translate}}">
+      </label>
+    </ion-list>
+    <ion-list id="stars-featured-list"
+              ng-repeat="star in featuredStars | object2Array | filter:searchBar.searchTextFeatured | orderBy:'displayName':true| orderBy:'online':true"   >
+      <ion-item ng-show="star.displayName" class="item-avatar item-icon-right" ui-sref="star({uid:'{{star.uid}}'})">
+        <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
+        <span ng-show="star.online" class="badge-online fadein"></span>
+        <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
+        <p ng-bind="star.status?star.status:''"></p>
+      </ion-item>
+    </ion-list>
+    <div class="text-right" style="width:100%;padding-right: 6px;">
+      <a class="button button-stable button-small button-clear"
+         ng-click="getListedAtFeatured()" translate>Get listed here</a>
+    </div>
+    <!--</div>-->
+
+  </ion-content>
+</ion-view>

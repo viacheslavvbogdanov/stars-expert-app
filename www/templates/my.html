@@ -1,0 +1,61 @@
+<ion-view title="{{'My Profile'|translate}}" id="pageMyProfile">
+  <ion-nav-buttons side="right" class="has-header">
+    <!--<button title="Share profile link..." ng-if="profile.uid"-->
+            <!--ng-click="" class="button button-icon icon ion-share"></button>-->
+    <button  translate-context="Hint" title="{{'More...'|translate}}" ng-if="profile.uid"
+    ng-click="showActionSheet()" class="button button-icon icon ion-android-more-vertical"><span ng-hide="hideTapForMoreHint" class="hint hint-for-button">Tap for more &#x219d;</span></button>
+
+  </ion-nav-buttons>
+
+  <ion-content scroll="false" padding="false" class="has-header">
+    <div class="star-center-on-page">
+      <div class="profile-image">
+        <img title="Click to change" ui-sref="avatar()" ng-if="profile.uid" src="" img-fade-in-onload="{{profile.photoURL?profile.photoURL:'../img/profile_image.png'}}">
+        <!--<img ui-sref="avatar()" ng-if="profile.photoURL" src="{{profile.photoURL}}">-->
+      </div>
+      <div style="min-height:120px">
+        <h3 ui-sref="editProfile()" ng-show="profile.uid" class="profile-display-name uppercase fadein">
+          <span ng-bind="profile.displayName?profile.displayName:'[Set Your Name]'"></span>
+          <i style="color:darkgrey; font-size: 16px" class="icon icon icon-accessory ion-edit"></i>
+        </h3>
+        <!--<h4 ui-sref="editProfile()"  ng-show="profile.nick" ng-bind="profile.nick?'@'+profile.nick:''" class="profile-nick fadein"></h4>-->
+        <h5 ui-sref="editProfile()" ng-show="profile.status" ng-bind="profile.status" class="profile-status fadein"></h5>
+        <ion-list>
+          <ion-item ng-click="shareProfileLink()">
+            <input readonly title="Profile URL" style="border: none;width: 100%"
+                   class="profile-url transparent" type="text" id="myProfileLinkInput"
+                   ng-model="profile.link">
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </ion-content>
+
+  <div ng-show="profile.uid" class="bottom-panel bg-white-gradient">
+    <div class="content-max-width">
+      <div class="button-bar">
+        <button ng-bind="'Ξ'+account.balance.toFixed(4)" style="font-weight:300" class="button button-dark button-large button-clear"></button>
+        <button ui-sref="editProfile()" ng-bind="profile.priceCallStr" style="font-weight:300" class="button button-dark button-large button-clear"></button>
+        <button ng-bind="'Ξ'+account.revenues.toFixed(4)" style="font-weight:300" class="button button-dark button-large button-clear"></button>
+      </div>
+      <div class="button-bar">
+        <button class="button button-stable button-small button-clear" translate>balance</button>
+        <button ui-sref="editProfile()" class="button button-stable button-small button-clear" translate>per minute</button>
+        <button class="button button-stable button-small button-clear" translate>revenues</button>
+      </div>
+      <div class="row padding-horizontal -button-bar" style="padding-bottom: 0;padding-top: 0">
+        <button ng-class="{'blink':account.balance<0.01}"
+                class="button button-block button-stable button-small button-balanced"
+                ng-click="topUpBalance()" translate>Top-up</button>
+        <!--<button ng-class="{'blink':account.balance<2}"-->
+                <!--class="button button-block button-stable button-small button-balanced"-->
+                <!--ui-sref="topUpBalance">Top-up</button>-->
+        <div class="spacer" style="width: 16px; height: 16px;"></div>
+        <button class="button button-block button-stable button-small button-dark" ui-sref="editProfile()" translate>Change</button>
+        <div class="spacer" style="width: 16px; height: 16px;"></div>
+        <button  ng-class="{'blink':account.revenues>500}" class="button button-block button-stable button-small button-energized" ng-click="withdrawRevenues()" translate>Withdraw</button>
+      </div>
+    </div>
+  </div>
+
+</ion-view>
