@@ -35,7 +35,7 @@ angular.module('app', [
 })
 
 
-.run(function($ionicPlatform, $rootScope, $state, $ionicHistory, gettextCatalog, profileFiller) {
+.run(function($ionicPlatform, $rootScope, $state, $ionicHistory, gettextCatalog, profileFiller, $ionicPopup) {
   $rootScope.production = PRODUCTION;
   // Error monitoring
   Pro.init(envConfig.proID, {
@@ -327,10 +327,21 @@ angular.module('app', [
         last_changed: firebase.database.ServerValue.TIMESTAMP,
       };
 
+      let noInternetPopup;
       firebase.database().ref('.info/connected').on('value', function(snapshot) {
-        if (!snapshot.val()) {
+        if (!snapshot.val()) { // disconnected
+          noInternetPopup = $ionicPopup.show({
+            title: gettextCatalog.getString('Internet Connection Lost'),
+            // subTitle: 'This message will disappear when the connection is restored.',
+            cssClass: 'custom-popup',
+            template: '<div class="icon ion-heart-broken" style="font-size: 128px; color:lightgrey; text-align: center"></div><br/><p style="text-align: center">'+
+              gettextCatalog.getString('This message will disappear when the connection is restored.')+'</p>'
+          });
           return;
+        } else { // connected back
+          if (noInternetPopup) noInternetPopup.close();
         }
+        console.log('.info/connected', snapshot.val());
         // userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase).then(function() {
         //   userStatusDatabaseRef.set(isOnlineForDatabase);
         // });

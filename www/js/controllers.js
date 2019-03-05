@@ -13,7 +13,10 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
     }, 1000);
   }
 
-  if (!$rootScope.profile.uid) $state.go('login');
+  // check login
+  setTimeout( ()=>{
+    if (!$rootScope.profile.uid) $state.go('login');
+  }, 3000 );
 
   $scope.hideShareYourProfileHint = (window.plugins && window.plugins.socialsharing) ? false : true;
   if (!$scope.hideShareYourProfileHint)

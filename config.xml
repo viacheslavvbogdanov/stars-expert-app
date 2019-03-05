@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="expert.stars" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>Stars</name>
+<widget id="expert.stars.dev" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Stars Dev</name>
     <description>Stars Expert Messenger</description>
     <author email="info@stars.expert" href="http://www.stars.expert/">Stars Expert Team</author>
     <content src="index.html"/>
