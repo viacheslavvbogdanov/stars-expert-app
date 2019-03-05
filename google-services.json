@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "917892951649",
-    "firebase_url": "https://starsmessenger-dev.firebaseio.com",
-    "project_id": "starsmessenger-dev",
-    "storage_bucket": "starsmessenger-dev.appspot.com"
+    "project_number": "603663026634",
+    "firebase_url": "https://stars-expert.firebaseio.com",
+    "project_id": "stars-expert",
+    "storage_bucket": "stars-expert.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:917892951649:android:028c476b2cc4576f",
+        "mobilesdk_app_id": "1:603663026634:android:60cc7cd81869db37",
         "android_client_info": {
-          "package_name": "expert.stars.dev"
+          "package_name": "expert.stars"
         }
       },
       "oauth_client": [
         {
-          "client_id": "917892951649-h4clbvracu75h9jt617rdntkdhbvv17g.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "expert.stars.dev",
-            "certificate_hash": "f994c91cf1cb4602c5dbd4881080084710439c1d"
-          }
-        },
-        {
-          "client_id": "917892951649-9mip566i1997bf1lud755ha983ac0rk2.apps.googleusercontent.com",
+          "client_id": "603663026634-n3h1787nm66qcjk9157957e3ogc4m4uh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBaEmoj-Dctt0LQD-OYTmq-klkbu65fGHM"
+          "current_key": "AIzaSyD5NobUQJO-CCoHH7zR-IJnp3OqfPZEuIs"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "917892951649-9mip566i1997bf1lud755ha983ac0rk2.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
