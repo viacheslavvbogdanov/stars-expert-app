@@ -7,13 +7,13 @@ angular.module('app.controllers', [])
 function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast, social, profileFiller) {
   $ionicHistory.clearHistory(); // This view should be root
 
-
-
   if (navigator['splashscreen']) {
     setTimeout(()=>{
       navigator.splashscreen.hide();
     }, 1000);
   }
+
+  if (!$rootScope.profile.uid) $state.go('login');
 
   $scope.hideShareYourProfileHint = (window.plugins && window.plugins.socialsharing) ? false : true;
   if (!$scope.hideShareYourProfileHint)
