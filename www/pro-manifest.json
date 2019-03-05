@@ -41,8 +41,8 @@
   },
   {
     "href": "manifest.json",
-    "size": 480,
-    "integrity": "sha256-nL+ML5X4TIaxJxkLnQHp+VmAxxBanMPEgKhuktRIAzg= sha384-q0tuD+XzGVlVPR7PYZNHIE8bRNKlAJ/GBNiMW84s3enoqpK+cfVxdznkFiOLnW8c sha512-baJBPzQuMV4Tj1KUY9IgLP40aDPt+KKJxPJRZTxTKYgm3iNh5NZhJDLLGhq8JkpmdI8Au9qvU6UxF7NtxEq/Fw=="
+    "size": 473,
+    "integrity": "sha256-T1oxPWYpP6WfTAH8CuKdSvLjhzN8vLm5rDxsjQLzXIc= sha384-ZaUaVlIx5uf+ao8yT5Y/lMveginvYJeHALKyATiYUta0u12dJbilb6fLPawfli/N sha512-eroGQKJ246af5BSZ9TR8Txujk9Bb4yf0XzwwUb0S94rvm83H5eDFEwN1t9HQKp+b+az16/8SVO6M5EjoDCC38A=="
   },
   {
     "href": "css/ionic.app.css",

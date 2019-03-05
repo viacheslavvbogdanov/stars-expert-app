@@ -4,7 +4,7 @@
       <div class="center-horizontally input-form-width">
 
         <form ng-show="otpPhone || otpSending" id="login-form1" class="list transparent">
-          <!--<span class="text-center">Enter your phone number</span>-->
+          <!--<span class="text-center" translate>Enter your phone number</span>-->
           <label class="item item-input transparent row-no-padding"
                  focus-me id="login-phone">
             <input my-enter="otp()" ng-model="user.phone" type="tel" style="color:white"
@@ -15,14 +15,17 @@
           <button ng-show="otpPhone" ng-click="otp()" id="login-button-otp-" type="submit"
              class="button button-light button-block" translate>Send Code</button>
           <div ng-show="otpSending" class="row">
-            <div class="col col-center" style="height: 46px;text-align: center">
+            <div class="col col-center" style="height: 57px;text-align: center">
               <ion-spinner icon="lines" class="spinner-light"></ion-spinner>
             </div>
           </div>
+
+          <span class="light">By entering, you agree to the<br/><a href="https://www.stars.expert/tos">Terms of Service</a></span>
+
         </form>
 
         <form ng-show="otpMode || otpChecking" id="login-form2" class="list transparent">
-          <!--<span class="text-center">Enter received code</span>-->
+          <!--<span class="text-center" translate>Enter received code</span>-->
           <label ng-show="otpMode || otpChecking" id="login-otp"
                  class="item item-input transparent row-no-padding">
             <input my-enter="otpCheck()" ng-model="user.otp" type="number" style="color:white"

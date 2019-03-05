@@ -649,8 +649,8 @@ function ($scope, $stateParams, $rootScope, $state, $timeout, $ionicHistory) {
   }, 5000);
 }])
    
-.controller('loginCtrl', ['$scope', '$stateParams', '$state', 'alerts', '$ionicHistory',
-function ($scope, $stateParams, $state, alerts, $ionicHistory) {
+.controller('loginCtrl', ['$scope', '$stateParams', '$state', 'alerts', '$ionicHistory', 'gettextCatalog',
+function ($scope, $stateParams, $state, alerts, $ionicHistory, gettextCatalog ) {
   $ionicHistory.clearCache().then(function () {
     $ionicHistory.clearHistory();
   });
@@ -705,6 +705,8 @@ function ($scope, $stateParams, $state, alerts, $ionicHistory) {
         });
       })
       .catch(function (error) {
+        alerts.error(gettextCatalog.getString('Invalid phone number'),
+          gettextCatalog.getString('Your phone must be in international format<br> and starts from + sign. For example +12223334455'));
         log('SMS not sent', error);
         $scope.$apply(()=>{
           $scope.otpPhone = true;
@@ -725,6 +727,7 @@ function ($scope, $stateParams, $state, alerts, $ionicHistory) {
       $state.go('stars');
     })
       .catch(function (error) {
+        alerts.error(gettextCatalog.getString('Bad verification code'));
       log('User couldn\'t sign in (bad verification code?)', error);
       $scope.$apply(()=>{
         $scope.otpMode = true;
