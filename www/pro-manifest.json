@@ -97,7 +97,7 @@
   {
     "href": "js/appconfig.js",
     "size": 115,
-    "integrity": "sha256-qbYbX6AzcG6BTO91ich6Ur/yK3rkz5h/He6Ekh4TQCI= sha384-Qpbm5Fmxg5/BTQ5KlEdWv3tiH9Gt7WsXu/HZKdGsTHezO/48fa3GQZ+lP4LWwpaP sha512-SfNYF7bz+FzeGFm1OaCQxC6wAxvSD7QtLsyQXDvu86GP3IuW3iXgYVQCaOInJFLjTniUYShc4GloQ2fETkK/KA=="
+    "integrity": "sha256-JcVVw7G+AgQPuwzXj9NYpP+e3BMvvUW46v94b+6Kn38= sha384-2FSiTGqWQCy+PerluLFeWNPKqdIMtOiAq9rwg+3MQdB+RdkpDYpHS596WVK+i1A4 sha512-DiPPYsDfNhiA9t6IjTmMypp5Tr++0mhkhhsWQkZCgTI1eOSU9pwdzzlBx1d8RzZiNksxKZnNSlPvaG0g74/KdQ=="
   },
   {
     "href": "js/controllers.js",

@@ -107,12 +107,12 @@ String.prototype.replaceAll = function(search, replacement) {
 }
 
  function getLocalStorage( $scope, name, uid='' ) {
-  $scope[uid+'-'+name] = localStorage.getItem(name);
+  $scope[name] = localStorage.getItem(uid+'-'+name);
 }
 
  function setLocalStorage( $scope, name, value, uid='' ) {
   if (typeof value !== 'undefined' ) $scope[name] = value;
-  localStorage.setItem(uid+'-'+name, $scope[name] );
+  localStorage.setItem(uid+'-'+name, value );
 }
 
  const tools = {

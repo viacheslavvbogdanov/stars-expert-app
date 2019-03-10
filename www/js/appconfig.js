@@ -1,6 +1,6 @@
 const appConfig = {
   name: 'Stars',
-  version : '1.0.2',
+  version : '1.0.3',
   maxPingDiffSeconds : 90,
   pingIntervalSeconds : 60
 };
