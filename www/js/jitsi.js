@@ -27,6 +27,7 @@ const jitsi = (function () { // eslint-disable-line no-unused-vars
   let localTracks = [];
   const remoteTracks = {};
   let roomName = null;
+  let roomPassword = null;
   let onRemoteTrackCallbackFunc = null;
   let onUserLeftCallbackFunc = null;
 
@@ -205,7 +206,7 @@ const jitsi = (function () { // eslint-disable-line no-unused-vars
       JitsiMeetJS.events.conference.STARTED_MUTED, ()=>{
       log('STARTED_MUTED ') });
 
-    room.join();
+    room.join(roomPassword);
   }
 
   /**
@@ -315,11 +316,12 @@ const jitsi = (function () { // eslint-disable-line no-unused-vars
    * Connects to room
    * @param conferenceRoomName conference room name
    */
-  function connect(conferenceRoomName, onRemoteTrackCallback, onUserLeftCallback) {
+  function connect(conferenceRoomName, conferenceRoomPassword, onRemoteTrackCallback, onUserLeftCallback) {
     onRemoteTrackCallbackFunc = onRemoteTrackCallback;
     onUserLeftCallbackFunc    = onUserLeftCallback;
     JitsiMeetJS.init(initOptions);
     roomName = conferenceRoomName;
+    roomPassword = conferenceRoomPassword;
     connection = new JitsiMeetJS.JitsiConnection(null, null, jitsiOptions);
 
     connection.addEventListener(
@@ -353,7 +355,7 @@ const jitsi = (function () { // eslint-disable-line no-unused-vars
 
 
     loaded = true;
-
+    return true;
   }
 
   function info() {
