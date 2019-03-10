@@ -1319,24 +1319,9 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, $interval) {
   log('$rootScope.busy', $rootScope.busy);
   let interval = null;
   let price = null;
+  let connected  = false;
 
-  jitsi.connect($stateParams.callId.toLowerCase(),
-    function(){ // onRemoteTrackCallback
-      log('onRemoteTrackCallback - audio/video connection established');
-      api.callJoined({callId:$stateParams.callId})
-        .then((data)=>{
-          log('Joined', data);
-          $scope.$apply(()=>{ $scope.joined = true; });
-        })
-        .catch((error)=>{
-          err(error);
-          warn('Join error', error);
-        });
 
-    }, function() { // onUserLeftCallback
-      log('User left detected. Finishing call...');
-      $scope.finish();
-    });
 
   // Ping call
   const pingInterval = $interval(function () {
@@ -1355,6 +1340,30 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, $interval) {
       const callData = call.data();
       console.log("Current call data: ", callData);
       $scope.$apply(()=>{ $scope.call = callData });
+
+      // Connect to jitsi room
+      if (!connected) {
+        connected = true;
+        jitsi.connect($stateParams.callId.toLowerCase(), callData.password,
+          function () { // onRemoteTrackCallback
+            log('onRemoteTrackCallback - audio/video connection established');
+            api.callJoined({callId: $stateParams.callId})
+              .then((data) => {
+                log('Joined', data);
+                $scope.$apply(() => {
+                  $scope.joined = true;
+                });
+              })
+              .catch((error) => {
+                err(error);
+                warn('Join error', error);
+              });
+
+          }, function () { // onUserLeftCallback
+            log('User left detected. Finishing call...');
+            $scope.finish();
+          });
+      }
 
       // Finish call when it finished at other side
       if (callData.finished) {
