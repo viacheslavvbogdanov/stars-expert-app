@@ -5,9 +5,9 @@
 
         <form ng-show="otpPhone || otpSending" id="login-form1" class="list transparent">
           <!--<span class="text-center" translate>Enter your phone number</span>-->
-          <label class="item item-input transparent row-no-padding"
+          <label class="item item-input transparent padding-horizontal"
                  focus-me id="login-phone">
-            <input my-enter="otp()" ng-model="user.phone" type="tel" style="color:white"
+            <input my-enter="otp()" ng-model="user.phone" type="tel" style="color:white; padding-right: 0"
                    placeholder="{{'Enter your phone number'|translate}}"
                    class="input-center">
           </label>
@@ -27,8 +27,8 @@
         <form ng-show="otpMode || otpChecking" id="login-form2" class="list transparent">
           <!--<span class="text-center" translate>Enter received code</span>-->
           <label ng-show="otpMode || otpChecking" id="login-otp"
-                 class="item item-input transparent row-no-padding">
-            <input my-enter="otpCheck()" ng-model="user.otp" type="number" style="color:white"
+                 class="item item-input transparent padding-horizontal">
+            <input my-enter="otpCheck()" ng-model="user.otp" type="number" style="padding-right:0;color:white"
                    placeholder="{{'Enter received code'|translate}}" class="input-center">
           </label>
 
