@@ -165,19 +165,6 @@ angular.module('app', [
     }
 
 
-    // Internet connection status
-    if (navigator.connection) {
-      log('navigator.connection', navigator.connection);
-
-      function updateConnectionStatus() {
-        console.log('Internet connection changed');
-        // console.log(navigator.connection);
-        //TODO show alert when no Internet connection
-      }
-       navigator.connection.addEventListener('change', updateConnectionStatus);
-    }
-
-
     // Lock Screen orientation
     log('window.screen.orientation', window.screen['orientation'] );
     if (window.screen['orientation']['lock']) {
@@ -278,6 +265,32 @@ angular.module('app', [
       cordova.plugins.backgroundMode.enable();
     }
 
+    // Internet connection changed
+    if (navigator.connection) {
+      log('navigator.connection', navigator.connection);
+
+      function updateConnectionStatus() {
+        console.log('Internet connection changed', navigator.connection);
+        // console.log(navigator.connection);
+        //TODO show alert when no Internet connection
+      }
+      navigator.connection.onchange=updateConnectionStatus;
+    }
+    // Internet connection status
+    let noInternetPopup;
+    document.addEventListener("offline", function(e){
+      noInternetPopup = $ionicPopup.show({
+        title: gettextCatalog.getString('Internet Connection Lost'),
+        cssClass: 'custom-popup',
+        template: '<div class="icon ion-heart-broken" style="font-size: 128px; color:lightgrey; text-align: center"></div><br/><p style="text-align: center">'+
+          gettextCatalog.getString('This message will disappear when the connection is restored.')+'</p>'
+      });
+    }, false);
+
+    document.addEventListener("online", function(e){
+      if (noInternetPopup) noInternetPopup.close();
+    }, false);
+
   }); // ionic.Platform.ready
 
   // Firebase user Auth
@@ -327,19 +340,9 @@ angular.module('app', [
         last_changed: firebase.database.ServerValue.TIMESTAMP,
       };
 
-      let noInternetPopup;
       firebase.database().ref('.info/connected').on('value', function(snapshot) {
         if (!snapshot.val()) { // disconnected
-          noInternetPopup = $ionicPopup.show({
-            title: gettextCatalog.getString('Internet Connection Lost'),
-            // subTitle: 'This message will disappear when the connection is restored.',
-            cssClass: 'custom-popup',
-            template: '<div class="icon ion-heart-broken" style="font-size: 128px; color:lightgrey; text-align: center"></div><br/><p style="text-align: center">'+
-              gettextCatalog.getString('This message will disappear when the connection is restored.')+'</p>'
-          });
-          return;
-        } else { // connected back
-          if (noInternetPopup) noInternetPopup.close();
+           return;
         }
         console.log('.info/connected', snapshot.val());
         // userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase).then(function() {
