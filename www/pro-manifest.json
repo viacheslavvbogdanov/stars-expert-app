@@ -136,8 +136,8 @@
   },
   {
     "href": "js/tools.js",
-    "size": 5207,
-    "integrity": "sha256-j8QR0iGoZnXqHKzY4DrtFt0HnCJLDaqnPGATzEGDP5s= sha384-iWMmgiDJSqRvPRg28mrltq0fvhYm4A15dCyPrfslaaU8UswhPYvHQQ10eKyV4T+6 sha512-6X4ysKC7/UfbrbEWKTVH/lU/XGfLoG2w78EVq7ZCQjhau6bqAqwrl3l4R/hEl7alw+7knIvUUEdA592ktMQ96w=="
+    "size": 5200,
+    "integrity": "sha256-i7LqakzkLv7lWDfyVgfgVno0IWcJ5Ri6qwCjLcU0Ang= sha384-t44/7rv2c3ixO5RDTxkRanEF5hw+gcb0ckRvELd01Y6HWAx+SwJHFaafD8kdxANT sha512-DATKG5Rl3Ak6Gca82JdchiAOrBweYWRdmeIM+70VU1Z81dx/E0nCLOfteKsUxOwWXJNO/Xp26UTyh7WeeIoD3Q=="
   },
   {
     "href": "lib/angular-gettext.min.js",
