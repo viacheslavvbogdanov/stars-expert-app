@@ -472,7 +472,7 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
           //todo store and show last address in input
           api.withdraw({amount:$rootScope.withdraw.amount, toAddress:$rootScope.withdraw.toAddress})
             .then(()=>{
-              alerts.info('Withdrawal Requested', `${$rootScope.withdraw.amount}ETH minus Ethereum transaction fee will be paid out within 5-10 minutes.`);
+              alerts.info('Withdrawal Requested', `${$rootScope.withdraw.amount}ETH will be paid out within 5-10 minutes.`);
             })
             .catch((error)=>{
               alerts.info('Withdrawal Error', error.message);
