@@ -272,7 +272,6 @@ angular.module('app', [
       function updateConnectionStatus() {
         console.log('Internet connection changed');
         // console.log(navigator.connection);
-        //TODO show alert when no Internet connection
       }
       navigator.connection.onchange=updateConnectionStatus;
     }
