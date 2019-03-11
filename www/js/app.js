@@ -270,7 +270,7 @@ angular.module('app', [
       log('navigator.connection', navigator.connection);
 
       function updateConnectionStatus() {
-        console.log('Internet connection changed', navigator.connection);
+        console.log('Internet connection changed');
         // console.log(navigator.connection);
         //TODO show alert when no Internet connection
       }
