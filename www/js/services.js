@@ -38,7 +38,7 @@ angular.module('app.services', [])
 <script type="text/javascript">
 new QRCode(document.getElementById("qrcode"), {
   text:"ethereum:${$rootScope.account.topupAddress}", 
-  width: 230, height: 230
+  width: 168, height: 168
 });
 </script>
 <input id="topupAddress" ng-click="copyTopupAddressToClipboard()" type="text"
