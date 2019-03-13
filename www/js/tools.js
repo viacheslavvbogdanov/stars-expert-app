@@ -106,13 +106,16 @@ String.prototype.replaceAll = function(search, replacement) {
   return true;
 }
 
+// TODO move to services (remove scope and uid params - take directly)
  function getLocalStorage( $scope, name, uid='' ) {
-  $scope[name] = localStorage.getItem(uid+'-'+name);
-}
+   $scope[name] = localStorage.getItem(name+'-'+uid);
+   // log('getLocalStorage', name, '=', $scope[name]  );
+ }
 
+// TODO move to services
  function setLocalStorage( $scope, name, value, uid='' ) {
   if (typeof value !== 'undefined' ) $scope[name] = value;
-  localStorage.setItem(uid+'-'+name, value );
+  localStorage.setItem(name+'-'+uid, value );
 }
 
  const tools = {

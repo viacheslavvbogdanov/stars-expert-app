@@ -355,8 +355,8 @@ function ($scope, $stateParams) {
 function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
           $ionicActionSheet, toast, social, apiUI, gettextCatalog) {
 
-  $scope.hideTapForMoreHint = false;
-  getLocalStorage($scope, 'hideTapForMoreHint', $rootScope.user.uid);
+  $rootScope.hideTapForMoreHint = false;
+  getLocalStorage($rootScope, 'hideTapForMoreHint');
 
   $scope.editProfile = function() {
     $state.go('editProfile');
@@ -413,8 +413,6 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
         });
     })
   };
-
-
 
 
   $scope.topUpBalance = function() {
@@ -500,7 +498,7 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
 
   $scope.showActionSheet = function() {
 
-    setLocalStorage($scope, 'hideTapForMoreHint', true, $rootScope.user.uid);
+    setLocalStorage($rootScope, 'hideTapForMoreHint', true, $rootScope.user.uid);
 
     const buttons = [
       { text: '<i class="icon ion-edit"></i> '+gettextCatalog.getString('Edit profile'),          f: $scope.editProfile },
