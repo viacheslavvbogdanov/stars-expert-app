@@ -574,7 +574,7 @@ angular.module('app', [
   }
 
   updateExchangeRate();
-  setInterval( updateExchangeRate, 1000*60*60*12 );
+  setInterval( updateExchangeRate, 1000*60*60*12 ); // update every 12 hours
 
 
 })

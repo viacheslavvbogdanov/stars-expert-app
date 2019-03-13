@@ -15,7 +15,7 @@
       </div>
       <div style="min-height:120px">
         <h3 ui-sref="editProfile()" ng-show="profile.uid" class="profile-display-name uppercase fadein">
-          <span ng-bind="profile.displayName?profile.displayName:'[Set Your Name]'"></span>
+          <span ng-bind="profile.displayName"></span>
           <i style="color:darkgrey; font-size: 16px" class="icon icon icon-accessory ion-edit"></i>
         </h3>
         <!--<h4 ui-sref="editProfile()"  ng-show="profile.nick" ng-bind="profile.nick?'@'+profile.nick:''" class="profile-nick fadein"></h4>-->
@@ -33,27 +33,30 @@
 
   <div ng-show="profile.uid" class="bottom-panel bg-white-gradient">
     <div class="content-max-width">
-      <div class="button-bar">
-        <button ng-bind="'Ξ'+account.balance.toFixed(4)" style="font-weight:300" class="button button-dark button-large button-clear"></button>
-        <button ui-sref="editProfile()" ng-bind="profile.priceCallStr" style="font-weight:300" class="button button-dark button-large button-clear"></button>
-        <button ng-bind="'Ξ'+account.revenues.toFixed(4)" style="font-weight:300" class="button button-dark button-large button-clear"></button>
-      </div>
-      <div class="button-bar">
+      <div class="button-bar" style="height: 22px;">
         <button class="button button-stable button-small button-clear" translate>balance</button>
         <button ui-sref="editProfile()" class="button button-stable button-small button-clear" translate>per minute</button>
         <button class="button button-stable button-small button-clear" translate>revenues</button>
       </div>
+      <div class="button-bar" style="height: 32px;">
+        <button ng-bind="'Ξ'+account.balance.toFixed(4)" style="font-weight:300" class="button button-dark button-large button-clear"></button>
+        <button ng-bind="profile.priceCallStr" ui-sref="editProfile()" style="font-weight:300" class="button button-dark button-large button-clear"></button>
+        <button ng-bind="'Ξ'+account.revenues.toFixed(4)" style="font-weight:300" class="button button-dark button-large button-clear"></button>
+      </div>
+      <div class="button-bar" styl--e="height: 32px;">
+        <button ng-bind="'$'+(account.balance*exchangeRate).toFixed(2)" class="button button-balanced button-clear"></button>
+        <button ng-bind="'$'+(profile.priceCall*exchangeRate).toFixed(2)" ui-sref="editProfile()" class="button button-balanced button-clear"></button>
+        <button ng-bind="'$'+(account.revenues*exchangeRate).toFixed(2)" class="button button-balanced button-clear"></button>
+      </div>
+
       <div class="row padding-horizontal -button-bar" style="padding-bottom: 0;padding-top: 0">
         <button ng-class="{'blink':account.balance<0.01}"
                 class="button button-block button-stable button-small button-balanced"
                 ng-click="topUpBalance()" translate>Top-up</button>
-        <!--<button ng-class="{'blink':account.balance<2}"-->
-                <!--class="button button-block button-stable button-small button-balanced"-->
-                <!--ui-sref="topUpBalance">Top-up</button>-->
         <div class="spacer" style="width: 16px; height: 16px;"></div>
         <button class="button button-block button-stable button-small button-dark" ui-sref="editProfile()" translate>Change</button>
         <div class="spacer" style="width: 16px; height: 16px;"></div>
-        <button  ng-class="{'blink':account.revenues>500}" class="button button-block button-stable button-small button-energized" ng-click="withdrawRevenues()" translate>Withdraw</button>
+        <button ng-class="{'blink':account.revenues>1}" class="button button-block button-stable button-small button-energized" ng-click="withdrawRevenues()" translate>Withdraw</button>
       </div>
     </div>
   </div>
