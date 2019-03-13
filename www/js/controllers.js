@@ -498,7 +498,7 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
 
   $scope.showActionSheet = function() {
 
-    setLocalStorage($rootScope, 'hideTapForMoreHint', true, $rootScope.user.uid);
+    setLocalStorage($rootScope, 'hideTapForMoreHint', true);
 
     const buttons = [
       { text: '<i class="icon ion-edit"></i> '+gettextCatalog.getString('Edit profile'),          f: $scope.editProfile },
