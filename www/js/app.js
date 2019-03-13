@@ -35,7 +35,7 @@ angular.module('app', [
 })
 
 
-.run(function($ionicPlatform, $rootScope, $state, $ionicHistory, gettextCatalog, profileFiller, $ionicPopup) {
+.run(function($ionicPlatform, $rootScope, $state, $ionicHistory, gettextCatalog, profileFiller, $ionicPopup, $http) {
   $rootScope.production = PRODUCTION;
   // Error monitoring
   Pro.init(envConfig.proID, {
@@ -43,7 +43,7 @@ angular.module('app', [
   });
 
   // Localization
-  const language = navigator.language || navigator.userLanguage;
+  const language = navigator.language;
   const lang = language.substr(0,2);
   log('language', language, lang);
   // gettextCatalog.setCurrentLanguage(lang);
@@ -291,6 +291,7 @@ angular.module('app', [
     }, false);
 
   }); // ionic.Platform.ready
+
 
   // Firebase user Auth
   $rootScope.user = {
@@ -559,6 +560,23 @@ angular.module('app', [
     }
 
   });
+
+  // Get Exchange rate
+  $rootScope.exchangeRate = null;
+  function updateExchangeRate() {
+    $http.get('https://api.coinmarketcap.com/v1/ticker/ethereum/').then(function (response) {
+      // log('updateExchangeRate response', response);
+      if (response.status === 200) {
+        $rootScope.exchangeRate = response.data[0].price_usd;
+        log('updateExchangeRate $rootScope.exchangeRate', $rootScope.exchangeRate);
+      }
+    });
+  }
+
+  updateExchangeRate();
+  setInterval( updateExchangeRate, 1000*60*60*12 );
+
+
 })
 .config(function($ionicConfigProvider) {
     // Remove back button text completely
