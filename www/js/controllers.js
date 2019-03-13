@@ -16,7 +16,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
   // check login
   setTimeout( ()=>{
     if (!$rootScope.profile.uid) $state.go('login');
-  }, 3000 );
+  }, 10000 );
 
   $scope.hideShareYourProfileHint = (window.plugins && window.plugins.socialsharing) ? false : true;
   if (!$scope.hideShareYourProfileHint)
