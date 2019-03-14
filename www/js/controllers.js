@@ -866,10 +866,10 @@ function ($scope, $stateParams) {
 function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, toast, social, apiUI, profileFiller, gettextCatalog) {
   // TODO find user by nick (if uid starts with @)
   // log('$stateParams',$stateParams);
-  $scope.hideFavoritesHint = false;
-  $scope.hideShareStarHint = false;
-  getLocalStorage($scope, 'hideFavoritesHint', $rootScope.user.uid);
-  getLocalStorage($scope, 'hideShareStarHint', $rootScope.user.uid);
+  $rootScope.hideFavoritesHint = false;
+  $rootScope.hideShareStarHint = false;
+  getLocalStorage($rootScope, 'hideFavoritesHint');
+  getLocalStorage($rootScope, 'hideShareStarHint');
 
   const id = $stateParams.uid;
   $scope.star = {};
@@ -920,7 +920,7 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, toast
 
   // Share star
   $scope.shareStar = function() {
-    setLocalStorage($scope, 'hideShareStarHint', true, $rootScope.user.uid);
+    setLocalStorage($rootScope, 'hideShareStarHint', true);
     const message = $scope.star.displayName+' @ Stars.Expert';
     if (!social.share(message, $scope.star.link, message, null, $scope.copyProfileLinkToClipboard)) {
       $scope.copyProfileLinkToClipboard();
@@ -951,7 +951,7 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, toast
 
   // toggle star button
   $scope.toggleFavorite = function() {
-    setLocalStorage($scope, 'hideFavoritesHint', true, $rootScope.user.uid);
+    setLocalStorage($rootScope, 'hideFavoritesHint', true);
 
     if($rootScope && $rootScope.profile) {
       if (!$rootScope.private.favorites) $rootScope.private.favorites = [];

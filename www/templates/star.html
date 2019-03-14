@@ -8,7 +8,7 @@
             ng-click="shareStar()" class="button button-icon icon ion-share"><span ng-hide="hideShareStarHint" class="hint hint-for-button"><translate translate-context="Hint">Share star</translate>  &#x219d;</span></button>
   </ion-nav-buttons>
 
-  <ion-content scroll="false" padding="false" class="has-header ">
+  <ion-content scroll="false" padding="false" class="has-header" style="margin-bottom: 90px">
     <div class="star-center-on-page">
 
       <div ng-if="star.photoURL" class="profile-image">
@@ -19,7 +19,7 @@
 
       <h5 ng-show="star.status" ng-bind="star.status?star.status:''" id="star-status"
           class="profile-status fadein-"></h5>
-      <ion-item ng-click="shareStar()">
+      <ion-item ng-click="shareStar()" style="padding: 0">
         <input title="Link to profile" readonly style="border: none;width: 100%"
                class="profile-url transparent" type="text" id="profileLinkInput"
                ng-model="star.link">
@@ -36,9 +36,9 @@
   </ion-content>
 
   <div ng-show="star.uid" class="padding-bottom bottom-panel bg-white-gradient">
-    <div id="star-button-bar5" class="button-bar">
-      <a nav-transition="none" ui-sref="chat({uid:'{{star.uid}}'})" id="star-button24"
 
+    <div id="star-button-bar5" class="button-bar" style="height: 46px;">
+      <a nav-transition="none" ui-sref="chat({uid:'{{star.uid}}'})" id="star-button24"
          class="button button-light button-large button-block button-clear icon ion-android-textsms">
         <span ng-show="newMessages[star.uid].length>0" ng-bind="newMessages[star.uid].length"
               class="fadein badge badge-positive" style="position: absolute; top:2px"></span></a>
@@ -46,9 +46,13 @@
         <span ng-bind="star.priceCallStr"></span>
         <!--<span ng-bind="star.priceCallParts.dollars"></span><span class="cents" ng-bind="star.priceCallParts.cents"></span>-->
       </button>
-      <a ng-click="dial()" id="star-button26"
-         class="button button-positive button-large button-block button-clear icon ion-android-call"></a>
+      <a ng-click="dial()" class="button button-positive button-large button-block button-clear icon ion-android-call"></a>
     </div>
+
+    <div class="button-bar" sty-le="height: 22px;">
+      <button ng-bind="'$'+(star.priceCall*exchangeRate).toFixed(2)" style="pointer-events: none;" class="button button-balanced button-clear"></button>
+    </div>
+
     <div id="star-button-bar6" class="button-bar">
       <a ui-sref="chat({uid:'{{star.uid}}'})" id="star-button27" class="button button-stable button-small button-clear" translate>messages</a>
       <button id="star-button28" class="button button-stable button-small button-clear" translate>per minute</button>

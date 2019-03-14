@@ -7,7 +7,7 @@
 
   </ion-nav-buttons>
 
-  <ion-content scroll="false" padding="false" class="has-header">
+  <ion-content scroll="false" padding="false" class="has-header" style="margin-bottom: 120px">
     <div class="star-center-on-page">
       <div class="profile-image">
         <img title="Click to change" ui-sref="avatar()" ng-if="profile.uid" src="" img-fade-in-onload="{{profile.photoURL?profile.photoURL:'../img/profile_image.png'}}">
@@ -34,16 +34,16 @@
   <div ng-show="profile.uid" class="bottom-panel bg-white-gradient">
     <div class="content-max-width">
       <div class="button-bar" style="height: 22px;">
-        <button class="button button-stable button-small button-clear" translate>balance</button>
-        <button ui-sref="editProfile()" class="button button-stable button-small button-clear" translate>per minute</button>
-        <button class="button button-stable button-small button-clear" translate>revenues</button>
+        <button class="button button-stable button-small button-clear" style="pointer-events: none;" translate>balance</button>
+        <button ui-sref="editProfile()" class="button button-stable button-small button-clear" style="pointer-events: none;" translate>per minute</button>
+        <button class="button button-stable button-small button-clear" style="pointer-events: none;" translate>revenues</button>
       </div>
       <div class="button-bar" style="height: 32px;">
         <button ng-bind="'Ξ'+account.balance.toFixed(4)" style="font-weight:300" class="button button-dark button-large button-clear"></button>
         <button ng-bind="profile.priceCallStr" ui-sref="editProfile()" style="font-weight:300" class="button button-dark button-large button-clear"></button>
         <button ng-bind="'Ξ'+account.revenues.toFixed(4)" style="font-weight:300" class="button button-dark button-large button-clear"></button>
       </div>
-      <div class="button-bar" styl--e="height: 32px;">
+      <div class="button-bar" >
         <button ng-bind="'$'+(account.balance*exchangeRate).toFixed(2)" class="button button-balanced button-clear"></button>
         <button ng-bind="'$'+(profile.priceCall*exchangeRate).toFixed(2)" ui-sref="editProfile()" class="button button-balanced button-clear"></button>
         <button ng-bind="'$'+(account.revenues*exchangeRate).toFixed(2)" class="button button-balanced button-clear"></button>
