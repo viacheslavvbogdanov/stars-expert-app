@@ -348,16 +348,15 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
     border-radius: 50%;
     margin: 10px;
     border: 4px solid $SIDEMENU_TRANSPARENCY;
-    -webkit-box-shadow: 0 0 142px -42px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0 0 142px -42px rgba(0, 0, 0, 0.75);
-    box-shadow: 0 0 142px -42px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0 0 122px -40px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0 0 122px -40px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 122px -40px rgba(0, 0, 0, 0.75);
     display: block;
     width: 196px;
     height: 196px;
     margin-left: auto;
     margin-right: auto;
     object-fit: cover;
-
   }
 }
 
