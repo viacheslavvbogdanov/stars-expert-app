@@ -1,4 +1,8 @@
 <ion-view title="{{'Edit Your Profile'| translate}}" id="page9">
+  <ion-nav-buttons side="right" class="has-header">
+     <button title="{{'Save profile'|translate}}"
+            ng-click="saveProfile()" class="button button-icon icon ion-checkmark-round"></button>
+  </ion-nav-buttons>
   <ion-content padding="true" class="has-header content-max-width">
     <form id="editProfile-form3" class="list">
 
@@ -34,13 +38,17 @@
       <label class="item item-input" id="editProfile-priceCall">
         <span class="input-label">ETH <translate>per minute</translate></span>
         <input ng-model="newProfile.priceCall" type="number" placeholder="">
+        <span ng-show="newProfile.priceCall && exchangeRate"
+              ng-bind="'$'+(newProfile.priceCall*exchangeRate).toFixed(2)"
+              style="pointer-events: none;" class="balanced"></span>
       </label>
       <label class="item item-input" id="editProfile-donation">
         <span class="input-label"><translate>Donation to author</translate></span>
         <input ng-model="account.donation" type="number" placeholder="">%
       </label>
-      <ion-item class="item-divider item transparent center-horizontally" style="font-size: 10px" translate>
-        Please support author of the service for new features and hosting.</ion-item>
+      <ion-item class="item-divider item transparent center-horizontally"
+                style="font-size: 11px" translate>
+        Please support author of the service for new features and hosting</ion-item>
 
       <div class="spacer" style="width: 300px; height: 96px;"></div>
 
@@ -53,7 +61,7 @@
 
   </ion-content>
 
-  <div class="padding bottom-panel">
+  <div class="padding-horizontal bottom-panel light-bg" style="">
     <div class="content-max-width">
       <div ng-show="savingProfile"  class="row">
         <div class="col col-center" style="height: 57px;text-align: center">
