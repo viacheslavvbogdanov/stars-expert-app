@@ -7,7 +7,8 @@ $dark: #607d8b !default;
 $balanced: #009688 !default;
 //$positive: #3f51b5 !default;
 $energized: #d97a79 !default;
-$royal: #673ab7 !default;;
+$royal: #673ab7 !default;
+$my-link-color: #007aff;
 $SIDEMENU_TOP: #ff4b1f;
 $SIDEMENU_BOTTOM: #ff9068;
 $SIDEMENU_TRANSPARENCY: rgba(255, 255, 255, 0.4);
@@ -376,8 +377,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
   text-align: center !important;
 }
 
+.link-color {
+  color: $my-link-color; !important;
+}
 .profile-url {
-  color: #007aff !important;
+  color: $my-link-color !important;
   font-weight: 300;
   text-align: center !important;
   width:100% !important;
