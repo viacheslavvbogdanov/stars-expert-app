@@ -21,6 +21,7 @@
     <platform name="browser">
         <resource-file src="www/favicon.ico" target="www/favicon.ico" />
         <icon src="img/icon512.png" />
+        <preference name="ShowSplashScreen" value="false" />
         <preference name="SplashScreen" value="img/icon512.png" />
         <preference name="SplashScreenWidth" value="512" />
         <preference name="SplashScreenHeight" value="512" />
