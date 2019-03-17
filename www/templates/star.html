@@ -37,7 +37,7 @@
 
   <div ng-show="star.uid" class="padding-bottom bottom-panel bg-white-gradient">
 
-    <div id="star-button-bar5" class="button-bar" style="height: 46px;">
+    <div class="button-bar" style="height: 42px;">
       <a nav-transition="none" ui-sref="chat({uid:'{{star.uid}}'})" id="star-button24"
          class="button button-light button-large button-block button-clear icon ion-android-textsms">
         <span ng-show="newMessages[star.uid].length>0" ng-bind="newMessages[star.uid].length"
@@ -49,11 +49,11 @@
       <a ng-click="dial()" class="button button-positive button-large button-block button-clear icon ion-android-call"></a>
     </div>
 
-    <div class="button-bar" sty-le="height: 22px;">
+    <div class="button-bar">
       <button ng-bind="'$'+(star.priceCall*exchangeRate).toFixed(2)" style="pointer-events: none;" class="button button-balanced button-clear"></button>
     </div>
 
-    <div id="star-button-bar6" class="button-bar">
+    <div class="button-bar">
       <a ui-sref="chat({uid:'{{star.uid}}'})" id="star-button27" class="button button-stable button-small button-clear" translate>messages</a>
       <button id="star-button28" class="button button-stable button-small button-clear" translate>per minute</button>
       <a ng-click="dial()" id="star-button29" class="button button-stable button-small button-clear" translate>video call</a>

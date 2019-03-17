@@ -1,4 +1,4 @@
-<ion-view title="{{'Incoming Call'|translate}}" nav-transition="none" hide-nav-bar="true" id="page16" style="background-color:#FFFFFF;">
+<ion-view title="{{'Incoming Call'|translate}}" nav-transition="none" hide-nav-bar="true" style="background-color:#FFFFFF;">
   <ion-content scroll="false" padding="false" class="manual-ios-statusbar-padding">
 
     <div class="star-center-on-page">
@@ -6,9 +6,9 @@
         <img ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
       </div>
       <div ng-if="star.displayName" class="fadein">
-        <h3 ng-show="star.displayName" ng-bind="star.displayName" id="star-heading3"
+        <h3 ng-show="star.displayName" ng-bind="star.displayName"
             class="profile-display-name uppercase"></h3>
-        <h4 ng-show="star.nick" ng-bind="star.nick?'@'+star.nick:''" id="star-heading4"
+        <h4 ng-show="star.nick" ng-bind="star.nick?'@'+star.nick:''"
             class="profile-nick"></h4>
         <div class="spacer" style="width: 300px; height: 16px;"></div>
 
@@ -19,38 +19,44 @@
             <ion-spinner icon="lines"></ion-spinner>
           </div>
         </div>
-        <h4 id="incomingCall-heading19" style="color:#000000;font-weight:300;text-align:center;" class="uppercase" translate>calling you</h4>
+        <h4 style="color:#000000;font-weight:300;text-align:center;" class="uppercase" translate>calling you</h4>
       </div>
       <audio id="ringtoneAudio" src="ringtones/vivaldi.mp3" loop type="audio/mpeg"></audio>
     </div>
 
 
   </ion-content>
-  <!--Calling-->
+
   <div ng-show="!connected" class="padding-bottom bottom-panel bg-white-gradient">
-    <div id="incomingCall-button-bar9" class="button-bar">
+    <div class="button-bar" style="height: 32px;">
       <a ng-click="cancel()" id="incomingCall-cancel" style="font-weight:300;border-radius:50px 50px 50px 50px;"
          class="button button-assertive button-large button-clear icon ion-android-call phone-rotate"></a>
-      <button ng-bind="'Ξ'+profile.priceCall.toFixed(4)" id="incomingCall-button90"
+      <button ng-bind="'Ξ'+profile.priceCall.toFixed(4)"
               class="button button-dark button-large button-clear">Ξ?.0000
       </button>
       <a ng-click="answer()" id="incomingCall-answer" style="font-weight:300;"
          class="button button-balanced button-large button-clear icon ion-android-call"></a>
     </div>
-    <div id="incomingCall-button-bar11" class="button-bar">
-      <button ng-click="cancel()" id="incomingCall-cenceltext" class="button button-stable button-small button-clear" translate>
+
+    <div class="button-bar">
+      <a class="button button-clear" style="pointer-events: none;" ></a>
+      <button ng-show="profile.priceCall && exchangeRate" ng-bind="'$'+(profile.priceCall*exchangeRate).toFixed(2)"
+              class="button button-balanced button-clear" style="pointer-events: none;" >
+      </button>
+      <a class="button button-clear" style="pointer-events: none;" ></a>
+    </div>
+
+    <div class="button-bar">
+      <button ng-click="cancel()" class="button button-stable button-small button-clear" translate>
         cancel
       </button>
-
-      <button id="incomingCall-button93" class="button button-stable button-small button-clear" translate>
+      <button class="button button-stable button-small button-clear" translate>
         revenue
       </button>
-
-      <button ng-click="answer()" id="incomingCall-answertext" class="button button-stable button-small button-clear"translate>
+      <button ng-click="answer()" class="button button-stable button-small button-clear" translate>
         answer
       </button>
     </div>
   </div>
-  <!--Connected call -->
 
 </ion-view>

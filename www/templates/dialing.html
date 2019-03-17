@@ -30,12 +30,18 @@
   </ion-content>
 
   <div class="padding-bottom bottom-panel bg-white-gradient">
-    <div class="button-bar">
+    <div class="button-bar" style="height: 32px;">
       <button ng-bind="star.priceCall?'Ξ'+star.priceCall:' '"
-              class="button button-assertive button-large button-clear">Ξ?.0000</button>
+              class="button button-assertive button-large button-clear">Ξ0.0000</button>
       <a ng-disabled="call.disableCancel" ng-click="cancel()"
          class="button button-disabled button-assertive button-large button-clear icon ion-android-call phone-rotate"></a>
       <button class="button button-assertive button-large button-clear">Ξ0.0000</button>
+    </div>
+    <div class="button-bar">
+      <button ng-bind="'$'+(star.priceCall*exchangeRate).toFixed(2)"
+              class="button button-assertive button-balanced button-clear" style="pointer-events: none;" >$0.00</button>
+      <a class="button button-disabled button-clear" style="pointer-events: none;" ></a>
+      <button class="button button-assertive button-balanced button-clear" style="pointer-events: none;" >$0.00</button>
     </div>
     <div  class="button-bar">
       <a href-inappbrowser="page18"
