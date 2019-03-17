@@ -19,7 +19,7 @@
     </div>
 
     <div ng-show="bill" class="callpanel">
-      <div class="button-bar row-no-padding" style="height:24px">>
+      <div class="button-bar row-no-padding" style="height:24px">
         <button ng-bind="(incoming?'+':'-')+'Ξ'+bill.price.toFixed(4)" id="call-price" class="button button-light button-large button-info button-clear text-shadow"></button>
         <button ng-bind="bill.timeStr" id="call-time"  class="button button-light button-large button-clear button-info text-shadow">0:00</button>
         <button ng-bind="(incoming?'+':'-')+'Ξ'+bill.total.toFixed(4)" id="call-total" class="button button-light button-large button-info button-clear text-shadow"></button>
