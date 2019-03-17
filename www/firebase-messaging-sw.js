@@ -15,7 +15,7 @@
  // Initialize the Firebase app in the service worker by passing in the
  // messagingSenderId.
  firebase.initializeApp({
-   'messagingSenderId': 'YOUR-SENDER-ID'
+   'messagingSenderId': '917892951649'
  });
  // Retrieve an instance of Firebase Messaging so that it can handle background
  // messages.
@@ -27,7 +27,7 @@
 // implement this optional method.
 // [START background_handler]
 messaging.setBackgroundMessageHandler(function(payload) {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  console.warn('[firebase-messaging-sw.js] Received background message ', payload);
   // Customize notification here
   const notificationTitle = 'Somebody Calling';
   const notificationOptions = {

@@ -43,38 +43,38 @@ offsetRef.on("value", function(snap) {
 
 
 // Firebase Cloud Messaging
-// const messaging = firebase.messaging();
-// let messagingToken = null;
-// let messagingTokenSent = false;
-//
-// messaging.usePublicVapidKey('BJHuQmb7SaVbyiSmiXdqneHCtyENjfl7v5NUixzVmgctyTSG_TVCRFD5xqw4vV63BQoDV3Ish3SHIjNkFo3yXLM');
-// messaging.requestPermission().then(function() {
-//   console.log('Notification permission granted.');
-//   messaging.getToken().then(function(currentToken) {
-//     messagingTokenSent = false;
-//     if (currentToken) {
-//       log('FCM Token', currentToken);
-//       messagingToken = currentToken;
-//       // sendTokenToServer(currentToken);
-//     } else {
-//       // Show permission request.
-//       console.log('No Instance ID token available. Request permission to generate one.');
-//       // Show permission UI.
-//       // updateUIForPushPermissionRequired();
-//     }
-//   }).catch(function(err) {
-//     console.log('An error occurred while retrieving token. ', err);
-//     messagingTokenSent = false;
-//   });
-// }).catch(function(err) {
-//   console.log('Unable to get permission to notify.', err);
-// });
-//
-//
-// messaging.onMessage(function(payload) {
-//   console.log('Message received. ', payload);
-//   // ...
-// });
+const messaging = firebase.messaging();
+let messagingToken = null;
+let messagingTokenSent = false;
+
+messaging.usePublicVapidKey('BJHuQmb7SaVbyiSmiXdqneHCtyENjfl7v5NUixzVmgctyTSG_TVCRFD5xqw4vV63BQoDV3Ish3SHIjNkFo3yXLM');
+messaging.requestPermission().then(function() {
+  console.log('Notification permission granted.');
+  messaging.getToken().then(function(currentToken) {
+    messagingTokenSent = false;
+    if (currentToken) {
+      log('FCM Token', currentToken);
+      messagingToken = currentToken;
+      // sendTokenToServer(currentToken);
+    } else {
+      // Show permission request.
+      console.warn('No Instance ID token available. Request permission to generate one.');
+      // Show permission UI.
+      // updateUIForPushPermissionRequired();
+    }
+  }).catch(function(err) {
+    console.warn('An error occurred while retrieving token. ', err);
+    messagingTokenSent = false;
+  });
+}).catch(function(err) {
+  console.warn('Unable to get permission to notify.', err);
+});
+
+
+messaging.onMessage(function(payload) {
+  console.warn('Message received. ', payload);
+  // ...
+});
 
 
 
