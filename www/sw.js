@@ -12,7 +12,7 @@ const precacheFiles = [
   'fonts/caveat/Wnz6HAc5bAfYB2Q7YjYYiAzcPDKo.woff2',
   'fonts/caveat/Wnz6HAc5bAfYB2Q7ZjYYiAzcPA.woff2',
   'lib/angular-gettext.min.js',
-  'lib/jquery-2.1.1.min.js',
+  'lib/jquery-3.3.1.min.js',
   'lib/lib-jitsi-meet.min.js',
   'lib/qrcode.min.js',
   'lib/sentry-bundle.min.js',
