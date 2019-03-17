@@ -8,17 +8,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#ffffff">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <script type="text/javascript">
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-          .then(function(registration) {
-            console.log('Registration successful, scope is:', registration.scope);
-          })
-          .catch(function(error) {
-            console.warn('Service worker registration failed, error:', error);
-          });
-      }
-    </script>
+
     <!--<script src="https://browser.sentry-cdn.com/4.5.3/bundle.min.js" crossorigin="anonymous"></script>-->
     <script src="lib/sentry-bundle.min.js"></script>
     <script src="lib/firebase/firebase-app.js"></script>
@@ -112,4 +102,21 @@
   <div id="dev-version" class="dev-version"></div>
   <noscript><div class="center-on-page" style="text-align: center">Please enable JavaScript to use this app</div></noscript>
   </body>
+  <script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      if (navigator.serviceWorker.controller) {
+        console.log("[PWA Builder] active service worker found, no need to register");
+      } else {
+        // Register the service worker
+        navigator.serviceWorker
+          .register("sw.js", {
+            scope: "./"
+          })
+          .then(function (reg) {
+            console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+          });
+      }
+    }
+
+  </script>
 </html>

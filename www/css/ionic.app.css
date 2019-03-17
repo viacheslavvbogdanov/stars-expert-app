@@ -10089,6 +10089,9 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
   font-weight: 300;
   text-align: center !important; }
 
+.link-color {
+  color: #007aff !important; }
+
 .profile-url {
   color: #007aff !important;
   font-weight: 300;

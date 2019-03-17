@@ -53,7 +53,7 @@
       <ion-list id="stars-found-list" ng-repeat="star in foundStars | object2Array | orderBy:'displayName':true| orderBy:'online':true" >
         <!--<ion-list id="stars-found-by-nick-list" ng-repeat="star in foundStars" >-->
         <ion-item class="item-avatar item-icon-right" ui-sref="star({uid:'{{star.uid}}'})">
-          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
+          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}" alt="">
           <span ng-show="star.online" class="badge-online fadein"></span>
           <h2><b ng-bind="star.nameFoundPart"></b><span ng-bind="star.nameOtherPart"></span></h2>
           <p>@<b ng-bind="star.nickFoundPart"></b><span ng-bind="star.nickOtherPart"></span></p>
@@ -72,7 +72,7 @@
         <!--</label>-->
 
         <ion-item ng-if="profile.uid" class="item-avatar item-icon-right" id="stars-list-item-me" ui-sref="my()">
-          <img ng-if="profile.uid" ng-src="{{profile.photoURL?profile.photoURL:'../img/profile_image.png'}}">
+          <img ng-if="profile.uid" ng-src="{{profile.photoURL?profile.photoURL:'../img/profile_image.png'}}" alt="">
           <span ng-show="profile.online" class="badge-online fadein"></span>
           <h2 ng-show="profile.uid" ng-bind="profile.displayName?profile.displayName:'You (set Your name)'"></h2>
           <p ng-bind="profile.nick?'@'+profile.nick:''"></p>
@@ -102,8 +102,8 @@
       </ion-list>
       <ion-list id="stars-list-favorites"
                 ng-repeat="star in favoriteStars | object2Array | filter:searchBar.searchTextFavorites | orderBy:'displayName':true| orderBy:'online':true" >
-        <ion-item class="item-avatar item-icon-right" id="stars-list-favorite-stars" ui-sref="star({uid:'{{star.uid}}'})">
-          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
+        <ion-item class="item-avatar item-icon-right"  ui-sref="star({uid:'{{star.uid}}'})">
+          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}" alt="">
           <span ng-show="star.online" class="badge-online fadein"></span>
           <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
           <p ng-bind="star.nick?'@'+star.nick:''"></p>
@@ -125,7 +125,7 @@
       <ion-list id="stars-last-list"
                 ng-repeat="star in lastDialedStars  | object2Array | filter:searchBar.searchTextLastDialed |orderBy: 'created':true" >
         <ion-item class="item-avatar item-icon-right" ui-sref="star({uid:'{{star.uid}}'})">
-          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
+          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}" alt="">
           <span ng-show="star.online" class="badge-online fadein"></span>
           <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
           <p ng-bind="star.nick?'@'+star.nick:''"></p>
@@ -149,7 +149,7 @@
       </ion-list>
       <ion-list ng-repeat="star in lastIncomingCalls  | object2Array | filter:searchBar.searchTextLastIncoming |orderBy: 'created':true" >
         <ion-item class="item-avatar item-icon-right" ui-sref="star({uid:'{{star.uid}}'})">
-          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
+          <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}" alt="">
           <span ng-show="star.online" class="badge-online fadein"></span>
           <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
           <p ng-bind="star.nick?'@'+star.nick:''"></p>
@@ -173,7 +173,7 @@
     <ion-list id="stars-featured-list"
               ng-repeat="star in featuredStars | object2Array | filter:searchBar.searchTextFeatured | orderBy:'displayName':true| orderBy:'online':true"   >
       <ion-item ng-show="star.displayName" class="item-avatar item-icon-right" ui-sref="star({uid:'{{star.uid}}'})">
-        <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}">
+        <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}" alt="">
         <span ng-show="star.online" class="badge-online fadein"></span>
         <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
         <p ng-bind="star.status?star.status:''"></p>

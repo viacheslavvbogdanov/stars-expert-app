@@ -1,5 +1,5 @@
 {
-  "short_name": "Stars",
+  "short_name": "Stars PWA",
   "name": "Stars Expert",
   "icons": [
     {
@@ -14,10 +14,10 @@
     }
   ],
   "start_url": "/",
-  "background_color": "#000000",
+  "background_color": "#FFFFFF",
   "display": "standalone",
   "theme_color": "#FFFFFF",
-  "orientation":"portrait",
+  "orientation":"any",
   "gcm_sender_id": "103953800507",
   "permissions": ["audioCapture"]
 }

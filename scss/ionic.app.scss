@@ -378,8 +378,9 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
 }
 
 .link-color {
-  color: $my-link-color; !important;
+  color: $my-link-color !important;
 }
+
 .profile-url {
   color: $my-link-color !important;
   font-weight: 300;
