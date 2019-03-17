@@ -1,4 +1,4 @@
-<ion-view title="{{'Call'|translate}}" hide-nav-bar="true" id="page19">
+<ion-view title="{{'Call'|translate}}" hide-nav-bar="true" >
   <ion-content scroll="false" padding="false" class="manual-ios-statusbar-padding">
 
     <div ng-hide="joined" class="center-on-page"><ion-spinner class="call-spinner dark"></ion-spinner></div>
@@ -12,22 +12,28 @@
 
   </ion-content>
   <div class="bottom-panel">
-    <div id="call-button-bar19" class="button-bar">
-      <button id="call-button114"  class="button button-balanced button-large button-clear text-shadow"></button>
-      <a ng-show="connected" ng-click="finish()" id="call-button115" class="button button-assertive button-large button-clear icon ion-android-call phone-rotate text-shadow"></a>
-      <button id="call-button116"  class="button button-balanced button-large button-clear text-shadow"></button>
+    <div class="button-bar">
+      <button class="button button-balanced button-large button-clear text-shadow"></button>
+      <a ng-show="connected" ng-click="finish()" class="button button-assertive button-large button-clear icon ion-android-call phone-rotate text-shadow"></a>
+      <button class="button button-balanced button-large button-clear text-shadow"></button>
     </div>
 
-    <div ng-show="bill" id="call-container8" class="callpanel">
-      <div id="call-button-bar20" class="button-bar row-no-padding">
-        <button ng-bind="(incoming?'+':'-')+'Ξ'+bill.price.toFixed(4)" id="call-price" class="button button-light button-large button-info button-clear text-shadow">$???</button>
+    <div ng-show="bill" class="callpanel">
+      <div class="button-bar row-no-padding" style="height:24px">>
+        <button ng-bind="(incoming?'+':'-')+'Ξ'+bill.price.toFixed(4)" id="call-price" class="button button-light button-large button-info button-clear text-shadow"></button>
         <button ng-bind="bill.timeStr" id="call-time"  class="button button-light button-large button-clear button-info text-shadow">0:00</button>
-        <button ng-bind="(incoming?'+':'-')+'Ξ'+bill.total.toFixed(4)" id="call-total" class="button button-light button-large button-info button-clear text-shadow">$???</button>
+        <button ng-bind="(incoming?'+':'-')+'Ξ'+bill.total.toFixed(4)" id="call-total" class="button button-light button-large button-info button-clear text-shadow"></button>
       </div>
-      <div id="call-button-bar21" class="button-bar row-no-padding">
-        <button id="call-price-text" class="button button-stable button-small button-clear text-shadow-" translate>per minute</button>
-        <button id="call-time-text" class="button button-stable button-small button-clear text-shadow-" translate>call time</button>
-        <button ng-bind="incoming?'revenues':'cost'" id="call-total-text" class="button button-stable button-small button-clear text-shadow-" translate>revenues</button>
+      <div class="button-bar row-no-padding" style="height:22px">
+        <button ng-bind="(incoming?'+':'-')+'$'+(bill.price*exchangeRate).toFixed(2)" class="button button-stable button-info button-clear text-shadow">$???</button>
+        <button  class="button button-light button-info button-clear "></button>
+        <button ng-bind="(incoming?'+':'-')+'$'+(bill.total*exchangeRate).toFixed(2)" class="button button-stable button-info button-clear text-shadow">$???</button>
+      </div>
+      <div class="button-bar row-no-padding">
+        <button class="button button-stable button-small button-clear " translate>per minute</button>
+        <button class="button button-stable button-small button-clear " translate>call time</button>
+        <button ng-show="incoming" class="button button-stable button-small button-clear " translate>revenues</button>
+        <button ng-hide="incoming" class="button button-stable button-small button-clear" translate>cost</button>
       </div>
     </div>
   </div>

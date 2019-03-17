@@ -1391,7 +1391,7 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, $interval) {
 
             // setup cost/revenue calc / ping check interval
             if (!interval) interval = $interval(function () {
-              if ($scope.call.finished) $interval.clear(interval);
+              if ($scope.call.finished && $interval.clear) $interval.clear(interval);
 
               // finish call when it not pinged long lime
               if ($scope.call['lastPingCallee'] && $scope.call['lastPingCaller']) {
