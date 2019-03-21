@@ -1,7 +1,7 @@
 
 
 angular.module('app.controllers', [])
-  
+
 .controller('starsCtrl', ['$scope', '$state', '$stateParams', '$rootScope', '$ionicHistory',
   'alerts', 'toast', 'social', 'profileFiller',
 function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast, social, profileFiller) {
@@ -343,12 +343,12 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
     $rootScope.redirect = null;
   }
 }])
-   
+
 .controller('callLogCtrl', ['$scope', '$stateParams',
 function ($scope, $stateParams) {
 
 }])
-   
+
 .controller('myCtrl', ['$scope', '$stateParams', '$state', '$rootScope','alerts',
   '$ionicHistory', '$ionicActionSheet', 'toast', 'social', 'apiUI', 'gettextCatalog',
 
@@ -464,6 +464,8 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
 <div class="center-horizontally padding-top" style="font-size: 10px">
 
 *Ethereum transaction fee will be deducted</div>
+<a class="button button-small button-block button-dark padding-right" onclick="window.open('https://localethereum.com/r/vbogdanov', '_system', 'location=yes'); return false;" translate>Sell ETH online</a>
+
 `,
         () => {
           //todo check address and values
@@ -535,14 +537,14 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
     });
   };
 }])
-   
-.controller('settingsCtrl', ['$scope', '$stateParams', 
+
+.controller('settingsCtrl', ['$scope', '$stateParams',
 function ($scope, $stateParams) {
 
 
 }])
-   
-.controller('aboutCtrl', ['$scope', '$stateParams', 
+
+.controller('aboutCtrl', ['$scope', '$stateParams',
 function ($scope, $stateParams) {
   // jitsi.info();
   $scope.imageClick = function() {
@@ -618,7 +620,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts) {
   });
 
 }])
-   
+
 .controller('signinCtrl', ['$scope', '$stateParams', '$rootScope', '$state', '$timeout', '$ionicHistory',
 function ($scope, $stateParams, $rootScope, $state, $timeout, $ionicHistory) {
 
@@ -649,7 +651,7 @@ function ($scope, $stateParams, $rootScope, $state, $timeout, $ionicHistory) {
     }
   }, 5000);
 }])
-   
+
 .controller('loginCtrl', ['$scope', '$stateParams', '$state', 'alerts', '$ionicHistory', 'gettextCatalog',
 function ($scope, $stateParams, $state, alerts, $ionicHistory, gettextCatalog ) {
   $ionicHistory.clearCache().then(function () {

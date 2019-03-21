@@ -48,8 +48,9 @@ style="font-size: 12px; text-align:center" readonly ng-model="account.topupAddre
         <span class="input-label" ng-class="{'energized':account.topupBalanceNum==0}" translate>Address Balance ETH</span>
         <input id="topupBalance" ng-model="account.topupBalanceStr" type="text" class="energized"
                placeholder="Refreshing..." readonly>
+          <a class="button button-small button-block button-balanced padding-left ion-refresh" ng-click="refreshTopupBalance()"></a>
 </label>
-<a class="button button-small button-block button-balanced" ng-click="refreshTopupBalance()" translate>refresh</a>
+<a class="button button-small button-block button-dark padding-right" onclick="window.open('https://localethereum.com/r/vbogdanov', '_system', 'location=yes'); return false;" translate>Buy ETH online</a>
 
 </div>`,
           () => {

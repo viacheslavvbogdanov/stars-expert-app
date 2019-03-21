@@ -75,7 +75,9 @@ angular.module('app', [
   $rootScope.refreshTopupBalance = function() {
     if ($rootScope.account.topupAddress) {
       // TODO Subscribe / refresh
-      $rootScope.account.topupBalance = null;
+      $rootScope.account.topupBalanceNum = null;
+      $rootScope.account.topupBalanceStr = null;
+
       const address = $rootScope.account.topupAddress;
       log('Account balance address 0x', address);
       web3.eth.getBalance(address, (error, balanceWei) => {
@@ -625,7 +627,7 @@ angular.module('app', [
       attrs.$observe('hrefInappbrowser', function(val){
         href = val;
       });
-      
+
       element.bind('click', function (event) {
 
         window.open(href, '_system', 'location=yes');

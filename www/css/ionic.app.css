@@ -10024,7 +10024,8 @@ a.button {
   background-color: transparent; }
 
 input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="number"], textarea {
-  border-bottom: 1px solid #ddd; }
+  border-bottom: 1px solid #ddd;
+  background-color: white !important; }
 
 .button-block {
   text-transform: uppercase;

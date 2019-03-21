@@ -292,6 +292,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="number"], textarea {
   // background-color: #eeeeee;
   border-bottom: 1px solid #ddd;
+  background-color: white !important;
 }
 
 .button-block {
