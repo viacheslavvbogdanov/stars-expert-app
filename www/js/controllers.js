@@ -24,7 +24,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
 
   // Share profile
   $scope.shareProfile = function() {
-    const message = $rootScope.profile.displayName+' @ Stars Messenger';
+    const message = $rootScope.profile.displayName+' @ Stars.Expert';
     social.share(message, $rootScope.profile.link, message, function() {
       // hide hint on successful share
       $scope.$apply( ()=> {
@@ -369,7 +369,7 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
   };
 
   $scope.shareProfileLink = function() {
-    if (!social.share('Call me on Stars Messenger', $rootScope.profile.link, $rootScope.profile.displayName + ' @ Stars Messenger ')) {
+    if (!social.share('Call me through Stars.Expert', $rootScope.profile.link, $rootScope.profile.displayName + ' @ Stars.Expert ')) {
       $scope.copyMyProfileLinkToClipboard();
     }
   };
@@ -799,9 +799,9 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, socia
 
   $scope.shareProfileLink = function() {
     if (!social.share(
-      'Call me on Stars Messenger',
+      'Call me through Stars.Expert',
       $rootScope.profile.link,
-      $rootScope.profile.displayName + ' @ Stars Messenger ')) {
+      $rootScope.profile.displayName + ' @ Stars.Expert ')) {
       $scope.copyMyProfileLinkToClipboard();
     }
   };

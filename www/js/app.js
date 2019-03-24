@@ -517,8 +517,8 @@ angular.module('app', [
           if (appconfig.showNotifications && newMessagesArray.length>0) { // if any new messages
             Notification.requestPermission().then(function(permission) {
               if( permission != "granted" ) return false;
-              const notify = new Notification('Stars Messenger',{
-                tag: 'starsmessenger',
+              const notify = new Notification('Stars Expert',{
+                tag: 'stars.expert',
                 body: newMessagesArray.length+' new '+(newMessagesArray.length>1?'messages':'message'),
                 icon: 'img/icon192.png'
               });
