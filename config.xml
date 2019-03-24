@@ -36,7 +36,7 @@
         <preference name="SplashScreenDelay" value="5000" />
         <preference name="AutoHideSplashScreen" value="true" />
         <preference name="AndroidLaunchMode" value="singleTask" />
-        <preference name="android-minSdkVersion" value="19" />
+        <preference name="android-minSdkVersion" value="22" />
         <preference name="APP_SECRET" value="86b9a189-d1fd-472b-83dd-e1d059e96a75" />
         <config-file parent="/*" platform="android" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.CAMERA" />
