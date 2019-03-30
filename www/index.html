@@ -105,7 +105,13 @@
 
   </head>
   <body ng-app="app" animation="slide-left-right-ios7">
-  <div>
+  <div id="use-chrome" class="center-on-page" style="text-align: center;display: none">
+    <div class="icon ion-sad" style="font-size: 128px; color:lightgrey; text-align: center"></div><br/>
+    <h4 translate>Your browser is not supported.</h4>
+    <p translate>Use <a href="http://google.com/chrome" target="_system">Chrome</a> or <a href="http://www.chromium.org/">Chromium</a>
+      version 59 and above for better experience.</p>
+  </div>
+  <div id="app">
     <div>
       <ion-nav-bar class="bar-light">
         <ion-nav-back-button></ion-nav-back-button>
@@ -114,9 +120,36 @@
     </div>
   </div>
   <div id="dev-version" class="dev-version"></div>
-  <noscript><div class="center-on-page" style="text-align: center">Please enable JavaScript to use this app</div></noscript>
+  <noscript><div class="center-on-page" style="text-align: center"><div class="icon ion-sad" style="font-size: 128px; color:lightgrey; text-align: center"></div><br/>
+    <h4 translate>Enable JavaScript to use this app.</h4>
+    <p translate>Use <a href="http://google.com/chrome" target="_system">Chrome</a> or <a href="http://www.chromium.org/">Chromium</a>
+      version 59 and above for better experience.</p>
+  </div></noscript>
   </body>
   <script type="text/javascript">
+    function browserSpecs (){
+      var ua = navigator.userAgent, tem,
+        M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+      if(/trident/i.test(M[1])){
+        tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return {name:'IE',version:(tem[1] || '')};
+      }
+      if(M[1]=== 'Chrome'){
+        tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+        if(tem != null) return {name:tem[1].replace('OPR', 'Opera'),version:tem[2]};
+      }
+      M = M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+      if((tem = ua.match(/version\/(\d+)/i))!= null)
+        M.splice(1, 1, tem[1]);
+      return {name:M[0], version:M[1]};
+    }
+    var browser = browserSpecs();
+    console.log('Browser',browser);
+    if (!((browser.name=='Chrome')&&(browser.version>=59))) {
+      document.getElementById('use-chrome').style.display='block';
+      document.getElementById('app').style.display='none';
+    }
+
     if ("serviceWorker" in navigator) {
       if (navigator.serviceWorker.controller) {
         console.log("[PWA Builder] active service worker found, no need to register");
