@@ -690,9 +690,19 @@ function ($scope, $stateParams, $state, alerts, $ionicHistory, gettextCatalog ) 
   };
 
   $scope.otp = function () {
+    function showInvalidPhoneAlert() {
+      alerts.error(gettextCatalog.getString('Invalid phone number'),
+        gettextCatalog.getString('Your phone must be in international format<br> and starts from + sign. For example +12223334455'));
+    }
+
+    const phoneNumber = $scope.user.phone.trim();
+    if (phoneNumber[0]!=='+' || phoneNumber.length<7) {
+      showInvalidPhoneAlert();
+      return;
+    }
+
     $scope.otpPhone = false;
     $scope.otpSending = true;
-    const phoneNumber = $scope.user.phone;
     localStorage.setItem('lastUserPhone', phoneNumber);
     const appVerifier = window.recaptchaVerifier;
     firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
@@ -708,8 +718,7 @@ function ($scope, $stateParams, $state, alerts, $ionicHistory, gettextCatalog ) 
         });
       })
       .catch(function (error) {
-        alerts.error(gettextCatalog.getString('Invalid phone number'),
-          gettextCatalog.getString('Your phone must be in international format<br> and starts from + sign. For example +12223334455'));
+        showInvalidPhoneAlert();
         log('SMS not sent', error);
         $scope.$apply(()=>{
           $scope.otpPhone = true;
