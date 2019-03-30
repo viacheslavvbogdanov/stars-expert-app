@@ -498,6 +498,12 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
 
 
 
+  $scope.suggestFeature = function() {
+    window.open('https://starsexpert.nolt.io/', '_system');
+  };
+
+
+
   $scope.showActionSheet = function() {
 
     setLocalStorage($rootScope, 'hideTapForMoreHint', true);
@@ -509,6 +515,7 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
       { text: '<i class="icon ion-arrow-return-left"></i> '+gettextCatalog.getString('Transfer revenues to balance'),
                                                                      f: $scope.topUpFromRevenues },
       { text: '<i class="icon ion-cash"></i> '+gettextCatalog.getString('Withdraw revenues'),     f: $scope.withdrawRevenues },
+      { text: '<i class="icon ion-lightbulb"></i> '+gettextCatalog.getString('Suggest a feature'),f: $scope.suggestFeature },
       { text: '<i class="icon ion-log-out"></i> '+gettextCatalog.getString('Log out'),            f: $scope.logOut },
       { text: '<i class="icon ion-information-circled"></i> '+gettextCatalog.getString('About'),  f: $scope.about },
     ];

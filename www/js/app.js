@@ -300,7 +300,7 @@ angular.module('app', [
     uid: null
   };
   firebase.auth().onAuthStateChanged(function(user) {
-    log('onAuthStateChanged user', user);
+    log('onAuthStateChanged user', user?'TRUE':'FALSE');
     $rootScope.user = user;
 
     if (user) {      // User is signed in.
