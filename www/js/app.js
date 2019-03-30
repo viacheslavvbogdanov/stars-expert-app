@@ -111,7 +111,7 @@ angular.module('app', [
     if (typeof(BuildInfo) !== 'undefined') log('BuildInfo', BuildInfo);
     // Show version data in development build
     const devVersionElem = window.document.getElementById('dev-version');
-    devVersionElem.style.visibility = PRODUCTION;
+    devVersionElem.style.display = PRODUCTION ? 'block' : 'none';
 
     function getFirstDomain(str) {
       return str.substring(
