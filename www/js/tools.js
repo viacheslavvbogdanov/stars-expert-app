@@ -16,6 +16,12 @@ const web3 = new Web3(new Web3.providers.HttpProvider(envConfig.web3HttpProvider
  };
 
 
+
+ // Convert seconds to hh:mm:ss string
+function secondsToTimeString( seconds ) {
+  return new Date(seconds * 1000).toISOString().substr(11, 8);
+}
+
  // Get text price parts (dollars/cents) for UI
 function getPriceParts(price, currencySign='$') {
   const dollars = Math.floor(price);

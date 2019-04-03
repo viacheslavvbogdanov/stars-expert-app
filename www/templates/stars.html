@@ -97,7 +97,7 @@
       <ion-list>
         <label ng-show="private.favorites.length>0" class="item item-input" id="stars-search31">
           <i class="icon ion-ios-star placeholder-icon"></i>
-          <input disabled class="transparent" ng-model="searchBar.searchTextFavorites"
+          <input disabled class="transparent grey" ng-model="searchBar.searchTextFavorites"
                  type="search" placeholder="{{'Favorites'|translate}}">
         </label>
       </ion-list>
@@ -120,7 +120,7 @@
       <ion-list ng-show="haveLastDialedStars" id="stars-last-div" class="">
         <label class="item item-input" id="stars-last-search">
           <i class="icon ion-ios-telephone placeholder-icon"></i>
-          <input disabled class="transparent" ng-model="searchBar.searchTextLastDialed"
+          <input disabled class="transparent grey" ng-model="searchBar.searchTextLastDialed"
                  type="search" placeholder="{{'Last dialed'|translate}}">
         </label>
       </ion-list>
@@ -133,13 +133,14 @@
           <p>
             <!--<span ng-bind="star.nick?'@'+star.nick:''"></span>-->
             <!--<span ng-bind="star.lastCallData.duration"></span>-->
-             <span class="assertive" ng-bind="star.lastCallData.cost.toFixed(4)"></span>
+            <span ng-show="star.lastCallData.duration">
+              <span ng-bind="star.lastCallData.durationStr"></span>
+              <span class="assertive" ng-bind="star.lastCallData.cost.toFixed(4)"></span>
+              <span class="grey" ng-bind="'$'+(star.lastCallData.cost*exchangeRate).toFixed(2)"></span>
+            </span>
+
+            <span class="grey" ng-hide="star.lastCallData.duration" translate>not answered</span>
           </p>
-          <!--<p ng-bind="star.lastCallDateTimeStr"></p>-->
-          <!--<i class="icon icon-accessory padding-right" style="font-size:12px; color:darkgrey" >-->
-            <!--<span ng-bind="star.lastCallDateTimeStr">12.31 11:20</span><br/>-->
-            <!--<span ng-bind="star.lastCallData.duration"></span> -<span ng-bind="star.lastCallData.cost"></span>-->
-          <!--</i>-->
           <i class="icon icon-accessory padding-right" style="font-size:12px; color:darkgrey" ng-bind="star.lastCallDateTimeStr">
             12.31 11:20
           </i>
@@ -153,7 +154,7 @@
       <ion-list ng-show="haveLastIncomingCalls" >
         <label class="item item-input">
           <i class="icon ion-arrow-graph-down-left placeholder-icon"></i>
-          <input disabled class="transparent" ng-model="searchBar.searchTextLastIncoming"
+          <input disabled class="transparent grey" ng-model="searchBar.searchTextLastIncoming"
                  type="search" placeholder="{{'Last incoming'|translate}}">
         </label>
       </ion-list>
@@ -163,11 +164,14 @@
           <span ng-show="star.online" class="badge-online fadein"></span>
           <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
           <p>
-            <!--<span ng-bind="star.nick?'@'+star.nick:''"></span>-->
-            <!--<span ng-bind="star.lastCallData.duration"></span>-->
-            <span class="balanced" ng-bind="star.lastCallData.revenue.toFixed(4)"></span>
+            <span ng-show="star.lastCallData.duration">
+              <span class="" ng-bind="star.lastCallData.durationStr"></span>
+              <span class="balanced" ng-bind="star.lastCallData.revenue.toFixed(4)"></span>
+              <span class="grey" ng-bind="'$'+(star.lastCallData.revenue*exchangeRate).toFixed(2)"></span>
+            </span>
+
+            <span class="grey" ng-hide="star.lastCallData.duration" translate>missed</span>
           </p>
-          <!--<p ng-bind="star.lastCallDateTimeStr"></p>-->
           <i class="icon icon-accessory padding-right" ng-bind="star.lastCallDateTimeStr" style="font-size:12px; color:darkgrey" >
             12.31 11:20
           </i>
@@ -180,7 +184,7 @@
     <ion-list id="stars-featured-div" class="">
       <label class="item item-input" id="stars-featured-search">
         <i class="icon ion-ribbon-b placeholder-icon"></i>
-        <input disabled class="transparent" ng-model="searchBar.searchTextFeatured"
+        <input disabled class="transparent grey" ng-model="searchBar.searchTextFeatured"
                type="search" placeholder="{{'Editor\'s Choice'|translate}}">
       </label>
     </ion-list>

@@ -141,6 +141,8 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
                 c.toLocaleDateString([], {month: "numeric", day: "numeric"}) + ' ' +
                 c.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
               profileData.lastCallData = call.lastCallData;
+              profileData.lastCallData.durationStr = secondsToTimeString(profileData.lastCallData.duration);
+
               // log('lastCallData', profileData);
               $scope.$apply(function () {
                 $scope.lastDialedStars[profileData.uid] = profileData;
@@ -200,6 +202,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
                 c.toLocaleDateString([], {month: "numeric", day: "numeric"}) + ' ' +
                 c.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
               profileData.lastCallData = call.lastCallData;
+              profileData.lastCallData.durationStr = secondsToTimeString(profileData.lastCallData.duration);
               log('incoming lastCallData', profileData);
               $scope.$apply(function () {
                 $scope.lastIncomingCalls[profileData.uid] = profileData;

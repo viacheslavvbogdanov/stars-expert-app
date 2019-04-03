@@ -9835,6 +9835,12 @@ a.button {
 .lightweight {
   font-weight: 300; }
 
+.grey {
+  color: darkgrey; }
+
+.grey::placeholder {
+  color: darkgrey; }
+
 .hint {
   font-family: 'Caveat', cursive;
   color: #d97a79;
@@ -10097,7 +10103,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="tel
   cursor: copy !important; }
 
 .profile-uid {
-  color: darkgray;
+  color: darkgrey;
   font-size: 12px;
   font-weight: 300;
   text-align: center !important; }
