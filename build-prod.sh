@@ -17,5 +17,7 @@ zipalign -v 4 ${APKDir}/app-release-unsigned.apk ${APKDir}/starsexpert.apk
 apksigner verify ${APKDir}/starsexpert.apk
 aapt dump badging ${APKDir}/starsexpert.apk | grep version
 
+. ./env-dev.sh
+
 #TODO upload to GPlay
 

@@ -29,3 +29,5 @@ pushd ../webapp
 firebase deploy --only hosting -P production
 popd
 
+. ./env-dev.sh
+
