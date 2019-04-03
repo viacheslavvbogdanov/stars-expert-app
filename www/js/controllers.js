@@ -109,11 +109,12 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
         .orderBy('created','desc')
         .limit(24)
         .onSnapshot(function(calls){
-        // log('Last calls', calls);
         let callsCreated = {};
+        let callsData = {};
         // group calls by to uid
         calls.forEach(function(call){
           const callData = call.data();
+          callsData[callData.to] = callData;
           const oldCreated = callsCreated[callData.to];
           const newCreated = callData.created ? callData.created.toDate() : null;
           callsCreated[callData.to] = (oldCreated>newCreated) ? oldCreated : newCreated;
@@ -122,7 +123,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
         const callsArray = [];
         for(const i in callsCreated){
           if (callsCreated.hasOwnProperty(i))
-            callsArray.push({to:i, created:callsCreated[i]});
+            callsArray.push({to:i, created:callsCreated[i], lastCallData:callsData[i] });
         }
         // log('Last calls array ', callsArray);
         // fetch stars' data
@@ -139,6 +140,8 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
               profileData.lastCallDateTimeStr =
                 c.toLocaleDateString([], {month: "numeric", day: "numeric"}) + ' ' +
                 c.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+              profileData.lastCallData = call.lastCallData;
+              // log('lastCallData', profileData);
               $scope.$apply(function () {
                 $scope.lastDialedStars[profileData.uid] = profileData;
                 $scope.haveLastDialedStars = true;
@@ -166,9 +169,11 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
         // TODO refactor - use same function for last dialed / last incoming calls
         // log('Last incoming calls', calls);
         let callsCreated = {};
+        let callsData = {};
         // group calls by 'from' uid
         calls.forEach(function(call){
           const callData = call.data();
+          callsData[callData.from] = callData;
           const oldCreated = callsCreated[callData.from];
           const newCreated = callData.created ? callData.created.toDate() : null;
           callsCreated[callData.from] = (oldCreated>newCreated) ? oldCreated : newCreated;
@@ -177,7 +182,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
         const callsArray = [];
         for(const i in callsCreated){
           if (callsCreated.hasOwnProperty(i))
-            callsArray.push({to:i, created:callsCreated[i]});
+            callsArray.push({to:i, created:callsCreated[i], lastCallData:callsData[i] });
         }
         // log('Last calls array ', callsArray);
         // fetch stars' data
@@ -194,6 +199,8 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
               profileData.lastCallDateTimeStr =
                 c.toLocaleDateString([], {month: "numeric", day: "numeric"}) + ' ' +
                 c.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+              profileData.lastCallData = call.lastCallData;
+              log('incoming lastCallData', profileData);
               $scope.$apply(function () {
                 $scope.lastIncomingCalls[profileData.uid] = profileData;
                 $scope.haveLastIncomingCalls = true;

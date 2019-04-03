@@ -1,17 +1,20 @@
-<ion-view view-title="Call Log" id="page10">
+<ion-view view-title="Call Log">
   <ion-nav-buttons side="right" class="has-header">
     <button class="button button-icon icon ion-ios-cloud-download-outline"></button>
   </ion-nav-buttons>
   <ion-content padding="false" class="has-header">
-    <div id="callLog-button-bar10" class="button-bar">
-      <button id="callLog-button63" style="border-radius:32px 32px 32px 32px;" class="button button-stable button-small button-block icon ion-android-arrow-down"></button>
-      <button id="callLog-button65" style="border-radius:32px 32px 32px 32px;" class="button button-dark button-small button-block icon ion-asterisk"></button>
-      <button id="callLog-button64" style="border-radius:32px 32px 32px 32px;" class="button button-stable button-small button-block icon ion-android-arrow-up"></button>
+    <!--<div class="button-bar">-->
+      <!--<button class="button button-stable button-large button-block icon ion-arrow-graph-down-left"></button>-->
+      <!--<button class="button button-stable button-large button-block icon ion-arrow-graph-up-right"></button>-->
+    <!--</div>-->
+    <div class="button-bar padding-horizontal">
+      <button class="button button-dark button-outline button-small button-block" translate>Incoming</button>
+      <button class="button button-dark button-small button-block" translate>Outgoing</button>
     </div>
-    <ion-list id="callLog-list12">
-      <ion-item class="item-avatar item-icon-right" id="callLog-list-item27" ui-sref="star()">
+    <ion-list>
+      <ion-item class="item-avatar item-icon-right" ui-sref="star()">
         <img src="../img/profile_image.png">
-        <h2>Angelina Jolie</h2>
+        <h2>Jenny Parker</h2>
         <p>-$320 - 2:15 </p>
         <i class="icon ion-android-arrow-up icon-accessory"></i>
       </ion-item>

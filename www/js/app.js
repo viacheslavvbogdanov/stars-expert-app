@@ -71,6 +71,8 @@ angular.module('app', [
   $rootScope.userMessagesUnsubscribe = null;
   $rootScope.userPrivateUnsubscribe  = null;
 
+  // $rootScope.callLogFilter
+
   // Global refresh topup balance function
   $rootScope.refreshTopupBalance = function() {
     if ($rootScope.account.topupAddress) {

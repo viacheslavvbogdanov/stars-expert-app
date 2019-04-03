@@ -75,7 +75,8 @@
           <img ng-if="profile.uid" ng-src="{{profile.photoURL?profile.photoURL:'../img/profile_image.png'}}" alt="">
           <span ng-show="profile.online" class="badge-online fadein"></span>
           <h2 ng-show="profile.uid" ng-bind="profile.displayName?profile.displayName:'You (set Your name)'"></h2>
-          <p ng-bind="profile.nick?'@'+profile.nick:''"></p>
+          <p ng-bind="profile.status"></p>
+          <!--<p ng-bind="profile.nick"></p>-->
           <i class="icon icon-accessory padding-right" style="font-size:12px" translate>You</i>
         </ion-item>
         <div ng-if="profile.uid">
@@ -106,7 +107,8 @@
           <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}" alt="">
           <span ng-show="star.online" class="badge-online fadein"></span>
           <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
-          <p ng-bind="star.nick?'@'+star.nick:''"></p>
+          <!--<p ng-bind="star.nick"></p>-->
+          <p ng-bind="star.status"></p>
           <i ng-if="private.favorites.indexOf(star.uid)!=-1" class="icon ion-ios-star icon-accessory"></i>
           <!--<span ng-if="newMessages[star.uid].length>0" class="badge badge-positive fadein" ng-bind="newMessages[star.uid].length">0</span>-->
         </ion-item>
@@ -128,9 +130,17 @@
           <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}" alt="">
           <span ng-show="star.online" class="badge-online fadein"></span>
           <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
-          <p ng-bind="star.nick?'@'+star.nick:''"></p>
+          <p>
+            <!--<span ng-bind="star.nick?'@'+star.nick:''"></span>-->
+            <!--<span ng-bind="star.lastCallData.duration"></span>-->
+             <span class="assertive" ng-bind="star.lastCallData.cost.toFixed(4)"></span>
+          </p>
           <!--<p ng-bind="star.lastCallDateTimeStr"></p>-->
-          <i class="icon icon-accessory padding-right" ng-bind="star.lastCallDateTimeStr" style="font-size:12px; color:darkgrey" >
+          <!--<i class="icon icon-accessory padding-right" style="font-size:12px; color:darkgrey" >-->
+            <!--<span ng-bind="star.lastCallDateTimeStr">12.31 11:20</span><br/>-->
+            <!--<span ng-bind="star.lastCallData.duration"></span> -<span ng-bind="star.lastCallData.cost"></span>-->
+          <!--</i>-->
+          <i class="icon icon-accessory padding-right" style="font-size:12px; color:darkgrey" ng-bind="star.lastCallDateTimeStr">
             12.31 11:20
           </i>
         </ion-item>
@@ -152,7 +162,11 @@
           <img src="" ng-if="star.photoURL" img-fade-in-onload="{{star.photoURL}}" alt="">
           <span ng-show="star.online" class="badge-online fadein"></span>
           <h2 ng-bind="star.displayName?star.displayName:'Unknown'"></h2>
-          <p ng-bind="star.nick?'@'+star.nick:''"></p>
+          <p>
+            <!--<span ng-bind="star.nick?'@'+star.nick:''"></span>-->
+            <!--<span ng-bind="star.lastCallData.duration"></span>-->
+            <span class="balanced" ng-bind="star.lastCallData.revenue.toFixed(4)"></span>
+          </p>
           <!--<p ng-bind="star.lastCallDateTimeStr"></p>-->
           <i class="icon icon-accessory padding-right" ng-bind="star.lastCallDateTimeStr" style="font-size:12px; color:darkgrey" >
             12.31 11:20
