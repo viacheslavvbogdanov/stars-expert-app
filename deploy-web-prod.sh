@@ -8,7 +8,7 @@ set -e
 # keep track of the last executed command
 trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 # echo an error message before exiting
-trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
+trap 'echo "\"${last_command}\" command completed with exit code $?."' EXIT
 
 
 #npm install
@@ -35,6 +35,9 @@ firebase deploy --only hosting -P production
 popd
 
 . ./env-dev.sh
+
+echo "SUCCESS"
+
 
   else
    echo "ERROR: Will not publish from a branch other than master to production. Please merge your changes into master and try again."
