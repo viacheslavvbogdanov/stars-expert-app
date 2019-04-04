@@ -114,8 +114,9 @@ String.prototype.replaceAll = function(search, replacement) {
 
 // TODO move to services (remove scope and uid params - take directly)
  function getLocalStorage( $scope, name, uid='' ) {
-   $scope[name] = localStorage.getItem(name+'-'+uid);
-   // log('getLocalStorage', name, '=', $scope[name]  );
+   const val = localStorage.getItem(name+'-'+uid);
+   $scope[name] = val;
+   log('getLocalStorage', name, '=', $scope[name], ' / ', val  );
  }
 
 // TODO move to services

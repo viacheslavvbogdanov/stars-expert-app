@@ -18,19 +18,21 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
     if (!$rootScope.profile.uid) $state.go('login');
   }, 10000 );
 
-  $scope.hideShareYourProfileHint = (window.plugins && window.plugins.socialsharing) ? false : true;
-  if (!$scope.hideShareYourProfileHint)
-    getLocalStorage($scope, 'hideShareYourProfileHint', $rootScope.user.uid);
 
   // Share profile
   $scope.shareProfile = function() {
     const message = $rootScope.profile.displayName+' @ Stars.Expert';
-    social.share(message, $rootScope.profile.link, message, function() {
-      // hide hint on successful share
-      $scope.$apply( ()=> {
-        setLocalStorage($scope, 'hideShareYourProfileHint', true, $rootScope.user.uid);
-      });
-    });
+    social.share(message, $rootScope.profile.link, message,
+      function() {
+        // hide hint on successful share
+        $scope.$apply( ()=> {
+          setLocalStorage($rootScope, 'hideShareYourProfileHint', true, $rootScope.user.uid);
+        });
+      },
+      function(){
+        $state.go('my');
+      }
+    );
   };
 
   $scope.searchBar = {
@@ -104,6 +106,8 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
   $rootScope.$watch('profile.uid', (uid)=>{
     // log('lastDialedStars User uid', uid);
     if (uid){
+      getLocalStorage($rootScope, 'hideShareYourProfileHint', $rootScope.user.uid);
+
       $rootScope.lastDialedUnsubscribe = api.messagesRef
         .where('from','==',uid)
         .orderBy('created','desc')
@@ -379,9 +383,21 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
   };
 
   $scope.shareProfileLink = function() {
-    if (!social.share('Call me through Stars.Expert', $rootScope.profile.link, $rootScope.profile.displayName + ' @ Stars.Expert ')) {
-      $scope.copyMyProfileLinkToClipboard();
-    }
+    social.share('Call me through Stars.Expert',
+      $rootScope.profile.link,
+      $rootScope.profile.displayName + ' @ Stars.Expert ',
+      function () {
+        log('Social share success');
+        // hide hint on successful share
+        $scope.$apply( ()=> {
+          setLocalStorage($scope, 'hideShareYourProfileHint', true, $rootScope.user.uid);
+        });
+      },
+      function() {
+        $scope.copyMyProfileLinkToClipboard();
+        setLocalStorage($rootScope, 'hideShareYourProfileHint', true, $rootScope.user.uid);
+      }
+    );
   };
 
   $scope.logOut = function() {
@@ -824,12 +840,14 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, socia
   };
 
   $scope.shareProfileLink = function() {
-    if (!social.share(
+    social.share(
       'Call me through Stars.Expert',
       $rootScope.profile.link,
-      $rootScope.profile.displayName + ' @ Stars.Expert ')) {
-      $scope.copyMyProfileLinkToClipboard();
-    }
+      $rootScope.profile.displayName + ' @ Stars.Expert ',
+      null,
+      $scope.copyMyProfileLinkToClipboard
+
+    );
   };
 
   $scope.saveProfile = function() {
@@ -950,9 +968,7 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, toast
   $scope.shareStar = function() {
     setLocalStorage($rootScope, 'hideShareStarHint', true);
     const message = $scope.star.displayName+' @ Stars.Expert';
-    if (!social.share(message, $scope.star.link, message, null, $scope.copyProfileLinkToClipboard)) {
-      $scope.copyProfileLinkToClipboard();
-    }
+    social.share(message, $scope.star.link, message, null, $scope.copyProfileLinkToClipboard);
   };
 
   // Dial star

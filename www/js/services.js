@@ -80,27 +80,26 @@ style="font-size: 12px; text-align:center" readonly ng-model="account.topupAddre
   .factory('social', [ function() {
     return {
       share: function(message, url, subject=null, onSuccessCallback=null, onErrorCallback=null) {
+
+        const onSuccess = function (result) {
+          log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+          log("Shared to app: " + result.app); // On Android result.app since plugin version 5.4.0 this is no longer empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+          if (onSuccessCallback) onSuccessCallback();
+        };
+        const onError = function (msg) {
+          log("Sharing failed with message: ", msg);
+          if (onErrorCallback) onErrorCallback();
+        };
+
         if (window.plugins && window.plugins.socialsharing ) {
           const options = {
             message: message, // not supported on some apps (Facebook, Instagram)
             subject: subject, // fi. for email
             url: url,
           };
-
-          const onSuccess = function (result) {
-            log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
-            log("Shared to app: " + result.app); // On Android result.app since plugin version 5.4.0 this is no longer empty. On iOS it's empty when sharing is cancelled (result.completed=false)
-            if (onSuccessCallback) onSuccessCallback();
-          };
-
-          const onError = function (msg) {
-            log("Sharing failed with message: ", msg);
-            if (onErrorCallback) onErrorCallback();
-          };
-
           window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
-          return true;
-        } else return false;
+
+        } else onError('No socialsharing plugin found');
       }
     }
   }])
