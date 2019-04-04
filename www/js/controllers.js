@@ -120,7 +120,6 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
           const callData = call.data();
           const oldCreated = callsCreated[callData.to];
           const newCreated = callData.created ? callData.created.toDate() : null;
-          log( 'old/new', oldCreated, newCreated);
           if (!oldCreated || oldCreated<newCreated) {
             callsCreated[callData.to] = newCreated;
             callsData[callData.to] = callData;
