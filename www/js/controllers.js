@@ -88,7 +88,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
           if (profile.exists) {
             $scope.$apply(function () {
               const profileData = profileFiller.fill(profile.data());
-              log('favorite star updated', profileData);
+              // log('favorite star updated', profileData);
               $scope.favoriteStars[profile.id] = profileData;
             });
           }

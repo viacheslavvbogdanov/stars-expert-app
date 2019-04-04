@@ -460,7 +460,7 @@ angular.module('app', [
             $rootScope.$apply(function () {
               $rootScope.private = privateProfile.data();
             });
-            log("Current private data: ", privateProfile.data());
+            // log("Current private data: ", privateProfile.data());
           } else {
 
           }
