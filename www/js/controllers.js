@@ -118,10 +118,13 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
         // group calls by to uid
         calls.forEach(function(call){
           const callData = call.data();
-          callsData[callData.to] = callData;
           const oldCreated = callsCreated[callData.to];
           const newCreated = callData.created ? callData.created.toDate() : null;
-          callsCreated[callData.to] = (oldCreated>newCreated) ? oldCreated : newCreated;
+          log( 'old/new', oldCreated, newCreated);
+          if (!oldCreated || oldCreated<newCreated) {
+            callsCreated[callData.to] = newCreated;
+            callsData[callData.to] = callData;
+          }
         });
         // log('Last calls aggregated', callsCreated);
         const callsArray = [];
@@ -179,10 +182,13 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
         // group calls by 'from' uid
         calls.forEach(function(call){
           const callData = call.data();
-          callsData[callData.from] = callData;
           const oldCreated = callsCreated[callData.from];
           const newCreated = callData.created ? callData.created.toDate() : null;
-          callsCreated[callData.from] = (oldCreated>newCreated) ? oldCreated : newCreated;
+          if (!oldCreated || oldCreated<newCreated) {
+            callsCreated[callData.from] = newCreated;
+            callsData[callData.from] = callData;
+          }
+
         });
         // log('Last calls aggregated', callsCreated);
         const callsArray = [];
