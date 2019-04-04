@@ -4,6 +4,11 @@
 #npm install
 #ionic cordova prepare
 
+branch=$(git branch | grep \* | cut -d ' ' -f2)
+echo Current git branch: $branch
+if [ "$branch" == "master" ]
+ then
+
 . ./env-prod.sh
 
 
@@ -20,4 +25,8 @@ aapt dump badging ${APKDir}/starsexpert.apk | grep version
 . ./env-dev.sh
 
 #TODO upload to GPlay
+
+  else
+    echo "Will not publish from a branch other than master to production.\nPlease merge your changes into master and try again.\n\n"
+  fi
 
