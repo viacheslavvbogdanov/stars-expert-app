@@ -1,6 +1,14 @@
 #!/bin/bash
 # PRODUCTION build
 
+# exit when any command fails
+set -e
+
+# keep track of the last executed command
+trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+# echo an error message before exiting
+trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
+
 #npm install
 #ionic cordova prepare
 
@@ -25,8 +33,10 @@ aapt dump badging ${APKDir}/starsexpert.apk | grep version
 . ./env-dev.sh
 
 #TODO upload to GPlay
+exit 0
 
   else
-    echo "Will not publish from a branch other than master to production.\nPlease merge your changes into master and try again.\n\n"
+       echo "ERROR: Will not publish from a branch other than master to production. Please merge your changes into master and try again."
+       exit 1
   fi
 
