@@ -423,23 +423,28 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
       $rootScope.lastIncomingUnsubscribe = null;
       $rootScope.featuredUnsubscribe     = null;
 
-      $rootScope.profile = null;
+      function clearRootScopeProfileVars() {
+        $rootScope.profile = {};
+        $rootScope.account = {};
+        $rootScope.private = {favorites: []};
+        $rootScope.accessToken = null;
+      }
+
       $ionicHistory.clearCache().then(function () {
         $ionicHistory.clearHistory();
       });
       firebase.database().goOffline();
-      // $ionicHistory.nextViewOptions({
-      //   historyRoot: true,
-      //   disableBack: true,
-      // });
+
       firebase.auth().signOut()
         .then(function() {
           // Sign-out successful.
+          clearRootScopeProfileVars();
           $state.go('login');
         })
         .catch(function(error) {
           // An error happened. Anyway go to login view
           warn('signOut error', error);
+          clearRootScopeProfileVars();
           $state.go('login');
         });
     })
