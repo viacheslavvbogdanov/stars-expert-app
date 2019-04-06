@@ -63,6 +63,17 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   color: darkgrey;
 }
 
+.clear-list-note {
+  background-color: lightgrey;
+  color: white;
+  width: 100%;
+  border-radius: 16px;
+  font-size: 12px;
+  text-align: center;
+  padding: 8px;
+  margin-right: 16px;
+}
+
 .hint {
   font-family: 'Caveat', cursive;
   color: $energized;

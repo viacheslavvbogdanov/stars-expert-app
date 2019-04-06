@@ -1,30 +1,13 @@
 <ion-view view-title="{{'Stars'|translate}}" hide-back-button="true" id="page-stars">
 
-
-  <!--<ion-header-bar ng-if="searchBar.show">-->
-    <!--<div class="bar bar-header item-input-inset">-->
-      <!--<label class="item-input-wrapper">-->
-        <!--<i class="icon ion-ios-search placeholder-icon"></i>-->
-        <!--<input ng-model="searchBar.searchText" type="search" placeholder="Search">-->
-      <!--</label>-->
-      <!--<button ng-click="showSearchBar(false)"-->
-              <!--class="button button-light button-clear icon ion-close padding-left"></button>-->
-    <!--</div>-->
-  <!--</ion-header-bar>-->
-
-  <!--<ion-header-bar ng-if="!searchBar.show" class="bar-positive item-input-inset">-->
-    <!--<button title="Search a Star" ng-click="showSearchBar(true)"-->
-            <!--class="button button-icon icon ion-ios-search"></button>-->
-  <!--</ion-header-bar>-->
-
   <ion-nav-buttons side="right" class="has-header">
     <button title="Search for a Star" ng-click="showHideSearchBar()"
             class="button button-icon icon ion-ios-search"></button>
   </ion-nav-buttons>
 
-  <ion-content padding="false" class="has-header content-max-width">
+  <ion-content ng-show="profile.uid" padding="false" class="has-header content-max-width fadein">
 
-
+  <div ng-if="profile.uid">
     <div class="bar bar-header item-input-inset" ng-if="searchBar.show" >
       <div class="item-input-wrapper" >
         <i class="icon -ion-load-a ion-ios-search placeholder-icon"></i>
@@ -95,10 +78,16 @@
       </ion-list>
 
       <ion-list>
-        <label ng-show="private.favorites.length>0" class="item item-input" id="stars-search31">
+        <label ng-s-how="private.favorites.length>0" class="item item-input">
           <i class="icon ion-ios-star placeholder-icon"></i>
           <input disabled class="transparent grey" ng-model="searchBar.searchTextFavorites"
                  type="search" placeholder="{{'Favorites'|translate}}">
+        </label>
+        <label ng-hide="private.favorites.length>0" class="item item-input">
+          <div class="clear-list-note">
+            <b translate>You have no favorite contacts yet</b><br/>
+            <span translate>To mark contact as favorite tap <i class="icon ion-star"></i> icon in the contact profile</span>
+          </div>
         </label>
       </ion-list>
       <ion-list id="stars-list-favorites"
@@ -117,11 +106,16 @@
 
 
     <div ng-hide="searchBar.searchText">
-      <ion-list ng-show="haveLastDialedStars" id="stars-last-div" class="">
+      <ion-list ng-s-how="haveLastDialedStars" id="stars-last-div" class="">
         <label class="item item-input" id="stars-last-search">
           <i class="icon ion-ios-telephone placeholder-icon"></i>
           <input disabled class="transparent grey" ng-model="searchBar.searchTextLastDialed"
                  type="search" placeholder="{{'Last dialed'|translate}}">
+        </label>
+        <label ng-hide="haveLastDialedStars" class="item item-input">
+          <div class="clear-list-note">
+            <b translate>You have not called anyone yet</b>
+          </div>
         </label>
       </ion-list>
       <ion-list id="stars-last-list"
@@ -151,11 +145,16 @@
 
 
     <div ng-hide="searchBar.searchText">
-      <ion-list ng-show="haveLastIncomingCalls" >
+      <ion-list ng-s-how="haveLastIncomingCalls" >
         <label class="item item-input">
           <i class="icon ion-arrow-graph-down-left placeholder-icon"></i>
           <input disabled class="transparent grey" ng-model="searchBar.searchTextLastIncoming"
                  type="search" placeholder="{{'Last incoming'|translate}}">
+        </label>
+        <label ng-hide="haveLastIncomingCalls" class="item item-input">
+          <div class="clear-list-note">
+            <b translate>You have no incoming calls yet.</b>
+          </div>
         </label>
       </ion-list>
       <ion-list ng-repeat="star in lastIncomingCalls  | object2Array | filter:searchBar.searchTextLastIncoming |orderBy: 'created':true" >
@@ -187,6 +186,12 @@
         <input disabled class="transparent grey" ng-model="searchBar.searchTextFeatured"
                type="search" placeholder="{{'Editor\'s Choice'|translate}}">
       </label>
+      <label ng-hide="haveFeaturedStars" class="item item-input">
+        <div class="clear-list-note" translate>
+          <b translate>Do you have large audience in your country?</b><br/>
+          <span translate>Click the button below to be the first to appear on this list!</span>
+        </div>
+      </label>
     </ion-list>
     <ion-list id="stars-featured-list"
               ng-repeat="star in featuredStars | object2Array | filter:searchBar.searchTextFeatured | orderBy:'displayName':true| orderBy:'online':true"   >
@@ -201,6 +206,6 @@
       <a class="button button-stable button-small button-clear"
          ng-click="getListedAtFeatured()" translate>Get listed here</a>
     </div>
-    <!--</div>-->
+  </div>
   </ion-content>
 </ion-view>

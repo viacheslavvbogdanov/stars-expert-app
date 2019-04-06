@@ -3,8 +3,8 @@
 angular.module('app.controllers', [])
 
 .controller('starsCtrl', ['$scope', '$state', '$stateParams', '$rootScope', '$ionicHistory',
-  'alerts', 'toast', 'social', 'profileFiller',
-function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast, social, profileFiller) {
+  'alerts', 'toast', 'social', 'profileFiller', 'gettextCatalog',
+function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast, social, profileFiller, gettextCatalog) {
   $ionicHistory.clearHistory(); // This view should be root
 
   if (navigator['splashscreen']) {
@@ -234,6 +234,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
 
   // Get featured stars
   $scope.featuredStars = {};
+  $scope.haveFeaturedStars = false;
   $rootScope.featuredUnsubscribe = api.profilesRef
     .where('featured.till', '>', firebase.firestore.Timestamp.now())
     .where('featured.languages', 'array-contains', language)
@@ -243,13 +244,16 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
         $scope.$apply(function(){
           const profileData = profileFiller.fill(profile.data());
           $scope.featuredStars[profile.id] = profileData;
+          $scope.haveFeaturedStars = true;
         });
       });
   }, err);
 
   $scope.getListedAtFeatured = function() {
-    alerts.info('Get Listed at Featured',
-      'Please send your request email to info@stars.expert Thank you!'
+    alerts.info('Get Listed for Your Language',
+      gettextCatalog.getString(
+        'Please send your request email with the languages you speak and with links to your social profiles to slavik@stars.expert<br/><br/> Thank you!'
+      )
     );
   };
 
