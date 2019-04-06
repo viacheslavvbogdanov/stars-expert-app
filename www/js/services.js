@@ -4,7 +4,10 @@ angular.module('app.services', [])
     return {
       fill: function (profileData) {
         if (!profileData) return null;
-        if (!profileData.photoURL) profileData.photoURL = '../img/profile_image.png';
+        if (!profileData.photoURL) {
+          profileData.photoURL = '../img/profile_image.png';
+          profileData.noPhotoURL = true;
+        }
         profileData.displayNameUnfilled = profileData.displayName;
         if (!profileData.displayName) profileData.displayName = gettextCatalog.getString('Unknown');
         // profileData.priceCallParts = getPriceParts(profileData.priceCall);
