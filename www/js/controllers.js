@@ -78,15 +78,18 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
 
   // Get favorite stars
   $scope.favoriteStars = {};
+  $rootScope.favoriteStarsUnsubscribe = [];
   $rootScope.$watch('private.favorites', (favorites)=>{
     log('watch favorites', favorites);
+    $rootScope.favoriteStarsUnsubscribe.forEach(function(unsubscribeProfile){
+      unsubscribeProfile();
+    });
     if (favorites) {
       $scope.favoriteStars = {};
       favorites.map(function(favorite) {
         // log('favorite', favorite);
         const favDoc = api.profilesRef.doc(favorite);
-        // TODO do not watch for snapshot if it already watched
-        favDoc.onSnapshot(function(profile) {
+        $rootScope.favoriteStarsUnsubscribe.push(favDoc.onSnapshot(function(profile) {
           if (profile.exists) {
             $scope.$apply(function () {
               const profileData = profileFiller.fill(profile.data());
@@ -94,7 +97,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
               $scope.favoriteStars[profile.id] = profileData;
             });
           }
-        }, err);
+        }, err));
       });
     }
   }, true);
@@ -400,6 +403,10 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
       $rootScope.lastDialedUnsubscribe   = null;
       $rootScope.lastIncomingUnsubscribe = null;
       $rootScope.featuredUnsubscribe     = null;
+
+      $rootScope.favoriteStarsUnsubscribe.forEach(function(unsubscribeProfile){
+        unsubscribeProfile();
+      });
 
       $rootScope.lastDialedProfilesUnsubscribe.forEach(function(unsubscribeProfile){
         unsubscribeProfile();
