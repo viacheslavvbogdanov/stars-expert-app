@@ -471,10 +471,13 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
     if ($rootScope.account['revenues']===0) {
       alerts.error('You have no revenues yet');
     } else {
-      $rootScope.withdraw = {
-        amount: Math.floor($rootScope.account['revenues']*10000)/10000, //TODO minus txFee
-        toAddress: $rootScope.account.lastWithdrawalAddress,
-      };
+      if (!$rootScope.withdraw) {
+        $rootScope.withdraw = {
+          amount: Math.floor($rootScope.account['revenues'] * 10000) / 10000, //TODO minus txFee
+          toAddress: $rootScope.account.lastWithdrawalAddress,
+        };
+      }
+
       alerts.input('Withdraw Revenues', null, 'Withdraw',
         `
 <label class="item item-input" style="padding: 0;">
