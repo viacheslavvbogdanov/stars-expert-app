@@ -382,7 +382,9 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
   };
 
   $scope.logOut = function() {
-    alerts.ask('Log Out', 'Do you really want to exit from your account?', 'Log out', ()=>{
+    alerts.ask( gettextCatalog.getString('Log Out'),
+      gettextCatalog.getString('Do you really want to exit from your account?'),
+      gettextCatalog.getString('Log out'), ()=>{
       if ($rootScope.userProfileUnsubscribe)  $rootScope.userProfileUnsubscribe();
       if ($rootScope.userAccountUnsubscribe)  $rootScope.userAccountUnsubscribe();
       if ($rootScope.userMessagesUnsubscribe) $rootScope.userMessagesUnsubscribe();
