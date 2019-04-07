@@ -498,7 +498,6 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
 `,
         () => {
           //todo check address and values
-          //todo store and show last address in input
           api.withdraw({amount:$rootScope.withdraw.amount, toAddress:$rootScope.withdraw.toAddress})
             .then(()=>{
               alerts.info('Withdrawal Requested', `${$rootScope.withdraw.amount}ETH will be paid out within 5-10 minutes.`);
