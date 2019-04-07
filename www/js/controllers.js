@@ -109,56 +109,42 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
       getLocalStorage($rootScope, 'hideShareYourProfileHint', $rootScope.user.uid);
 
       $rootScope.lastDialedUnsubscribe = api.messagesRef
+        // .where('call','==','true')
         .where('from','==',uid)
+        .where('duration','>',0)
+        .orderBy('duration','desc')
         .orderBy('created','desc')
-        .limit(24)
-        .onSnapshot(function(calls){
-        let callsCreated = {};
-        let callsData = {};
-        // group calls by to uid
-        calls.forEach(function(call){
-          const callData = call.data();
-          const oldCreated = callsCreated[callData.to];
-          const newCreated = callData.created ? callData.created.toDate() : null;
-          if (!oldCreated || oldCreated<newCreated) {
-            callsCreated[callData.to] = newCreated;
-            callsData[callData.to] = callData;
-          }
-        });
-        // log('Last calls aggregated', callsCreated);
-        const callsArray = [];
-        for(const i in callsCreated){
-          if (callsCreated.hasOwnProperty(i))
-            callsArray.push({to:i, created:callsCreated[i], lastCallData:callsData[i] });
-        }
-        // log('Last calls array ', callsArray);
-        // fetch stars' data
-        // $scope.$apply(function () {
+        .limit(12)
+        .onSnapshot(function(callsRef){
+
           $scope.lastDialedStars = {};
-        // });
-        callsArray.forEach(function(call,index) {
-          // log( index, call);
-          api.profilesRef.doc(call.to).onSnapshot(function (profile) {
-            if (profile.exists) {
-              const profileData = profileFiller.fill(profile.data());
-              const c = callsArray[index].created;
-              profileData.created = c;
-              profileData.lastCallDateTimeStr =
-                c.toLocaleDateString([], {month: "numeric", day: "numeric"}) + ' ' +
-                c.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
-              profileData.lastCallData = call.lastCallData;
-              profileData.lastCallData.durationStr = secondsToTimeString(profileData.lastCallData.duration);
+          callsRef.forEach(function(callRef,index) {
+            const call = callRef.data();
+            log( 'Call', call);
+            // fill calls by profiles
+            const c = call.created.toDate();
 
-              // log('lastCallData', profileData);
-              $scope.$apply(function () {
-                $scope.lastDialedStars[profileData.uid] = profileData;
-                $scope.haveLastDialedStars = true;
-              });
-            }
+            api.profilesRef.doc(call.to).onSnapshot(function(profile) { //TODO get
+              if (profile.exists) {
+                const profileData = profileFiller.fill(profile.data());
+                profileData.created = c;
+
+                profileData.call = call;
+                profileData.call.durationStr = secondsToTimeString(call.duration);
+                profileData.call.createdStr =
+                  c.toLocaleDateString([], {month: "numeric", day: "numeric"}) + ' ' +
+                  c.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+
+                $scope.$apply(function () {
+                  $scope.lastDialedStars[profileData.created] = profileData;
+                  $scope.haveLastDialedStars = true;
+                });
+              }
+            });
           });
-        });
 
-      }, err);
+        }, err
+      );
     }
   });
 
@@ -170,56 +156,34 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
     // log('lastIncomingCalls User uid', uid);
     if (uid){
       $rootScope.lastIncomingUnsubscribe = api.messagesRef
+        // .where('call','==','true')
         .where('to','==',uid)
+        .where('duration','>',0)
+        .orderBy('duration','desc')
         .orderBy('created','desc')
-        .limit(24)
-        .onSnapshot(function(calls){
-        // TODO refactor - use same function for last dialed / last incoming calls
-        // log('Last incoming calls', calls);
-        let callsCreated = {};
-        let callsData = {};
-        // group calls by 'from' uid
-        calls.forEach(function(call){
-          const callData = call.data();
-          const oldCreated = callsCreated[callData.from];
-          const newCreated = callData.created ? callData.created.toDate() : null;
-          if (!oldCreated || oldCreated<newCreated) {
-            callsCreated[callData.from] = newCreated;
-            callsData[callData.from] = callData;
-          }
+        .limit(12)
+        .onSnapshot(function(callsRef){
 
-        });
-        // log('Last calls aggregated', callsCreated);
-        const callsArray = [];
-        for(const i in callsCreated){
-          if (callsCreated.hasOwnProperty(i))
-            callsArray.push({to:i, created:callsCreated[i], lastCallData:callsData[i] });
-        }
-        // log('Last calls array ', callsArray);
-        // fetch stars' data
-        // $scope.$apply(function () {
-        $scope.lastIncomingCalls = {};
-        // });
-        callsArray.forEach(function(call,index) {
-          // log( index, call);
-          api.profilesRef.doc(call.to).onSnapshot(function (profile) {
-            if (profile.exists) {
-              const profileData = profileFiller.fill(profile.data());
-              const c = callsArray[index].created;
-              profileData.created = c;
-              profileData.lastCallDateTimeStr =
-                c.toLocaleDateString([], {month: "numeric", day: "numeric"}) + ' ' +
-                c.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
-              profileData.lastCallData = call.lastCallData;
-              profileData.lastCallData.durationStr = secondsToTimeString(profileData.lastCallData.duration);
-              log('incoming lastCallData', profileData);
-              $scope.$apply(function () {
-                $scope.lastIncomingCalls[profileData.uid] = profileData;
-                $scope.haveLastIncomingCalls = true;
-              });
-            }
+          $scope.lastIncomingCalls = {};
+          callsRef.forEach(function(callRef,index) {
+            const call = callRef.data();
+            const c = call.created.toDate();
+            api.profilesRef.doc(call.from).onSnapshot(function (profile) {
+              if (profile.exists) {
+                const profileData = profileFiller.fill(profile.data());
+                profileData.created = c;
+                profileData.call = call;
+                profileData.call.createdStr =
+                  c.toLocaleDateString([], {month: "numeric", day: "numeric"}) + ' ' +
+                  c.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+                profileData.call.durationStr = secondsToTimeString(call.duration);
+                $scope.$apply(function () {
+                  $scope.lastIncomingCalls[profileData.created] = profileData;
+                  $scope.haveLastIncomingCalls = true;
+                });
+              }
+            });
           });
-        });
 
       }, err);
     }
