@@ -1,6 +1,15 @@
 #!/bin/bash
 # PRODUCTION build
 
+echo "**********************************************************"
+echo "DO YOU REALLY WANT TO DEPLOY TO PRODUCTION? (STARS.EXPERT)"
+echo "**********************************************************"
+select yn in "YES" "No"; do
+    case $yn in
+        YES ) echo "Lets go!"; break;;
+        No ) exit;;
+    esac
+done
 
 # exit when any command fails
 set -e
