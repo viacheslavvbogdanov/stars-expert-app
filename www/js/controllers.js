@@ -103,6 +103,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
   $scope.haveLastDialedStars = false;
   $scope.lastDialedStars = {};
   $rootScope.lastDialedUnsubscribe = null;
+  $rootScope.lastDialedProfilesUnsubscribe = [];
   $rootScope.$watch('profile.uid', (uid)=>{
     // log('lastDialedStars User uid', uid);
     if (uid){
@@ -116,15 +117,18 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
         .orderBy('created','desc')
         .limit(12)
         .onSnapshot(function(callsRef){
-
+          // Unsubscribe prev subscribed profiles
+          $rootScope.lastDialedProfilesUnsubscribe.forEach(function(unsubscribeProfile){
+            unsubscribeProfile();
+          });
           $scope.lastDialedStars = {};
           callsRef.forEach(function(callRef,index) {
             const call = callRef.data();
             log( 'Call', call);
             // fill calls by profiles
             const c = call.created.toDate();
-
-            api.profilesRef.doc(call.to).onSnapshot(function(profile) { //TODO get
+            // TODO unsubscribe before update
+            $rootScope.lastDialedProfilesUnsubscribe.push ( api.profilesRef.doc(call.to).onSnapshot(function(profile) {
               if (profile.exists) {
                 const profileData = profileFiller.fill(profile.data());
                 profileData.created = c;
@@ -140,7 +144,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
                   $scope.haveLastDialedStars = true;
                 });
               }
-            });
+            }));
           });
 
         }, err
@@ -152,6 +156,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
   $scope.haveLastIncomingCalls = false;
   $scope.lastIncomingCalls = {};
   $rootScope.lastIncomingUnsubscribe = null;
+  $rootScope.lastIncomingProfilesUnsubscribe = [];
   $rootScope.$watch('profile.uid', (uid)=>{
     // log('lastIncomingCalls User uid', uid);
     if (uid){
@@ -163,12 +168,15 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
         .orderBy('created','desc')
         .limit(12)
         .onSnapshot(function(callsRef){
-
+          $rootScope.lastIncomingProfilesUnsubscribe.forEach(function(unsubscribeProfile){
+            unsubscribeProfile();
+          });
           $scope.lastIncomingCalls = {};
           callsRef.forEach(function(callRef,index) {
             const call = callRef.data();
             const c = call.created.toDate();
-            api.profilesRef.doc(call.from).onSnapshot(function (profile) {
+            // TODO unsubscribe before update
+            $rootScope.lastIncomingProfilesUnsubscribe.push( api.profilesRef.doc(call.from).onSnapshot(function (profile) {
               if (profile.exists) {
                 const profileData = profileFiller.fill(profile.data());
                 profileData.created = c;
@@ -182,7 +190,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
                   $scope.haveLastIncomingCalls = true;
                 });
               }
-            });
+            }));
           });
 
       }, err);
@@ -390,6 +398,14 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
       $rootScope.lastDialedUnsubscribe   = null;
       $rootScope.lastIncomingUnsubscribe = null;
       $rootScope.featuredUnsubscribe     = null;
+
+      $rootScope.lastDialedProfilesUnsubscribe.forEach(function(unsubscribeProfile){
+        unsubscribeProfile();
+      });
+
+      $rootScope.lastIncomingProfilesUnsubscribe.forEach(function(unsubscribeProfile){
+        unsubscribeProfile();
+      });
 
       function clearRootScopeProfileVars() {
         $rootScope.profile = {};
