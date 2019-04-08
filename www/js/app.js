@@ -296,6 +296,8 @@ angular.module('app', [
 
 
     // Native ring tones
+    // TODO install plugin https://www.npmjs.com/package/cordova-plugin-native-ringtones
+    // TODO for now troubles with install https://github.com/apache/cordova-plugin-media
     $rootScope.nativeRingtones = [];
     if((typeof cordova !== 'undefined')  && cordova['plugins'] && cordova['plugins']['NativeRingtones']) {
       log('Native Ringtones Available');
