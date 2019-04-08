@@ -1161,7 +1161,7 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
       AppWasInBackground = bgMode.isActive();
       if (AppWasInBackground)
         bgMode.moveToForeground();
-      bgMode.moveToForeground();
+      // bgMode.moveToForeground();
       bgMode.isScreenOff(function (screenOff) {
         isScreenWasOff = screenOff;
         if (screenOff) {
