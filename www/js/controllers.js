@@ -1176,17 +1176,6 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
 
     }, 500 );
 
-    // Sometimes app do not go to foreground - we trying to move it more times
-    // moveToForegroundInterval = setInterval( ()=>{
-    //   if (bgMode.isActive())
-    //     bgMode.moveToForeground();
-    //   bgMode.isScreenOff(function (screenOff) {
-    //     if (screenOff) {
-    //       bgMode.unlock();
-    //     }
-    //     bgMode.moveToForeground();
-    //   });
-    // }, 1000);
   }
 
   // Play ringtone
