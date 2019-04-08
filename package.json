@@ -86,7 +86,8 @@
         "FABRIC_API_SECRET": "6be4c6e769d14a406572c059afd6e516e37080051876ce04fc11973f1d4f38bd"
       },
       "cordova-plugin-buildinfo": {},
-      "cordova-plugin-network-information": {}
+      "cordova-plugin-network-information": {},
+      "in.lucasdup.bringtofront": {}
     },
     "platforms": [
       "browser",

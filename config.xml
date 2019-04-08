@@ -146,6 +146,7 @@
         <variable name="MAX_STORE" value="2" />
     </plugin>
     <plugin name="cordova-plugin-network-information" spec="2.0.1" />
+    <plugin name="in.lucasdup.bringtofront" spec="https://github.com/markeeftb/cordova-bring-to-front" />
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.1.4" />
 </widget>
