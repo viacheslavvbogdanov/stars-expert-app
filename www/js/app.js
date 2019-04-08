@@ -294,6 +294,20 @@ angular.module('app', [
       if (noInternetPopup) noInternetPopup.close();
     }, false);
 
+
+    // Native ring tones
+    $rootScope.nativeRingtones = [];
+    if((typeof cordova !== 'undefined')  && cordova['plugins'] && cordova['plugins']['NativeRingtones']) {
+      log('Native Ringtones Available');
+      cordova.plugins.NativeRingtones.getRingtone(function (ringtones) {
+          $rootScope.nativeRingtones = ringtones;
+          log('Native Ringtones', ringtones);
+        },
+        function (err) {
+          warn(err);
+        });
+    }
+
   }); // ionic.Platform.ready
 
 

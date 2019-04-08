@@ -127,7 +127,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
           $scope.lastDialedStars = {};
           callsRef.forEach(function(callRef,index) {
             const call = callRef.data();
-            log( 'Call', call);
+            // log( 'Call', call);
             // fill calls by profiles
             const c = call.created.toDate();
             // TODO unsubscribe before update

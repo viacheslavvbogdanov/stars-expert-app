@@ -1,6 +1,6 @@
 const PRODUCTION = false;
 const envConfig = { // Development
-    proID : '5d1a74d0',
+    proID : '42f43f4b',
     gaID : 'UA-122324910-3',
     profileLinkMainURL: 'https://dev.stars.expert/',
     web3HttpProvider : 'https://ropsten.infura.io/v3/5703124ac3434bd5b90909e5c0d348b4',
