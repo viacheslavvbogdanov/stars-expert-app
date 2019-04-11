@@ -604,57 +604,98 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts) {
   fileButton.addEventListener('change', function(e) {
     const file = e.target.files[0];
     console.log('file', file);
+
     if (file.size>=5*1024*1024) {
       alerts.error('Image too Big. Maximum file size 5 Mb');
       return false;
     }
 
-    const storageRef = avatarsRef.child($rootScope.user.uid).child(file.name);
-    const task = storageRef.put(file);
 
-    $scope.$apply(()=>{ $scope.uploading = true; });
+    function updateProgress(evt) {
+      // evt is an ProgressEvent.
+      if (evt.lengthComputable) {
+        const percentLoaded = Math.round((evt.loaded / evt.total) * 100);
+        log('File pleload', percentLoaded, '%');
+      }
+    }
 
-    task.on('state_changed', function progress(snapshot) {
-      $scope.$apply(()=>{
+    // Preload file (for Google drive files on Android
+    const preloader = new FileReader();
+    preloader.onprogress = updateProgress;
+    preloader.onabort = function(e) {
+      alert('File read cancelled');
+    };
+
+    preloader.onload = function(e) {
+      log('File pleloaded');
+
+      const storageRef = avatarsRef.child($rootScope.user.uid).child(file.name);
+      const metadata = {
+        contentType: file.type,
+      };
+      const task = storageRef.put(preloader.result, metadata);
+      // const task = storageRef.putString(preloader.result, metadata);
+
+      $scope.$apply(() => {
         $scope.uploading = true;
       });
-      const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      // uploader.value = percentage;
-      log('percentage',percentage);
 
-    }, function error(error) {
-      log('upload error', error);
-      alerts.error(error.message);
-      $scope.$apply(()=>{ $scope.uploading = false; });
+      task.on('state_changed', function progress(snapshot) {
+        $scope.$apply(() => {
+          $scope.uploading = true;
+        });
+        const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        // uploader.value = percentage;
+        log('percentage', percentage);
 
-    }, function complete() {
-      log('upload complete');
+      }, function error(error) {
+        log('upload error', error);
+        alerts.error(error.message);
+        $scope.$apply(() => {
+          $scope.uploading = false;
+        });
 
-      task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-        console.log('File available at', downloadURL);
-        $scope.$apply(()=>{ $rootScope.profile.photoURL = null; });
-        $scope.$apply(()=>{ $rootScope.profile.photoURL = downloadURL; });
-        api.updateProfile({'photoURL':downloadURL})
-          .then(()=> {
-            $scope.$apply(()=>{ $scope.uploading = false; });
-            $ionicHistory.clearCache(); // clear views with old avatar (stars for example)
-            const backView = $ionicHistory.backView();
-            if (backView && backView.stateName === 'my') {
-              $state.go('my');
-            } else {
-              // $scope.$apply(()=>{ $scope.continue = true; });
-              $state.go('stars');
-            }
-          })
-          .catch(function(error) {
-            $scope.$apply(()=>{ $scope.uploading = false;  });
-            err(error);
-            warn( 'updateProfile error', error);
-            alerts.error( error.message );
+      }, function complete() {
+        log('upload complete');
+
+        task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+          console.log('File available at', downloadURL);
+          $scope.$apply(() => {
+            $rootScope.profile.photoURL = null;
           });
+          $scope.$apply(() => {
+            $rootScope.profile.photoURL = downloadURL;
+          });
+          api.updateProfile({'photoURL': downloadURL})
+            .then(() => {
+              $scope.$apply(() => {
+                $scope.uploading = false;
+              });
+              $ionicHistory.clearCache(); // clear views with old avatar (stars for example)
+              const backView = $ionicHistory.backView();
+              if (backView && backView.stateName === 'my') {
+                $state.go('my');
+              } else {
+                // $scope.$apply(()=>{ $scope.continue = true; });
+                $state.go('stars');
+              }
+            })
+            .catch(function (error) {
+              $scope.$apply(() => {
+                $scope.uploading = false;
+              });
+              err(error);
+              warn('updateProfile error', error);
+              alerts.error(error.message);
+            });
 
+        });
       });
-    });
+    }
+
+    preloader.readAsArrayBuffer(file); // Preload file
+    // preloader.readAsBinaryString(file); // Preload file
+
   });
 
 }])
