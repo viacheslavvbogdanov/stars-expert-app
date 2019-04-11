@@ -610,6 +610,8 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts) {
       return false;
     }
 
+    // Show progress indicator
+    $scope.$apply(() => { $scope.uploading = true; });
 
     function updateProgress(evt) {
       // evt is an ProgressEvent.
@@ -620,44 +622,37 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts) {
     }
 
     // Preload file (for Google drive files on Android
-    const preloader = new FileReader();
-    preloader.onprogress = updateProgress;
-    preloader.onabort = function(e) {
-      alert('File read cancelled');
+    const preLoader = new FileReader();
+    preLoader.onprogress = updateProgress;
+    preLoader.onabort = function(e) {
+      log('File read cancelled', e);
+      $scope.$apply(() => { $scope.uploading = false; });
     };
 
-    preloader.onload = function(e) {
+    preLoader.onload = function(e) {
       log('File pleloaded');
 
-      const storageRef = avatarsRef.child($rootScope.user.uid).child(file.name);
       const metadata = {
         contentType: file.type,
       };
-      const task = storageRef.put(preloader.result, metadata);
-      // const task = storageRef.putString(preloader.result, metadata);
+      const storageRef = avatarsRef.child($rootScope.user.uid).child(file.name);
+      const task = storageRef.put(preLoader.result, metadata);
 
       $scope.$apply(() => {
         $scope.uploading = true;
       });
 
       task.on('state_changed', function progress(snapshot) {
-        $scope.$apply(() => {
-          $scope.uploading = true;
-        });
         const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        // uploader.value = percentage;
         log('percentage', percentage);
 
       }, function error(error) {
         log('upload error', error);
         alerts.error(error.message);
-        $scope.$apply(() => {
-          $scope.uploading = false;
-        });
+        $scope.$apply(() => { $scope.uploading = false; });
 
       }, function complete() {
         log('upload complete');
-
         task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
           console.log('File available at', downloadURL);
           $scope.$apply(() => {
@@ -691,10 +686,9 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts) {
 
         });
       });
-    }
+    };
 
-    preloader.readAsArrayBuffer(file); // Preload file
-    // preloader.readAsBinaryString(file); // Preload file
+    preLoader.readAsArrayBuffer(file); // Preload file
 
   });
 
