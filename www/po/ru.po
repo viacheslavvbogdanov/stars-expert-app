@@ -43,6 +43,11 @@ msgctxt "login"
 msgid "Enter"
 msgstr "Войти"
 
+#: popup-withdraw.html:14
+msgid "*Ethereum transaction fee will be additionally deducted from revenues"
+msgstr ""
+"*Комиссия за транзакцию Ethereum будет дополнительно вычтена из доходов"
+
 #: services.js:45
 msgid ""
 "*Urgent Note: Please DO NOT send ETH to this address again. For next top-up "
@@ -51,7 +56,7 @@ msgstr ""
 "*Внимание: Пожалуйста, снова НЕ ОТПРАВЛЯЙТЕ эфир на этот адрес. Для "
 "следующего пополнения вам будет создан новый адресю."
 
-#: about.html:1 controllers.js:551
+#: about.html:1 controllers.js:532
 msgid "About"
 msgstr "О программе"
 
@@ -74,13 +79,13 @@ msgstr ""
 msgid "Address copied to clipboard"
 msgstr "Адрес скопирован в буфер обмена"
 
-#: controllers.js:484
+#: popup-withdraw.html:2
 msgid "Amount to withdraw ETH*"
 msgstr "Сумма для вывода ETH*"
 
-#: controllers.js:815
+#: controllers.js:796
 msgid "Bad verification code"
-msgstr "Неверный код верификации. Пожалуйста попробуйте еще раз."
+msgstr "Неверный код верификации. Пожалуйста попробуйте еще раз"
 
 #: popup-topup.html:19
 msgid "Buy ETH online"
@@ -112,7 +117,7 @@ msgstr "Изменить телефон"
 
 #: avatar.html:17
 msgid "Choose image..."
-msgstr "Выбрать изображение..."
+msgstr "Выбрать..."
 
 #: stars.html:192
 msgid "Click the button below to be the first to appear on this list!"
@@ -142,13 +147,17 @@ msgstr "Пожертвовать автору"
 msgid "Edit Your Profile"
 msgstr "Редактирование профиля"
 
-#: controllers.js:543
+#: controllers.js:524
 msgid "Edit profile"
 msgstr "Редактировать профиль"
 
 #: stars.html:187
 msgid "Editor's Choice"
 msgstr "Выбор редактора"
+
+#: controllers.js:456
+msgid "Enter amount"
+msgstr "Введите сумму"
 
 #: login.html:32
 msgid "Enter received code"
@@ -161,6 +170,10 @@ msgstr "Введите номер вашего телефона"
 #: stars.html:84
 msgid "Favorites"
 msgstr "Избранные"
+
+#: controllers.js:228
+msgid "Get Listed for Your Language"
+msgstr "Попасть в список"
 
 #: stars.html:206
 msgid "Get listed here"
@@ -178,7 +191,7 @@ msgstr "Входящий звонок"
 msgid "Internet Connection Lost"
 msgstr "Интернет соединение пропало"
 
-#: controllers.js:767
+#: controllers.js:748
 msgid "Invalid phone number"
 msgstr "Неверный номер телефона"
 
@@ -192,11 +205,11 @@ msgstr "Последние исходящие"
 
 #: controllers.js:388
 msgid "Log Out"
-msgstr "Выход"
+msgstr "Выход из аккаунта"
 
-#: controllers.js:390 controllers.js:550
+#: controllers.js:390 controllers.js:531
 msgid "Log out"
-msgstr "Выйти из аккаунта"
+msgstr "Выйти"
 
 #: my.html:5
 msgid "More..."
@@ -210,7 +223,7 @@ msgstr "Мой профиль"
 msgid "Name"
 msgstr "Имя"
 
-#: controllers.js:1024
+#: controllers.js:1005
 msgid "Not enough balance"
 msgstr "Недостаточный баланс"
 
@@ -235,15 +248,15 @@ msgstr ""
 msgid "Please support author of the service for new features and hosting"
 msgstr "Поддержите автора сервиса для их развития"
 
-#: controllers.js:1027
+#: controllers.js:1008
 msgid "Please top-up your balance"
 msgstr "Пополните ваш баланс"
 
-#: controllers.js:1004 controllers.js:366 controllers.js:879
+#: controllers.js:366 controllers.js:860 controllers.js:985
 msgid "Profile link copied to clipboard"
 msgstr "Ссылка на профиль скопирована в буфер"
 
-#: controllers.js:989
+#: controllers.js:970
 msgid "Profile not found"
 msgstr "Профиль не найден"
 
@@ -255,7 +268,7 @@ msgstr "Сохранить профиль"
 msgid "Search star by name or id"
 msgstr "Ищите по имени или ID"
 
-#: controllers.js:499
+#: popup-withdraw.html:16
 msgid "Sell ETH online"
 msgstr "Продать ETH онлайн"
 
@@ -279,7 +292,7 @@ msgstr "Задайте цену входящим звонкам"
 msgid "Set Profile Photo"
 msgstr "Изображение профиля"
 
-#: controllers.js:544
+#: controllers.js:525
 msgid "Share link to profile"
 msgstr "Поделиться ссылкой на профиль"
 
@@ -289,17 +302,21 @@ msgstr "Поделиться ссылкой на профиль..."
 
 #: signin.html:1
 msgid "Signing In"
-msgstr "Входим..."
+msgstr "Входим"
 
 #: star.html:1
 msgid "Star"
 msgstr "Звезда"
 
-#: controllers.js:1046
+#: controllers.js:1027
 msgid "Star added to your favorites"
 msgstr "Звезда добавлена в фавориты"
 
-#: controllers.js:1049
+#: editProfile.html:16
+msgid "Star page ID"
+msgstr "ID страницы"
+
+#: controllers.js:1030
 msgid "Star removed from your favorites"
 msgstr "Звезда убрана из фаворитов"
 
@@ -307,7 +324,7 @@ msgstr "Звезда убрана из фаворитов"
 msgid "Stars"
 msgstr "Звезды"
 
-#: controllers.js:549
+#: controllers.js:530
 msgid "Suggest a feature"
 msgstr "Предложите функцию"
 
@@ -316,11 +333,11 @@ msgid "This message will disappear when the connection is restored."
 msgstr ""
 "Это сообщение исчезнет, когда соединение с Интернет будет восстановлено."
 
-#: controllers.js:489
+#: popup-withdraw.html:7
 msgid "To address"
 msgstr "На адрес"
 
-#: controllers.js:1025
+#: controllers.js:1006
 msgid "To make a call you need balance for one minute or more"
 msgstr ""
 "Чтобы совершить звонок вам нужно иметь баланс достаточный для одной минуты "
@@ -346,15 +363,31 @@ msgstr "Пополнение успешно"
 msgid "Top Up Your Balance"
 msgstr "Пополнить баланс"
 
-#: controllers.js:545
+#: controllers.js:526
 msgid "Top up balance"
 msgstr "Пополнить баланс"
 
-#: controllers.js:1028 my.html:53
+#: controllers.js:1009 my.html:53
 msgid "Top-up"
 msgstr "Пополнить"
 
-#: controllers.js:546
+#: controllers.js:456
+msgid "Transfer"
+msgstr "Перевести"
+
+#: controllers.js:464
+msgid "Transfer Error"
+msgstr "Ошибка перевода"
+
+#: controllers.js:456
+msgid "Transfer Revenues to Balance"
+msgstr "Перевести доходы на баланс"
+
+#: controllers.js:461
+msgid "Transfer Successful"
+msgstr "Пополнение успешно"
+
+#: controllers.js:527
 msgid "Transfer revenues to balance"
 msgstr "Перевести доходы на баланс"
 
@@ -366,11 +399,15 @@ msgstr "Неизвестный"
 msgid "Version"
 msgstr "Версия"
 
-#: my.html:59
+#: controllers.js:481 my.html:59
 msgid "Withdraw"
 msgstr "Вывести"
 
-#: controllers.js:548
+#: controllers.js:481
+msgid "Withdraw Revenues"
+msgstr "Вывести доходы"
+
+#: controllers.js:529
 msgid "Withdraw revenues"
 msgstr "Вывести доходы"
 
@@ -390,7 +427,11 @@ msgstr "У вас пока нет входящих звонков"
 msgid "You have no outgoing calls yet"
 msgstr "У вас пока нет исходящих звонков"
 
-#: controllers.js:768
+#: controllers.js:453
+msgid "You have no revenues yet"
+msgstr "У вас пока нет доходов"
+
+#: controllers.js:749
 msgid ""
 "Your phone must be in international format<br> and starts from + sign. For "
 "example +12223334455"
@@ -407,7 +448,7 @@ msgid "answer"
 msgstr "ответить"
 
 #. Call
-#: controllers.js:1122
+#: controllers.js:1103
 msgid "answered"
 msgstr "отвечен"
 
@@ -420,7 +461,7 @@ msgid "beta"
 msgstr "бета"
 
 #. Call
-#: controllers.js:1116
+#: controllers.js:1097
 msgid "busy"
 msgstr "занят"
 
@@ -433,7 +474,7 @@ msgid "call time"
 msgstr "время вызова"
 
 #. Call
-#: controllers.js:1112
+#: controllers.js:1093
 msgid "calling"
 msgstr "звоним"
 
@@ -450,7 +491,7 @@ msgid "click address to copy"
 msgstr "нажмите, чтобы скопировать"
 
 #. Call
-#: controllers.js:1066
+#: controllers.js:1047
 msgid "connecting"
 msgstr "соединяем"
 
@@ -459,17 +500,17 @@ msgid "cost"
 msgstr "цена"
 
 #. Call
-#: controllers.js:1116
+#: controllers.js:1097
 msgid "declined"
 msgstr "отменен"
 
 #. Call
-#: controllers.js:1101
+#: controllers.js:1082
 msgid "dialing"
 msgstr "набираем"
 
 #. Call
-#: controllers.js:1135
+#: controllers.js:1116
 msgid "error"
 msgstr "ошибка"
 
@@ -485,7 +526,7 @@ msgstr "без ответа"
 msgid "online"
 msgstr "онлайн"
 
-#: controllers.js:494
+#: popup-withdraw.html:12
 msgid "paste"
 msgstr "вставить"
 
@@ -500,6 +541,10 @@ msgstr "доход"
 #: call.html:35 my.html:39
 msgid "revenues"
 msgstr "доходы"
+
+#: controllers.js:461
+msgid "transferred from revenues to your balance"
+msgstr "переведено с доходов на ваш баланс"
 
 #: star.html:59
 msgid "video call"

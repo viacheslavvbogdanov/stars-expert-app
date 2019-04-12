@@ -450,18 +450,18 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
 
   $scope.topUpFromRevenues = function() {
     if ($rootScope.account['revenues']===0) {
-      alerts.error('You have no revenues yet');
+      alerts.error(gettextCatalog.getString('You have no revenues yet'));
     } else {
       $rootScope.topup = {amount: Math.floor($rootScope.account['revenues']*10000)/10000};
-      alerts.input('Transfer Revenues to Balance', 'Enter amount', 'Transfer',
-        '<input type="number" ng-model="topup.amount">',
+      alerts.input(gettextCatalog.getString('Transfer Revenues to Balance'), gettextCatalog.getString('Enter amount'), gettextCatalog.getString('Transfer'),
+        'popup-revenues2balance.html',
         () => {
           api.topUpFromRevenues({amount:$rootScope.topup.amount})
             .then(()=>{
-              alerts.info('Transfer Successful', `$${$rootScope.topup.amount} transferred from revenues to your balance`);
+              alerts.info(gettextCatalog.getString('Transfer Successful'), `$${$rootScope.topup.amount} `+ gettextCatalog.getString('transferred from revenues to your balance'));
              })
             .catch((error)=>{
-              alerts.info('Transfer Error', error.message);
+              alerts.info(gettextCatalog.getString('Transfer Error'), error.message);
             })
         });
     }

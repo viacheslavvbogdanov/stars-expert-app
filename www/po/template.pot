@@ -34,12 +34,16 @@ msgctxt "login"
 msgid "Enter"
 msgstr ""
 
+#: popup-withdraw.html:14
+msgid "*Ethereum transaction fee will be additionally deducted from revenues"
+msgstr ""
+
 #: services.js:45
 msgid "*Urgent Note: Please DO NOT send ETH to this address again. For next top-up you will have another address."
 msgstr ""
 
 #: about.html:1
-#: controllers.js:551
+#: controllers.js:532
 msgid "About"
 msgstr ""
 
@@ -59,11 +63,11 @@ msgstr ""
 msgid "Address copied to clipboard"
 msgstr ""
 
-#: controllers.js:484
+#: popup-withdraw.html:2
 msgid "Amount to withdraw ETH*"
 msgstr ""
 
-#: controllers.js:815
+#: controllers.js:796
 msgid "Bad verification code"
 msgstr ""
 
@@ -128,12 +132,16 @@ msgstr ""
 msgid "Edit Your Profile"
 msgstr ""
 
-#: controllers.js:543
+#: controllers.js:524
 msgid "Edit profile"
 msgstr ""
 
 #: stars.html:187
 msgid "Editor's Choice"
+msgstr ""
+
+#: controllers.js:456
+msgid "Enter amount"
 msgstr ""
 
 #: login.html:32
@@ -146,6 +154,10 @@ msgstr ""
 
 #: stars.html:84
 msgid "Favorites"
+msgstr ""
+
+#: controllers.js:228
+msgid "Get Listed for Your Language"
 msgstr ""
 
 #: stars.html:206
@@ -164,7 +176,7 @@ msgstr ""
 msgid "Internet Connection Lost"
 msgstr ""
 
-#: controllers.js:767
+#: controllers.js:748
 msgid "Invalid phone number"
 msgstr ""
 
@@ -181,7 +193,7 @@ msgid "Log Out"
 msgstr ""
 
 #: controllers.js:390
-#: controllers.js:550
+#: controllers.js:531
 msgid "Log out"
 msgstr ""
 
@@ -197,7 +209,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: controllers.js:1024
+#: controllers.js:1005
 msgid "Not enough balance"
 msgstr ""
 
@@ -220,17 +232,17 @@ msgstr ""
 msgid "Please support author of the service for new features and hosting"
 msgstr ""
 
-#: controllers.js:1027
+#: controllers.js:1008
 msgid "Please top-up your balance"
 msgstr ""
 
-#: controllers.js:1004
 #: controllers.js:366
-#: controllers.js:879
+#: controllers.js:860
+#: controllers.js:985
 msgid "Profile link copied to clipboard"
 msgstr ""
 
-#: controllers.js:989
+#: controllers.js:970
 msgid "Profile not found"
 msgstr ""
 
@@ -243,7 +255,7 @@ msgstr ""
 msgid "Search star by name or id"
 msgstr ""
 
-#: controllers.js:499
+#: popup-withdraw.html:16
 msgid "Sell ETH online"
 msgstr ""
 
@@ -263,7 +275,7 @@ msgstr ""
 msgid "Set Profile Photo"
 msgstr ""
 
-#: controllers.js:544
+#: controllers.js:525
 msgid "Share link to profile"
 msgstr ""
 
@@ -279,11 +291,15 @@ msgstr ""
 msgid "Star"
 msgstr ""
 
-#: controllers.js:1046
+#: controllers.js:1027
 msgid "Star added to your favorites"
 msgstr ""
 
-#: controllers.js:1049
+#: editProfile.html:16
+msgid "Star page ID"
+msgstr ""
+
+#: controllers.js:1030
 msgid "Star removed from your favorites"
 msgstr ""
 
@@ -291,7 +307,7 @@ msgstr ""
 msgid "Stars"
 msgstr ""
 
-#: controllers.js:549
+#: controllers.js:530
 msgid "Suggest a feature"
 msgstr ""
 
@@ -299,11 +315,11 @@ msgstr ""
 msgid "This message will disappear when the connection is restored."
 msgstr ""
 
-#: controllers.js:489
+#: popup-withdraw.html:7
 msgid "To address"
 msgstr ""
 
-#: controllers.js:1025
+#: controllers.js:1006
 msgid "To make a call you need balance for one minute or more"
 msgstr ""
 
@@ -323,16 +339,32 @@ msgstr ""
 msgid "Top Up Your Balance"
 msgstr ""
 
-#: controllers.js:545
+#: controllers.js:526
 msgid "Top up balance"
 msgstr ""
 
-#: controllers.js:1028
+#: controllers.js:1009
 #: my.html:53
 msgid "Top-up"
 msgstr ""
 
-#: controllers.js:546
+#: controllers.js:456
+msgid "Transfer"
+msgstr ""
+
+#: controllers.js:464
+msgid "Transfer Error"
+msgstr ""
+
+#: controllers.js:456
+msgid "Transfer Revenues to Balance"
+msgstr ""
+
+#: controllers.js:461
+msgid "Transfer Successful"
+msgstr ""
+
+#: controllers.js:527
 msgid "Transfer revenues to balance"
 msgstr ""
 
@@ -344,11 +376,16 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
+#: controllers.js:481
 #: my.html:59
 msgid "Withdraw"
 msgstr ""
 
-#: controllers.js:548
+#: controllers.js:481
+msgid "Withdraw Revenues"
+msgstr ""
+
+#: controllers.js:529
 msgid "Withdraw revenues"
 msgstr ""
 
@@ -368,7 +405,11 @@ msgstr ""
 msgid "You have no outgoing calls yet"
 msgstr ""
 
-#: controllers.js:768
+#: controllers.js:453
+msgid "You have no revenues yet"
+msgstr ""
+
+#: controllers.js:749
 msgid "Your phone must be in international format<br> and starts from + sign. For example +12223334455"
 msgstr ""
 
@@ -381,7 +422,7 @@ msgid "answer"
 msgstr ""
 
 #. Call
-#: controllers.js:1122
+#: controllers.js:1103
 msgid "answered"
 msgstr ""
 
@@ -394,7 +435,7 @@ msgid "beta"
 msgstr ""
 
 #. Call
-#: controllers.js:1116
+#: controllers.js:1097
 msgid "busy"
 msgstr ""
 
@@ -407,7 +448,7 @@ msgid "call time"
 msgstr ""
 
 #. Call
-#: controllers.js:1112
+#: controllers.js:1093
 msgid "calling"
 msgstr ""
 
@@ -425,7 +466,7 @@ msgid "click address to copy"
 msgstr ""
 
 #. Call
-#: controllers.js:1066
+#: controllers.js:1047
 msgid "connecting"
 msgstr ""
 
@@ -435,17 +476,17 @@ msgid "cost"
 msgstr ""
 
 #. Call
-#: controllers.js:1116
+#: controllers.js:1097
 msgid "declined"
 msgstr ""
 
 #. Call
-#: controllers.js:1101
+#: controllers.js:1082
 msgid "dialing"
 msgstr ""
 
 #. Call
-#: controllers.js:1135
+#: controllers.js:1116
 msgid "error"
 msgstr ""
 
@@ -461,7 +502,7 @@ msgstr ""
 msgid "online"
 msgstr ""
 
-#: controllers.js:494
+#: popup-withdraw.html:12
 msgid "paste"
 msgstr ""
 
@@ -480,6 +521,10 @@ msgstr ""
 #: call.html:35
 #: my.html:39
 msgid "revenues"
+msgstr ""
+
+#: controllers.js:461
+msgid "transferred from revenues to your balance"
 msgstr ""
 
 #: star.html:59
