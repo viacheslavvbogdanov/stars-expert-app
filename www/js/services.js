@@ -34,28 +34,7 @@ angular.module('app.services', [])
           gettextCatalog.getString('Top Up Your Balance'),
           gettextCatalog.getString('Send ETH to this one-time address, wait for the address balance increased and press ACCEPT'),
           gettextCatalog.getString('Accept'),
-          `
-<div class="center-horizontally"><span style="font-size: 12px" translate>click address to copy</span>
-<script src="lib/qrcode.min.js"></script>
-<div style="display: flex; justify-content: center; text-align: center;" id="qrcode" ng-click="copyTopupAddressToClipboard()"></div>
-<script type="text/javascript">
-new QRCode(document.getElementById("qrcode"), {
-  text:"ethereum:${$rootScope.account.topupAddress}", 
-  width: 168, height: 168
-});
-</script>
-<input id="topupAddress" ng-click="copyTopupAddressToClipboard()" type="text"
-style="font-size: 12px; text-align:center" readonly ng-model="account.topupAddress">
-<!--<a class="button button-small" ng-click="copyTopupAddressToClipboard()" translate>Copy to clipboard</a>-->
-<label ng-click="refreshTopupBalance()" class="item item-input" id="balance" style="padding: 0;">
-        <span class="input-label" ng-class="{'energized':account.topupBalanceNum==0}" translate>Address Balance ETH</span>
-        <input id="topupBalance" ng-model="account.topupBalanceStr" type="text" class="energized"
-               placeholder="Refreshing..." readonly>
-          <a class="button button-small button-block button-balanced padding-left ion-refresh" ng-click="refreshTopupBalance()"></a>
-</label>
-<a class="button button-small button-block button-dark padding-right" onclick="window.open('https://localethereum.com/r/vbogdanov', '_system', 'location=yes'); return false;" translate>Buy ETH online</a>
-
-</div>`,
+          'popup-topup.html',
           () => {
             clearInterval(refreshTopupBalanceInterval);
             api.topUp()
@@ -193,12 +172,12 @@ style="font-size: 12px; text-align:center" readonly ng-model="account.topupAddre
   }
 
 
-  function input( title, subTitle='', buttonText=null, template, callback=null, cancelText=null, cancelCallback) {
+  function input( title, subTitle='', buttonText=null, templateUrl, callback=null, cancelText=null, cancelCallback) {
     if (!buttonText) buttonText = gettextCatalog.getString('OK');
     if (!cancelText) cancelText = gettextCatalog.getString('Cancel');
     const myPopup = $ionicPopup.show({
       // template: '<input type="password" ng-model="data.wifi">',
-      template: template,
+      templateUrl: 'templates/'+templateUrl,
       title: title,
       subTitle: subTitle,
       // scope: scope,

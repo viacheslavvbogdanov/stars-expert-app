@@ -46,7 +46,7 @@ angular.module('app', [
   const language = navigator.language;
   const lang = language.substr(0,2);
   log('language', language, lang);
-  // gettextCatalog.setCurrentLanguage(lang);
+  gettextCatalog.setCurrentLanguage(lang);
   gettextCatalog.debug = !PRODUCTION;
 
 
