@@ -12,6 +12,7 @@ const envConfig =
       databaseURL: "https://stars-expert.firebaseio.com",
       projectId: "stars-expert",
       storageBucket: "stars-expert.appspot.com",
-      messagingSenderId: "603663026634"
+      messagingSenderId: "603663026634",
+      appId: "1:603663026634:web:26bcaf62fa28e80b"
     }
   };
