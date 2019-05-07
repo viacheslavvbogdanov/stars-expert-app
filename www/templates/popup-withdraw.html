@@ -1,0 +1,16 @@
+<label class="item item-input" style="padding: 0;">
+  <span class="input-label" translate>Amount to withdraw ETH*</span>
+  <input ng-model="withdraw.amount" type="number">
+</label>
+
+<label class="item item-input item-stacked-label" style="padding: 0;">
+  <span class="input-label" translate>To address</span>
+  <input id="toAddress" style="font-size:12px;text-align:center"
+         ng-model="withdraw.toAddress" type="text" placeholder="0x...">
+</label>
+<div class="center-horizontally">
+  <a class="button button-small button-block button-balanced" ng-click="pasteToAddress()" translate>paste</a>
+</div>
+<div class="center-horizontally padding-top" style="font-size: 10px" translate>
+  *Ethereum transaction fee will be additionally deducted from revenues</div>
+<a class="button button-small button-block button-dark padding-right" onclick="window.open('https://localethereum.com/r/vbogdanov', '_system', 'location=yes'); return false;" translate>Sell ETH online</a>

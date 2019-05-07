@@ -225,7 +225,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
   }, err);
 
   $scope.getListedAtFeatured = function() {
-    alerts.info('Get Listed for Your Language',
+    alerts.info(gettextCatalog.getString('Get Listed for Your Language'),
       gettextCatalog.getString(
         'Please send your request email with the languages you speak and with links to your social profiles to slavik@stars.expert<br/><br/> Thank you!'
       )
@@ -450,18 +450,18 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
 
   $scope.topUpFromRevenues = function() {
     if ($rootScope.account['revenues']===0) {
-      alerts.error('You have no revenues yet');
+      alerts.error(gettextCatalog.getString('You have no revenues yet'));
     } else {
       $rootScope.topup = {amount: Math.floor($rootScope.account['revenues']*10000)/10000};
-      alerts.input('Transfer Revenues to Balance', 'Enter amount', 'Transfer',
-        '<input type="number" ng-model="topup.amount">',
+      alerts.input(gettextCatalog.getString('Transfer Revenues to Balance'), gettextCatalog.getString('Enter amount'), gettextCatalog.getString('Transfer'),
+        'popup-revenues2balance.html',
         () => {
           api.topUpFromRevenues({amount:$rootScope.topup.amount})
             .then(()=>{
-              alerts.info('Transfer Successful', `$${$rootScope.topup.amount} transferred from revenues to your balance`);
+              alerts.info(gettextCatalog.getString('Transfer Successful'), `$${$rootScope.topup.amount} `+ gettextCatalog.getString('transferred from revenues to your balance'));
              })
             .catch((error)=>{
-              alerts.info('Transfer Error', error.message);
+              alerts.info(gettextCatalog.getString('Transfer Error'), error.message);
             })
         });
     }
@@ -478,27 +478,8 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
         };
       }
 
-      alerts.input('Withdraw Revenues', null, 'Withdraw',
-        `
-<label class="item item-input" style="padding: 0;">
-        <span class="input-label" translate>Amount to withdraw ETH*</span>
-        <input ng-model="withdraw.amount" type="number">
-</label>
-
-<label class="item item-input item-stacked-label" style="padding: 0;">
-        <span class="input-label" translate>To address</span>
-        <input id="toAddress" style="font-size:12px;text-align:center" 
-        ng-model="withdraw.toAddress" type="text" placeholder="0x...">
-</label>
-<div class="center-horizontally">
-<a class="button button-small button-block button-balanced" ng-click="pasteToAddress()" translate>paste</a>
-</div>
-<div class="center-horizontally padding-top" style="font-size: 10px">
-
-*Ethereum transaction fee will be deducted</div>
-<a class="button button-small button-block button-dark padding-right" onclick="window.open('https://localethereum.com/r/vbogdanov', '_system', 'location=yes'); return false;" translate>Sell ETH online</a>
-
-`,
+      alerts.input(gettextCatalog.getString('Withdraw Revenues'), null, gettextCatalog.getString('Withdraw'),
+        'popup-withdraw.html',
         () => {
           //todo check address and values
           api.withdraw({amount:$rootScope.withdraw.amount, toAddress:$rootScope.withdraw.toAddress})
