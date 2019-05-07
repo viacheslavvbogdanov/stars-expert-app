@@ -75,6 +75,10 @@ msgstr ""
 msgid "Buy ETH online"
 msgstr ""
 
+#: login.html:23
+msgid "By entering, you agree to the"
+msgstr ""
+
 #: call.html:1
 msgid "Call"
 msgstr ""
@@ -309,6 +313,10 @@ msgstr ""
 
 #: controllers.js:530
 msgid "Suggest a feature"
+msgstr ""
+
+#: login.html:23
+msgid "Terms of Service"
 msgstr ""
 
 #: app.js:289

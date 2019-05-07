@@ -91,6 +91,10 @@ msgstr "Неверный код верификации. Пожалуйста п�
 msgid "Buy ETH online"
 msgstr "Купить ETH онлайн"
 
+#: login.html:23
+msgid "By entering, you agree to the"
+msgstr "Входя, вы соглашаетесь с"
+
 #: call.html:1
 msgid "Call"
 msgstr "Звонок"
@@ -327,6 +331,10 @@ msgstr "Звезды"
 #: controllers.js:530
 msgid "Suggest a feature"
 msgstr "Предложите функцию"
+
+#: login.html:23
+msgid "Terms of Service"
+msgstr "условиями сервиса"
 
 #: app.js:289
 msgid "This message will disappear when the connection is restored."
