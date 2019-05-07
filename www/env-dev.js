@@ -11,6 +11,7 @@ const envConfig = { // Development
       databaseURL: "https://starsmessenger-dev.firebaseio.com",
       projectId: "starsmessenger-dev",
       storageBucket: "starsmessenger-dev.appspot.com",
-      messagingSenderId: "917892951649"
-    },
+      messagingSenderId: "917892951649",
+      appId: "1:917892951649:web:cb8c264ed12fd5fe"
+    }
   };
