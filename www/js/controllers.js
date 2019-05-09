@@ -469,7 +469,7 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
 
   $scope.withdrawRevenues = function() {
     if ($rootScope.account['revenues']===0) {
-      alerts.error('You have no revenues yet');
+      alerts.error(gettextCatalog.getString('You have no revenues yet'));
     } else {
       if (!$rootScope.withdraw) {
         $rootScope.withdraw = {
