@@ -384,6 +384,10 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
+#: app.js:258
+msgid "Waiting for an incoming call"
+msgstr ""
+
 #: controllers.js:481
 #: my.html:59
 msgid "Withdraw"

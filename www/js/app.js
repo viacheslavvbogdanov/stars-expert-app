@@ -255,7 +255,7 @@ angular.module('app', [
       log('Enable background mode');
       cordova.plugins.backgroundMode.setDefaults({
         title: ' ',
-        text: 'Waiting for an incoming call',
+        text: gettextCatalog.getString('Waiting for an incoming call'),
         icon: 'icon',
         // color: String // hex format like 'F14F4D'
         resume: true,

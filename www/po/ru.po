@@ -407,6 +407,10 @@ msgstr "Неизвестный"
 msgid "Version"
 msgstr "Версия"
 
+#: app.js:258
+msgid "Waiting for an incoming call"
+msgstr "Ожидаем входящий звонок"
+
 #: controllers.js:481 my.html:59
 msgid "Withdraw"
 msgstr "Вывести"
