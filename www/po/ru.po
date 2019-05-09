@@ -409,7 +409,7 @@ msgstr "Версия"
 
 #: app.js:258
 msgid "Waiting for an incoming call"
-msgstr "Ожидаем входящий звонок"
+msgstr "Ожидаем входящие звонки"
 
 #: controllers.js:481 my.html:59
 msgid "Withdraw"
