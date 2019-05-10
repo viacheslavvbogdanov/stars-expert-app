@@ -1050,7 +1050,7 @@ function ($scope, $ionicHistory, $state, $stateParams, $rootScope, gettextCatalo
   let call = {};
   let callUnsubscribe = null;
 
-  function setCallStatus(text, apply=true) {
+  function setCallStatus(text, textTranslated, apply=true) {
     log('Call Status:', text);
     $('audio').each(function(){
       if (this.id===(text+'Audio')) {
@@ -1062,9 +1062,9 @@ function ($scope, $ionicHistory, $state, $stateParams, $rootScope, gettextCatalo
     });
     if (apply){
       $scope.$apply(function(){
-        $scope.call.status = text;
+        $scope.call.status = textTranslated;
       })} else {
-      $scope.call.status = text;
+      $scope.call.status = textTranslated;
     }
   }
 
@@ -1080,28 +1080,31 @@ function ($scope, $ionicHistory, $state, $stateParams, $rootScope, gettextCatalo
       api.createCall(call)
         .then((result)=>{
           /// Call
-          setCallStatus(gettextCatalog.getString('dialing'));
+          setCallStatus('dialing', gettextCatalog.getString('dialing'));
           call.id = result.data;
           $scope.$apply(function(){ $scope.call.disableCancel = false; });
           log('call.id', call.id);
-          // setCallStatus('connecting');
           callUnsubscribe = db.collection("messages").doc(call.id)
             .onSnapshot(function(doc) {
               const callData = doc.data();
               console.log("Current call data: ", callData);
               if (callData['delivered']) {
                 /// Call
-                setCallStatus(gettextCatalog.getString('calling'));
+                setCallStatus('calling', gettextCatalog.getString('calling'));
               }
               if (callData.finished) {
-                /// Call
-                setCallStatus(callData.busy?gettextCatalog.getString('busy'):gettextCatalog.getString('declined'));
+                if (callData.busy) {
+                  /// Call
+                  setCallStatus('busy', gettextCatalog.getString('busy'));
+                } else {
+                  setCallStatus('declined', gettextCatalog.getString('declined'));
+                }
                 cleanupCall();
                 $ionicHistory.goBack();
               }
               if (callData['answered']) {
                 /// Call
-                setCallStatus(gettextCatalog.getString('answered'));
+                setCallStatus('answered', gettextCatalog.getString('answered'));
                 log('Answered.');
                 navigator.vibrate(100);
                 unsubscribe();
@@ -1114,7 +1117,7 @@ function ($scope, $ionicHistory, $state, $stateParams, $rootScope, gettextCatalo
           log('createCall error', error);
           err(error);
           /// Call
-          setCallStatus(gettextCatalog.getString('error'));
+          setCallStatus('error', gettextCatalog.getString('error'));
           $scope.cancel();
         })
     });
