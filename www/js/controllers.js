@@ -227,8 +227,9 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts, toast
   $scope.getListedAtFeatured = function() {
     alerts.info(gettextCatalog.getString('Get Listed for Your Language'),
       gettextCatalog.getString(
-        'Please send your request email with the languages you speak and with links to your social profiles to slavik@stars.expert<br/><br/> Thank you!'
-      )
+        'Please send your request email with the languages you speak and with links to your social profiles to')
+      +' info@stars.expert'
+
     );
   };
 
