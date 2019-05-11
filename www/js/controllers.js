@@ -1198,10 +1198,17 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
 
   }
 
+  // TODO play default android ringtone
   // Play ringtone
-  $('audio#ringtoneAudio').each(function(){
-    this.play();
-  });
+  // $('audio#ringtoneAudio').each(function(){
+  //   this.play();
+  // });
+  const ringtoneAudio = new Audio();
+  ringtoneAudio.src = 'ringtones/vivaldi.mp3';
+  ringtoneAudio.loop = true;
+  ringtoneAudio.play();
+
+
   // Vibrate
   const vibrationInterval = setInterval(()=>{
     log('vibrate');
@@ -1289,10 +1296,15 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
   function unsubscribe() {
 
     // Stop ringtone
-    $('audio#ringtoneAudio').each(function(){
-      this.pause();
-      this.currentTime = 0;
-    });
+    // $('audio#ringtoneAudio').each(function(){
+    //   this.pause();
+    //   this.currentTime = 0;
+    //   this.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAVFYAAFRWAAABAAgAZGF0YQAAAAA=';
+    // });
+    ringtoneAudio.pause();
+    ringtoneAudio.currentTime = 0;
+    ringtoneAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAVFYAAFRWAAABAAgAZGF0YQAAAAA=';
+
     // Stop vibration
     if (vibrationInterval) clearInterval(vibrationInterval);
 
