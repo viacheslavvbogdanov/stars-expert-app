@@ -1276,7 +1276,8 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
         console.log("Current call data: ", callData);
         // if call is finished or answered at another device
         if (callData['finished'] || callData['answered']) {
-          log('Call is finished or answered at another device');
+          const finishedOrAnswered = callData['finished'] ? 'finished' : 'answered';
+          log(`Call is ${finishedOrAnswered} at another device`);
           cleanupCall();
           navigateBack();
         }
