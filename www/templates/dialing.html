@@ -38,10 +38,11 @@
       <button class="button button-assertive button-large button-clear">Ξ0.0000</button>
     </div>
     <div class="button-bar">
-      <button ng-bind="'$'+(star.priceCall*exchangeRate).toFixed(2)"
+      <button ng-bind="exchangeRate?'$'+(star.priceCall*exchangeRate).toFixed(2):' '"
               class="button button-assertive button-balanced button-clear" style="pointer-events: none;" >$0.00</button>
       <a class="button button-disabled button-clear" style="pointer-events: none;" ></a>
-      <button class="button button-assertive button-balanced button-clear" style="pointer-events: none;" >$0.00</button>
+      <button ng-bind="exchangeRate?'$0.00':' '"
+              class="button button-assertive button-balanced button-clear" style="pointer-events: none;" >$0.00</button>
     </div>
     <div  class="button-bar">
       <a href-inappbrowser="page18"

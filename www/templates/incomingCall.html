@@ -40,7 +40,7 @@
 
     <div class="button-bar">
       <a class="button button-clear" style="pointer-events: none;" ></a>
-      <button ng-show="profile.priceCall && exchangeRate" ng-bind="'$'+(profile.priceCall*exchangeRate).toFixed(2)"
+      <button ng-show="profile.priceCall && exchangeRate" ng-bind="exchangeRate?'$'+(profile.priceCall*exchangeRate).toFixed(2):' '"
               class="button button-balanced button-clear" style="pointer-events: none;" >
       </button>
       <a class="button button-clear" style="pointer-events: none;" ></a>

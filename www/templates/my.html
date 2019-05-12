@@ -43,10 +43,10 @@
         <button ng-bind="profile.priceCallStr" ui-sref="editProfile()" style="font-weight:300" class="button button-dark button-large button-clear"></button>
         <button ng-bind="'Ξ'+account.revenues.toFixed(4)" style="font-weight:300" class="button button-dark button-large button-clear"></button>
       </div>
-      <div class="button-bar" >
-        <button ng-bind="'$'+(account.balance*exchangeRate).toFixed(2)" class="button button-balanced button-clear"></button>
-        <button ng-bind="'$'+(profile.priceCall*exchangeRate).toFixed(2)" ui-sref="editProfile()" class="button button-balanced button-clear"></button>
-        <button ng-bind="'$'+(account.revenues*exchangeRate).toFixed(2)" class="button button-balanced button-clear"></button>
+      <div class="button-bar">
+        <button ng-bind="exchangeRate?'$'+(account.balance*exchangeRate).toFixed(2):' '" class="button button-balanced button-clear"></button>
+        <button ng-bind="exchangeRate?'$'+(profile.priceCall*exchangeRate).toFixed(2):' '" ui-sref="editProfile()" class="button button-balanced button-clear"></button>
+        <button ng-bind="exchangeRate?'$'+(account.revenues*exchangeRate).toFixed(2):' '" class="button button-balanced button-clear"></button>
       </div>
 
       <div class="row padding-horizontal -button-bar" style="padding-bottom: 0;padding-top: 0">

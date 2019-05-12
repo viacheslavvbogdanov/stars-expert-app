@@ -50,7 +50,7 @@
     </div>
 
     <div class="button-bar">
-      <button ng-bind="'$'+(star.priceCall*exchangeRate).toFixed(2)" style="pointer-events: none;" class="button button-balanced button-clear"></button>
+      <button ng-bind="exchangeRate?'$'+(star.priceCall*exchangeRate).toFixed(2):' '" style="pointer-events: none;" class="button button-balanced button-clear"></button>
     </div>
 
     <div class="button-bar">
