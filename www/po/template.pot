@@ -261,6 +261,10 @@ msgstr ""
 msgid "Invalid phone number"
 msgstr ""
 
+#: editProfile.html:12
+msgid "John Smith"
+msgstr ""
+
 #: stars.html:152
 msgid "Last incoming"
 msgstr ""
@@ -509,6 +513,10 @@ msgstr ""
 
 #: services.js:12
 msgid "Unknown"
+msgstr ""
+
+#: editProfile.html:18
+msgid "Use latin chars only"
 msgstr ""
 
 #: about.html:11

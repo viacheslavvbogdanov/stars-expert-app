@@ -273,6 +273,10 @@ msgstr "Интернет соединение пропало"
 msgid "Invalid phone number"
 msgstr "Неверный номер телефона"
 
+#: editProfile.html:12
+msgid "John Smith"
+msgstr "Иван Петров"
+
 #: stars.html:152
 msgid "Last incoming"
 msgstr "Последние входящие"
@@ -529,6 +533,10 @@ msgstr "Перевести доходы на баланс"
 #: services.js:12
 msgid "Unknown"
 msgstr "Неизвестный"
+
+#: editProfile.html:18
+msgid "Use latin chars only"
+msgstr "Только латинские символы"
 
 #: about.html:11
 msgid "Version"

@@ -9,13 +9,13 @@
       <label class="item item-input" id="editProfile-name">
         <span class="input-label" translate>Name</span>
         <input id="edit-profile-name" ng-model="newProfile.displayNameUnfilled" type="text"
-               placeholder="John Smith" maxlength="60">
+               placeholder="{{'John Smith'|translate}}" maxlength="60">
       </label>
 
       <label class="item item-input" id="editProfile-nick">
         <span class="input-label" translate>Star page ID</span>
         <input id="edit-profile-nick" ng-model="newProfile.nick" type="text"
-               placeholder="Use latin chars only" maxlength="60">
+               placeholder="{{'Use latin chars only'|translate}}" maxlength="60">
       </label>
       <ion-item ng-click="shareProfileLink()">
         <input readonly title="Link to profile" style="border: none;width: 100%" class="profile-url transparent" type="text"
