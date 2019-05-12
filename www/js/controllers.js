@@ -491,10 +491,11 @@ function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
           //todo check address and values
           api.withdraw({amount:$rootScope.withdraw.amount, toAddress:$rootScope.withdraw.toAddress})
             .then(()=>{
-              alerts.info('Withdrawal Requested', `${$rootScope.withdraw.amount}ETH will be paid out within 5-10 minutes.`);
+              alerts.info('Withdrawal Requested', $rootScope.withdraw.amount+' '+
+                gettextCatalog.getString('ETH will be paid out within 5-10 minutes.'));
             })
             .catch((error)=>{
-              alerts.info('Withdrawal Error', error.message);
+              alerts.info('Withdrawal Error', gettextCatalog.getString(error.message));
             })
         });
     }
@@ -642,7 +643,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts) {
 
       }, function error(error) {
         log('upload error', error);
-        alerts.error(error.message);
+        alerts.error(gettextCatalog.getString(error.message));
         $scope.$apply(() => { $scope.uploading = false; });
 
       }, function complete() {
@@ -675,7 +676,7 @@ function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts) {
               });
               err(error);
               warn('updateProfile error', error);
-              alerts.error(error.message);
+              alerts.error(gettextCatalog.getString(error.message));
             });
 
         });
@@ -912,7 +913,7 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, socia
         $scope.savingProfile = false;
         warn( 'updateProfile error', error);
         err(error);
-        alerts.error( error.message );
+        alerts.error( gettextCatalog.getString(error.message) );
       });
   }
 }])

@@ -56,7 +56,7 @@ msgstr ""
 "*Внимание: Пожалуйста, снова НЕ ОТПРАВЛЯЙТЕ эфир на этот адрес. Для "
 "следующего пополнения вам будет создан новый адресю."
 
-#: about.html:1 controllers.js:532
+#: about.html:1 controllers.js:540
 msgid "About"
 msgstr "О программе"
 
@@ -75,15 +75,55 @@ msgstr ""
 "Баланс адреса (за минусом комиссии  сети Ethereum), успешно добавлен к "
 "вашему балансу."
 
+#. API
+#: index.ts:744
+msgid "Address balance must be not less than 0.01 to accept topup."
+msgstr "Баланс адреса должен быть не меньше 0.01, для его зачисления."
+
 #: services.js:25
 msgid "Address copied to clipboard"
 msgstr "Адрес скопирован в буфер обмена"
+
+#. API
+#: index.ts:845 index.ts:847
+msgid "Address must be an Ethereum address starting 0x"
+msgstr "Адрес должен быть адресом Ethereum и начинаться с 0x"
+
+#. API
+#: index.ts:836 index.ts:969
+msgid "Amount must be a number"
+msgstr "Сумма должна быть числом"
+
+#. API
+#: index.ts:838
+msgid "Amount must be greather or equal 0.01"
+msgstr "Сумма должна быть не меньше 0.01"
+
+#. API
+#: index.ts:971
+msgid "Amount must be greather than 0"
+msgstr "Сумма должна быть больше 0"
+
+#. API
+#: index.ts:842
+msgid "Amount must be less than 1000"
+msgstr "Сумма должна быть меньше 1000"
+
+#. API
+#: index.ts:973
+msgid "Amount must be less than 10000"
+msgstr "Сумма должна быть меньше 10000"
+
+#. API
+#: index.ts:840 index.ts:975
+msgid "Amount must be not greather than revenues"
+msgstr "Сумма должна быть не больше чем ваши доходы"
 
 #: popup-withdraw.html:2
 msgid "Amount to withdraw ETH*"
 msgstr "Сумма для вывода ETH*"
 
-#: controllers.js:796
+#: controllers.js:810
 msgid "Bad verification code"
 msgstr "Неверный код верификации. Пожалуйста попробуйте еще раз"
 
@@ -139,19 +179,38 @@ msgstr "Идет набор"
 msgid "Do you have large audience in your country?"
 msgstr "У вас большая аудитория в вашей стране?"
 
-#: controllers.js:389
+#: controllers.js:396
 msgid "Do you really want to exit from your account?"
 msgstr "Вы точно хотите выйти из вашего аккаунта?"
+
+#. API
+#: index.ts:318
+msgid "Donation must be a number."
+msgstr "Пожертвовать автору должно быть числом."
+
+#. API
+#: index.ts:320
+msgid "Donation must be greather or equal 0"
+msgstr "Пожертвование должно быть больше или равно 0"
+
+#. API
+#: index.ts:322
+msgid "Donation must be less or equal 50"
+msgstr "Пожертвование должно быть не больше 50"
 
 #: editProfile.html:46
 msgid "Donation to author"
 msgstr "Пожертвовать автору"
 
+#: controllers.js:495
+msgid "ETH will be paid out within 5-10 minutes."
+msgstr "ETH будут отправлены в течении 5-15 минут."
+
 #: editProfile.html:1
 msgid "Edit Your Profile"
 msgstr "Редактирование профиля"
 
-#: controllers.js:524
+#: controllers.js:532
 msgid "Edit profile"
 msgstr "Редактировать профиль"
 
@@ -159,7 +218,7 @@ msgstr "Редактировать профиль"
 msgid "Editor's Choice"
 msgstr "Выбор редактора"
 
-#: controllers.js:456
+#: controllers.js:463
 msgid "Enter amount"
 msgstr "Введите сумму"
 
@@ -167,9 +226,19 @@ msgstr "Введите сумму"
 msgid "Enter received code"
 msgstr "Введите код из SMS"
 
+#. API
+#: index.ts:281
+msgid "Enter your desired Star ID"
+msgstr "Введите желаемый Star ID"
+
 #: login.html:11
 msgid "Enter your phone number"
 msgstr "Введите номер вашего телефона"
+
+#. API
+#: index.ts:266
+msgid "Enter your real name or official pseudonim."
+msgstr "Введите ваше настоящее имя или официальный псевдоним"
 
 #: stars.html:84
 msgid "Favorites"
@@ -191,11 +260,16 @@ msgstr "Входящие"
 msgid "Incoming Call"
 msgstr "Входящий звонок"
 
+#. API
+#: index.ts:418
+msgid "Insufficient balance to make a 1-minute call"
+msgstr "Недостаточный баланс для 1-минутного звонка"
+
 #: app.js:286
 msgid "Internet Connection Lost"
 msgstr "Интернет соединение пропало"
 
-#: controllers.js:748
+#: controllers.js:762
 msgid "Invalid phone number"
 msgstr "Неверный номер телефона"
 
@@ -207,11 +281,11 @@ msgstr "Последние входящие"
 msgid "Last outgoing"
 msgstr "Последние исходящие"
 
-#: controllers.js:388
+#: controllers.js:395
 msgid "Log Out"
 msgstr "Выход из аккаунта"
 
-#: controllers.js:390 controllers.js:531
+#: controllers.js:397 controllers.js:539
 msgid "Log out"
 msgstr "Выйти"
 
@@ -227,9 +301,24 @@ msgstr "Мой профиль"
 msgid "Name"
 msgstr "Имя"
 
-#: controllers.js:1005
+#. API
+#: index.ts:268
+msgid "Name must be maximum 64 symbols long."
+msgstr "Имя должно быть не длиннее 64 символов"
+
+#. API
+#: index.ts:262
+msgid "Not authenticated"
+msgstr "Не аутентифицирован"
+
+#: controllers.js:1032
 msgid "Not enough balance"
 msgstr "Недостаточный баланс"
+
+#. API
+#: index.ts:855
+msgid "Not enough revenues to withraw this amount"
+msgstr "Недостаточно средств, чтобы снять такую сумму"
 
 #: services.js:116 services.js:134 services.js:152 services.js:176
 msgid "OK"
@@ -239,30 +328,63 @@ msgstr "ОК"
 msgid "Outgoing"
 msgstr "Исходящие"
 
+#. API
+#: index.ts:304
+msgid "Please enter your profession."
+msgstr "Пожалуйста введите свою професиию"
+
 #: controllers.js:229
 msgid ""
 "Please send your request email with the languages you speak and with links "
-"to your social profiles to slavik@stars.expert<br/><br/> Thank you!"
+"to your social profiles to"
 msgstr ""
 "Пожалуйста отправьте письмо с запросом и  ссылками на ваши социальные сети "
-"по адресу\n"
-"slavik@stars.expert<br/><br/> Спасибо!"
+"по адресу"
 
 #: editProfile.html:49
 msgid "Please support author of the service for new features and hosting"
 msgstr "Поддержите автора сервиса для их развития"
 
-#: controllers.js:1008
+#: controllers.js:1035
 msgid "Please top-up your balance"
 msgstr "Пополните ваш баланс"
 
-#: controllers.js:366 controllers.js:860 controllers.js:985
+#. API
+#: index.ts:294
+msgid "Price must be a number."
+msgstr "Цена должна быть числом"
+
+#. API
+#: index.ts:296
+msgid "Price must be greather or equal 0.0001"
+msgstr "Цена должна быть не менее 0.0001"
+
+#. API
+#: index.ts:298
+msgid "Price must be less or equal 100"
+msgstr "Цена должна быть не более 100"
+
+#. API
+#: index.ts:306
+msgid "Profession must be maximium 128 symbols long."
+msgstr "Профессия должна быть не больше 128 символов в длину"
+
+#: controllers.js:1012 controllers.js:373 controllers.js:880
 msgid "Profile link copied to clipboard"
 msgstr "Ссылка на профиль скопирована в буфер"
 
-#: controllers.js:970
+#: controllers.js:997
 msgid "Profile not found"
 msgstr "Профиль не найден"
+
+#: editProfile.html:29
+msgid "Rock Star, Doctor of ..., Expert in ..., Artist"
+msgstr "Рок звезда, Доктор ..., Эксперт в ..., Художник"
+
+#. API
+#: index.ts:289
+msgid "Same Star ID already exists. Please enter different ID."
+msgstr "Такой Star ID уже занят. Пожалуйста придумайте себе другой ID."
 
 #: editProfile.html:3 editProfile.html:71
 msgid "Save profile"
@@ -296,7 +418,7 @@ msgstr "Задайте цену входящим звонкам"
 msgid "Set Profile Photo"
 msgstr "Изображение профиля"
 
-#: controllers.js:525
+#: controllers.js:533
 msgid "Share link to profile"
 msgstr "Поделиться ссылкой на профиль"
 
@@ -312,7 +434,12 @@ msgstr "Входим"
 msgid "Star"
 msgstr "Звезда"
 
-#: controllers.js:1027
+#. API
+#: index.ts:283
+msgid "Star ID must be maximim 64 symbols long."
+msgstr "Star ID должен быть не длиннее 64 символов"
+
+#: controllers.js:1054
 msgid "Star added to your favorites"
 msgstr "Звезда добавлена в фавориты"
 
@@ -320,7 +447,7 @@ msgstr "Звезда добавлена в фавориты"
 msgid "Star page ID"
 msgstr "ID страницы"
 
-#: controllers.js:1030
+#: controllers.js:1057
 msgid "Star removed from your favorites"
 msgstr "Звезда убрана из фаворитов"
 
@@ -328,7 +455,7 @@ msgstr "Звезда убрана из фаворитов"
 msgid "Stars"
 msgstr "Звезды"
 
-#: controllers.js:530
+#: controllers.js:538
 msgid "Suggest a feature"
 msgstr "Предложите функцию"
 
@@ -345,7 +472,7 @@ msgstr ""
 msgid "To address"
 msgstr "На адрес"
 
-#: controllers.js:1006
+#: controllers.js:1033
 msgid "To make a call you need balance for one minute or more"
 msgstr ""
 "Чтобы совершить звонок вам нужно иметь баланс достаточный для одной минуты "
@@ -371,31 +498,31 @@ msgstr "Пополнение успешно"
 msgid "Top Up Your Balance"
 msgstr "Пополнить баланс"
 
-#: controllers.js:526
+#: controllers.js:534
 msgid "Top up balance"
 msgstr "Пополнить баланс"
 
-#: controllers.js:1009 my.html:53
+#: controllers.js:1036 my.html:53
 msgid "Top-up"
 msgstr "Пополнить"
 
-#: controllers.js:456
+#: controllers.js:463
 msgid "Transfer"
 msgstr "Перевести"
 
-#: controllers.js:464
+#: controllers.js:471
 msgid "Transfer Error"
 msgstr "Ошибка перевода"
 
-#: controllers.js:456
+#: controllers.js:463
 msgid "Transfer Revenues to Balance"
 msgstr "Перевести доходы на баланс"
 
-#: controllers.js:461
+#: controllers.js:468
 msgid "Transfer Successful"
 msgstr "Пополнение успешно"
 
-#: controllers.js:527
+#: controllers.js:535
 msgid "Transfer revenues to balance"
 msgstr "Перевести доходы на баланс"
 
@@ -411,21 +538,25 @@ msgstr "Версия"
 msgid "Waiting for an incoming call"
 msgstr "Ожидаем входящие звонки"
 
-#: controllers.js:481 my.html:59
+#: controllers.js:488 my.html:59
 msgid "Withdraw"
 msgstr "Вывести"
 
-#: controllers.js:481
+#: controllers.js:488
 msgid "Withdraw Revenues"
 msgstr "Вывести доходы"
 
-#: controllers.js:529
+#: controllers.js:537
 msgid "Withdraw revenues"
 msgstr "Вывести доходы"
 
 #: stars.html:63
 msgid "You"
 msgstr "Вы"
+
+#: index.ts:403
+msgid "You can not call to yourself"
+msgstr "Вы не можете звонить сами себе"
 
 #: stars.html:88
 msgid "You have no favorite contacts yet"
@@ -439,11 +570,11 @@ msgstr "У вас пока нет входящих звонков"
 msgid "You have no outgoing calls yet"
 msgstr "У вас пока нет исходящих звонков"
 
-#: controllers.js:453
+#: controllers.js:460 controllers.js:479
 msgid "You have no revenues yet"
 msgstr "У вас пока нет доходов"
 
-#: controllers.js:749
+#: controllers.js:763
 msgid ""
 "Your phone must be in international format<br> and starts from + sign. For "
 "example +12223334455"
@@ -460,7 +591,7 @@ msgid "answer"
 msgstr "ответить"
 
 #. Call
-#: controllers.js:1103
+#: controllers.js:1143
 msgid "answered"
 msgstr "отвечен"
 
@@ -473,7 +604,7 @@ msgid "beta"
 msgstr "бета"
 
 #. Call
-#: controllers.js:1097
+#: controllers.js:1134
 msgid "busy"
 msgstr "занят"
 
@@ -486,7 +617,7 @@ msgid "call time"
 msgstr "время вызова"
 
 #. Call
-#: controllers.js:1093
+#: controllers.js:1129
 msgid "calling"
 msgstr "звоним"
 
@@ -494,7 +625,7 @@ msgstr "звоним"
 msgid "calling you"
 msgstr "звонит вам"
 
-#: dialing.html:49 incomingCall.html:50
+#: dialing.html:50 incomingCall.html:50
 msgid "cancel"
 msgstr "отмена"
 
@@ -503,26 +634,25 @@ msgid "click address to copy"
 msgstr "нажмите, чтобы скопировать"
 
 #. Call
-#: controllers.js:1047
+#: controllers.js:1082
 msgid "connecting"
 msgstr "соединяем"
 
-#: call.html:36 dialing.html:52
+#: call.html:36 dialing.html:53
 msgid "cost"
 msgstr "цена"
 
-#. Call
-#: controllers.js:1097
+#: controllers.js:1136 controllers.js:1164
 msgid "declined"
 msgstr "отменен"
 
 #. Call
-#: controllers.js:1082
+#: controllers.js:1119
 msgid "dialing"
 msgstr "набираем"
 
 #. Call
-#: controllers.js:1116
+#: controllers.js:1156
 msgid "error"
 msgstr "ошибка"
 
@@ -542,7 +672,7 @@ msgstr "онлайн"
 msgid "paste"
 msgstr "вставить"
 
-#: call.html:33 dialing.html:47 editProfile.html:39 my.html:38 star.html:58
+#: call.html:33 dialing.html:48 editProfile.html:39 my.html:38 star.html:58
 msgid "per minute"
 msgstr "в минуту"
 
@@ -554,7 +684,7 @@ msgstr "доход"
 msgid "revenues"
 msgstr "доходы"
 
-#: controllers.js:461
+#: controllers.js:468
 msgid "transferred from revenues to your balance"
 msgstr "переведено с доходов на ваш баланс"
 

@@ -28,7 +28,7 @@ gulp.task('watch', ['sass'], function() {
 });
 
 gulp.task('pot', function () {
-  return gulp.src(['www/templates/**/*.html', 'www/js/**/*.js', '../stars-api/functions/src/*.ts'])
+  return gulp.src(['www/templates/**/*.html', 'www/js/**/*.js', '../api/functions/src/*.ts'])
     .pipe(gettext.extract('template.pot', {
       // options to pass to angular-gettext-tools...
     }))

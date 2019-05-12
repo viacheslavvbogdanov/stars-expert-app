@@ -43,7 +43,7 @@ msgid "*Urgent Note: Please DO NOT send ETH to this address again. For next top-
 msgstr ""
 
 #: about.html:1
-#: controllers.js:532
+#: controllers.js:540
 msgid "About"
 msgstr ""
 
@@ -59,15 +59,58 @@ msgstr ""
 msgid "Address balance minus Ethereum transaction fee added to your service balance."
 msgstr ""
 
+#. API
+#: index.ts:744
+msgid "Address balance must be not less than 0.01 to accept topup."
+msgstr ""
+
 #: services.js:25
 msgid "Address copied to clipboard"
+msgstr ""
+
+#. API
+#: index.ts:845
+#: index.ts:847
+msgid "Address must be an Ethereum address starting 0x"
+msgstr ""
+
+#. API
+#: index.ts:836
+#: index.ts:969
+msgid "Amount must be a number"
+msgstr ""
+
+#. API
+#: index.ts:838
+msgid "Amount must be greather or equal 0.01"
+msgstr ""
+
+#. API
+#: index.ts:971
+msgid "Amount must be greather than 0"
+msgstr ""
+
+#. API
+#: index.ts:842
+msgid "Amount must be less than 1000"
+msgstr ""
+
+#. API
+#: index.ts:973
+msgid "Amount must be less than 10000"
+msgstr ""
+
+#. API
+#: index.ts:840
+#: index.ts:975
+msgid "Amount must be not greather than revenues"
 msgstr ""
 
 #: popup-withdraw.html:2
 msgid "Amount to withdraw ETH*"
 msgstr ""
 
-#: controllers.js:796
+#: controllers.js:810
 msgid "Bad verification code"
 msgstr ""
 
@@ -124,19 +167,38 @@ msgstr ""
 msgid "Do you have large audience in your country?"
 msgstr ""
 
-#: controllers.js:389
+#: controllers.js:396
 msgid "Do you really want to exit from your account?"
+msgstr ""
+
+#. API
+#: index.ts:318
+msgid "Donation must be a number."
+msgstr ""
+
+#. API
+#: index.ts:320
+msgid "Donation must be greather or equal 0"
+msgstr ""
+
+#. API
+#: index.ts:322
+msgid "Donation must be less or equal 50"
 msgstr ""
 
 #: editProfile.html:46
 msgid "Donation to author"
 msgstr ""
 
+#: controllers.js:495
+msgid "ETH will be paid out within 5-10 minutes."
+msgstr ""
+
 #: editProfile.html:1
 msgid "Edit Your Profile"
 msgstr ""
 
-#: controllers.js:524
+#: controllers.js:532
 msgid "Edit profile"
 msgstr ""
 
@@ -144,7 +206,7 @@ msgstr ""
 msgid "Editor's Choice"
 msgstr ""
 
-#: controllers.js:456
+#: controllers.js:463
 msgid "Enter amount"
 msgstr ""
 
@@ -152,8 +214,18 @@ msgstr ""
 msgid "Enter received code"
 msgstr ""
 
+#. API
+#: index.ts:281
+msgid "Enter your desired Star ID"
+msgstr ""
+
 #: login.html:11
 msgid "Enter your phone number"
+msgstr ""
+
+#. API
+#: index.ts:266
+msgid "Enter your real name or official pseudonim."
 msgstr ""
 
 #: stars.html:84
@@ -176,11 +248,16 @@ msgstr ""
 msgid "Incoming Call"
 msgstr ""
 
+#. API
+#: index.ts:418
+msgid "Insufficient balance to make a 1-minute call"
+msgstr ""
+
 #: app.js:286
 msgid "Internet Connection Lost"
 msgstr ""
 
-#: controllers.js:748
+#: controllers.js:762
 msgid "Invalid phone number"
 msgstr ""
 
@@ -192,12 +269,12 @@ msgstr ""
 msgid "Last outgoing"
 msgstr ""
 
-#: controllers.js:388
+#: controllers.js:395
 msgid "Log Out"
 msgstr ""
 
-#: controllers.js:390
-#: controllers.js:531
+#: controllers.js:397
+#: controllers.js:539
 msgid "Log out"
 msgstr ""
 
@@ -213,8 +290,23 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: controllers.js:1005
+#. API
+#: index.ts:268
+msgid "Name must be maximum 64 symbols long."
+msgstr ""
+
+#. API
+#: index.ts:262
+msgid "Not authenticated"
+msgstr ""
+
+#: controllers.js:1032
 msgid "Not enough balance"
+msgstr ""
+
+#. API
+#: index.ts:855
+msgid "Not enough revenues to withraw this amount"
 msgstr ""
 
 #: services.js:116
@@ -228,26 +320,60 @@ msgstr ""
 msgid "Outgoing"
 msgstr ""
 
+#. API
+#: index.ts:304
+msgid "Please enter your profession."
+msgstr ""
+
 #: controllers.js:229
-msgid "Please send your request email with the languages you speak and with links to your social profiles to slavik@stars.expert<br/><br/> Thank you!"
+msgid "Please send your request email with the languages you speak and with links to your social profiles to"
 msgstr ""
 
 #: editProfile.html:49
 msgid "Please support author of the service for new features and hosting"
 msgstr ""
 
-#: controllers.js:1008
+#: controllers.js:1035
 msgid "Please top-up your balance"
 msgstr ""
 
-#: controllers.js:366
-#: controllers.js:860
-#: controllers.js:985
+#. API
+#: index.ts:294
+msgid "Price must be a number."
+msgstr ""
+
+#. API
+#: index.ts:296
+msgid "Price must be greather or equal 0.0001"
+msgstr ""
+
+#. API
+#: index.ts:298
+msgid "Price must be less or equal 100"
+msgstr ""
+
+#. API
+#: index.ts:306
+msgid "Profession must be maximium 128 symbols long."
+msgstr ""
+
+#: controllers.js:1012
+#: controllers.js:373
+#: controllers.js:880
 msgid "Profile link copied to clipboard"
 msgstr ""
 
-#: controllers.js:970
+#: controllers.js:997
 msgid "Profile not found"
+msgstr ""
+
+#: editProfile.html:29
+msgid "Rock Star, Doctor of ..., Expert in ..., Artist"
+msgstr ""
+
+#. API
+#: index.ts:289
+msgid "Same Star ID already exists. Please enter different ID."
 msgstr ""
 
 #: editProfile.html:3
@@ -279,7 +405,7 @@ msgstr ""
 msgid "Set Profile Photo"
 msgstr ""
 
-#: controllers.js:525
+#: controllers.js:533
 msgid "Share link to profile"
 msgstr ""
 
@@ -295,7 +421,12 @@ msgstr ""
 msgid "Star"
 msgstr ""
 
-#: controllers.js:1027
+#. API
+#: index.ts:283
+msgid "Star ID must be maximim 64 symbols long."
+msgstr ""
+
+#: controllers.js:1054
 msgid "Star added to your favorites"
 msgstr ""
 
@@ -303,7 +434,7 @@ msgstr ""
 msgid "Star page ID"
 msgstr ""
 
-#: controllers.js:1030
+#: controllers.js:1057
 msgid "Star removed from your favorites"
 msgstr ""
 
@@ -311,7 +442,7 @@ msgstr ""
 msgid "Stars"
 msgstr ""
 
-#: controllers.js:530
+#: controllers.js:538
 msgid "Suggest a feature"
 msgstr ""
 
@@ -327,7 +458,7 @@ msgstr ""
 msgid "To address"
 msgstr ""
 
-#: controllers.js:1006
+#: controllers.js:1033
 msgid "To make a call you need balance for one minute or more"
 msgstr ""
 
@@ -347,32 +478,32 @@ msgstr ""
 msgid "Top Up Your Balance"
 msgstr ""
 
-#: controllers.js:526
+#: controllers.js:534
 msgid "Top up balance"
 msgstr ""
 
-#: controllers.js:1009
+#: controllers.js:1036
 #: my.html:53
 msgid "Top-up"
 msgstr ""
 
-#: controllers.js:456
+#: controllers.js:463
 msgid "Transfer"
 msgstr ""
 
-#: controllers.js:464
+#: controllers.js:471
 msgid "Transfer Error"
 msgstr ""
 
-#: controllers.js:456
+#: controllers.js:463
 msgid "Transfer Revenues to Balance"
 msgstr ""
 
-#: controllers.js:461
+#: controllers.js:468
 msgid "Transfer Successful"
 msgstr ""
 
-#: controllers.js:527
+#: controllers.js:535
 msgid "Transfer revenues to balance"
 msgstr ""
 
@@ -388,21 +519,25 @@ msgstr ""
 msgid "Waiting for an incoming call"
 msgstr ""
 
-#: controllers.js:481
+#: controllers.js:488
 #: my.html:59
 msgid "Withdraw"
 msgstr ""
 
-#: controllers.js:481
+#: controllers.js:488
 msgid "Withdraw Revenues"
 msgstr ""
 
-#: controllers.js:529
+#: controllers.js:537
 msgid "Withdraw revenues"
 msgstr ""
 
 #: stars.html:63
 msgid "You"
+msgstr ""
+
+#: index.ts:403
+msgid "You can not call to yourself"
 msgstr ""
 
 #: stars.html:88
@@ -417,11 +552,12 @@ msgstr ""
 msgid "You have no outgoing calls yet"
 msgstr ""
 
-#: controllers.js:453
+#: controllers.js:460
+#: controllers.js:479
 msgid "You have no revenues yet"
 msgstr ""
 
-#: controllers.js:749
+#: controllers.js:763
 msgid "Your phone must be in international format<br> and starts from + sign. For example +12223334455"
 msgstr ""
 
@@ -434,7 +570,7 @@ msgid "answer"
 msgstr ""
 
 #. Call
-#: controllers.js:1103
+#: controllers.js:1143
 msgid "answered"
 msgstr ""
 
@@ -447,7 +583,7 @@ msgid "beta"
 msgstr ""
 
 #. Call
-#: controllers.js:1097
+#: controllers.js:1134
 msgid "busy"
 msgstr ""
 
@@ -460,7 +596,7 @@ msgid "call time"
 msgstr ""
 
 #. Call
-#: controllers.js:1093
+#: controllers.js:1129
 msgid "calling"
 msgstr ""
 
@@ -468,7 +604,7 @@ msgstr ""
 msgid "calling you"
 msgstr ""
 
-#: dialing.html:49
+#: dialing.html:50
 #: incomingCall.html:50
 msgid "cancel"
 msgstr ""
@@ -478,27 +614,27 @@ msgid "click address to copy"
 msgstr ""
 
 #. Call
-#: controllers.js:1047
+#: controllers.js:1082
 msgid "connecting"
 msgstr ""
 
 #: call.html:36
-#: dialing.html:52
+#: dialing.html:53
 msgid "cost"
 msgstr ""
 
-#. Call
-#: controllers.js:1097
+#: controllers.js:1136
+#: controllers.js:1164
 msgid "declined"
 msgstr ""
 
 #. Call
-#: controllers.js:1082
+#: controllers.js:1119
 msgid "dialing"
 msgstr ""
 
 #. Call
-#: controllers.js:1116
+#: controllers.js:1156
 msgid "error"
 msgstr ""
 
@@ -519,7 +655,7 @@ msgid "paste"
 msgstr ""
 
 #: call.html:33
-#: dialing.html:47
+#: dialing.html:48
 #: editProfile.html:39
 #: my.html:38
 #: star.html:58
@@ -535,7 +671,7 @@ msgstr ""
 msgid "revenues"
 msgstr ""
 
-#: controllers.js:461
+#: controllers.js:468
 msgid "transferred from revenues to your balance"
 msgstr ""
 
