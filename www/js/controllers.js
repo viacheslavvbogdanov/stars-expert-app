@@ -584,6 +584,12 @@ function ($scope, $stateParams) {
 .controller('avatarCtrl', ['$scope', '$state', '$stateParams', '$rootScope', '$ionicHistory', 'alerts',
 function ($scope, $state, $stateParams, $rootScope, $ionicHistory, alerts) {
 
+  // Redirect (to fill backView by stars)
+  if (!$ionicHistory.backView()) {
+    $rootScope.redirect = { state:$state.current.name, params:$stateParams};
+    $state.go('stars');
+  }
+
   $scope.continue = false; // used for first-time wizard mode
   $scope.uploading = false;
 
@@ -832,6 +838,12 @@ function ($scope, $stateParams, $state, alerts) {
   '$state', 'alerts', 'social', 'toast', 'gettextCatalog',
 function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, social, toast, gettextCatalog) {
 
+  // Redirect (to fill backView by stars)
+  if (!$ionicHistory.backView()) {
+    $rootScope.redirect = { state:$state.current.name, params:$stateParams};
+    $state.go('stars');
+  }
+
   $scope.savingProfile = false;
   $scope.newProfile = $rootScope.profile;
 
@@ -1056,6 +1068,12 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, toast
 .controller('dialingCtrl', ['$scope', '$ionicHistory', '$state', '$stateParams', '$rootScope',
 'gettextCatalog', 'profileFiller',
 function ($scope, $ionicHistory, $state, $stateParams, $rootScope, gettextCatalog, profileFiller) {
+
+  if (!$ionicHistory.backView()) {
+    $state.go('stars');
+    return;
+  }
+
   $rootScope.busy = true;
   $scope.star = {uid: $stateParams.uid};
   $scope.call = {};
@@ -1064,6 +1082,8 @@ function ($scope, $ionicHistory, $state, $stateParams, $rootScope, gettextCatalo
   $scope.call.disableCancel = true;
   let call = {};
   let callUnsubscribe = null;
+
+
 
   function setCallStatus(text, textTranslated, apply=true) {
     log('Call Status:', text);
@@ -1178,227 +1198,243 @@ function ($scope, $ionicHistory, $state, $stateParams, $rootScope, gettextCatalo
     finishCall();
     cleanupCall();
     $ionicHistory.goBack();
-  }
+  };
+
 }])
 
 .controller('incomingCallCtrl', ['$scope', '$stateParams', '$rootScope', '$ionicHistory', '$state', 'profileFiller',
 function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller) {
-  $rootScope.busy = true;
-  $scope.star = null;
-  let browserNotification = null;
-  let isScreenWasOff = null;
-  let AppWasInBackground = null;
-  let moveToForegroundInterval = null;
+  if (!$ionicHistory.backView()) {
+    $state.go('stars');
+    return;
+  } else {
 
+    $rootScope.busy = true;
+    $scope.star = null;
+    let browserNotification = null;
+    let isScreenWasOff = null;
+    let AppWasInBackground = null;
+    let moveToForegroundInterval = null;
 
-  log('$stateParams', $stateParams);
-  log('$rootScope.busy', $rootScope.busy);
+    // Redirect (to fill backView by stars)
+    if (!$ionicHistory.backView()) {
+      $state.cancel();
+    }
 
-  // Move app to foreground
-  if((typeof cordova !== 'undefined') && cordova['plugins']['backgroundMode']) {
-    log('Wake up');
-    const bgMode = cordova.plugins.backgroundMode;
+    log('$stateParams', $stateParams);
+    log('$rootScope.busy', $rootScope.busy);
 
-    // 500 ms delay to do not show previous screen on wakeup
-    setTimeout( ()=> {
-      AppWasInBackground = bgMode.isActive();
-      if (AppWasInBackground)
-        bgMode.moveToForeground();
-      // bgMode.moveToForeground();
-      bgMode.isScreenOff(function (screenOff) {
-        isScreenWasOff = screenOff;
-        if (screenOff) {
-          bgMode.unlock();
-        }
-        bgMode.moveToForeground();
-      });
-      if(window['plugins']['bringtofront']) {
-        log('Bring to front');
-        window.plugins.bringtofront();
-      }
+    // Move app to foreground
+    if ((typeof cordova !== 'undefined') && cordova['plugins']['backgroundMode']) {
+      log('Wake up');
+      const bgMode = cordova.plugins.backgroundMode;
 
-    }, 500 );
-
-  }
-
-  // TODO play default android ringtone
-  const ringtoneAudio = new Audio();
-  const ringtonePlayer =(typeof cordova !== 'undefined') ? cordova['plugins']['RingtonePlayer'] : null;
-  if(ringtonePlayer) { // Android
-    ringtonePlayer.play()
-  } else { // Web
-    ringtoneAudio.src = 'ringtones/vivaldi.mp3';
-    ringtoneAudio.loop = true;
-    ringtoneAudio.play();
-  }
-
-  // Vibrate
-  const vibrationInterval = setInterval(()=>{
-    log('vibrate');
-    navigator.vibrate(500);
-  },1000);
-
-  // Subscribe for messages
-  let callUnsubscribe = db.collection('messages').doc($stateParams.callId)
-    .onSnapshot(function(call) {
-      const callData = call.data();
-
-      console.log("Current call data: ", callData);
-      // if call is finished or answered at another device
-      if (callData['finished'] || callData['answered']) {
-        log('Call is finished or answered at another device');
-        cleanupCall();
-        navigateBack();
-      }
-      // Get caller profile once
-      return $scope.star || db.collection("profiles").doc(callData.from).get()
-        .then(function(profile) {
-          const profileData = profileFiller.fill(profile.data());
-
-          log('Current star data:', profileData);
-          $scope.$apply(()=>{ $scope.star = profileData });
-          // Show browser notification
-          showIncomingCallNotification();
-        });
-    }, err);
-
-  // Showing incoming call browser notification
-  function showIncomingCallNotification(){
-    if (typeof Notification!=='undefined') {
-
-      function showNotification() {
-        if (!browserNotification) {
-          const displayName = $scope.star.displayName;
-          const photoURL = $scope.star.photoURL;
-          browserNotification = new Notification(
-            `${displayName} calling you`,
-            {body: 'click to answer', icon: photoURL}
-          );
-          setTimeout(browserNotification.close.bind(browserNotification), 10000);
-          browserNotification.onclick = function (event) {
-            log('browserNotification.onclick event', event);
-            parent.focus();
-            window.focus();
-            $scope.answer();
-            this.close();
-          };
-        }
-      }
-
-      if (Notification.permission === "granted") {
-        log('Notification permission granted already');
-        showNotification();
-      }
-      // Otherwise, we need to ask the user for permission
-      else if (Notification.permission !== 'denied') {
-        log('Asking for Notification permission');
-        Notification.requestPermission().then(function (permission) {
-          if (permission === "granted") {
-            log('Notification permission granted');
-            showNotification();
+      // 500 ms delay to do not show previous screen on wakeup
+      setTimeout(() => {
+        AppWasInBackground = bgMode.isActive();
+        if (AppWasInBackground)
+          bgMode.moveToForeground();
+        // bgMode.moveToForeground();
+        bgMode.isScreenOff(function (screenOff) {
+          isScreenWasOff = screenOff;
+          if (screenOff) {
+            bgMode.unlock();
           }
+          bgMode.moveToForeground();
         });
-      }
+        if (window['plugins']['bringtofront']) {
+          log('Bring to front');
+          window.plugins.bringtofront();
+        }
+
+      }, 500);
+
     }
-  }
 
-
-  // Decline call on timeout 29 seconds
-  const declineCallOnTimeout = setTimeout( function () {
-    log('declineCallOnTimeout');
-    $scope.cancel();
-  }, 29*1000);
-
-  // Before leave
-  let unregisterBeforeLeave = $scope.$on('$ionicView.beforeLeave', function(){
-    log('$ionicView.beforeLeave');
-    finishCall();
-    cleanupCall();
-  });
-
-  function finishCall() {
-    api.finishCall({callId:$stateParams.callId}).catch((error)=>{
-      err(error);
-      log('finishCall error', error.message);
-    });
-  }
-
-  function unsubscribe() {
-    clearTimeout(declineCallOnTimeout);
-    // Stop ringtone
-    if(ringtonePlayer) { // Android
-      ringtonePlayer.stop()
+    // TODO play default android ringtone
+    const ringtoneAudio = new Audio();
+    const ringtonePlayer = (typeof cordova !== 'undefined') ? cordova['plugins']['RingtonePlayer'] : null;
+    if (ringtonePlayer) { // Android
+      ringtonePlayer.play()
     } else { // Web
-      ringtoneAudio.pause();
-      ringtoneAudio.currentTime = 0;
-      ringtoneAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAVFYAAFRWAAABAAgAZGF0YQAAAAA=';
-    }
-    // Stop vibration
-    if (vibrationInterval) clearInterval(vibrationInterval);
-
-    // Stop moving to foreground
-    if (moveToForegroundInterval) clearInterval(moveToForegroundInterval);
-
-    if (callUnsubscribe) {
-      callUnsubscribe();
-      callUnsubscribe = null;
-    }
-    unregisterBeforeLeave();
-    if (browserNotification) {
-      log('Close notification');
-      browserNotification.close();
-    }
-  }
-
-  function cleanupCall(){
-    unsubscribe();
-    $rootScope.busy = false;
-  }
-
-  function navigateBack(){
-    if (isScreenWasOff || AppWasInBackground) {
-      cordova.plugins.backgroundMode.moveToBackground();
+      ringtoneAudio.src = 'ringtones/vivaldi.mp3';
+      ringtoneAudio.loop = true;
+      ringtoneAudio.play();
     }
 
-    // 500 ms delay to do not show previous screen before moved to background
-    setTimeout( ()=> {
-      if ($ionicHistory.backView()) {
-        $ionicHistory.nextViewOptions({disableAnimate: true});
-        $ionicHistory.goBack();
-      } else {
-        // ? if no back view close app?
-        $state.go('stars');
+    // Vibrate
+    const vibrationInterval = setInterval(() => {
+      log('vibrate');
+      navigator.vibrate(500);
+    }, 1000);
+
+    // Subscribe for messages
+    let callUnsubscribe = db.collection('messages').doc($stateParams.callId)
+      .onSnapshot(function (call) {
+        const callData = call.data();
+
+        console.log("Current call data: ", callData);
+        // if call is finished or answered at another device
+        if (callData['finished'] || callData['answered']) {
+          log('Call is finished or answered at another device');
+          cleanupCall();
+          navigateBack();
+        }
+        // Get caller profile once
+        return $scope.star || db.collection("profiles").doc(callData.from).get()
+          .then(function (profile) {
+            const profileData = profileFiller.fill(profile.data());
+
+            log('Current star data:', profileData);
+            $scope.$apply(() => {
+              $scope.star = profileData
+            });
+            // Show browser notification
+            showIncomingCallNotification();
+          });
+      }, err);
+
+    // Showing incoming call browser notification
+    function showIncomingCallNotification() {
+      if (typeof Notification !== 'undefined') {
+
+        function showNotification() {
+          if (!browserNotification) {
+            const displayName = $scope.star.displayName;
+            const photoURL = $scope.star.photoURL;
+            browserNotification = new Notification(
+              `${displayName} calling you`,
+              {body: 'click to answer', icon: photoURL}
+            );
+            setTimeout(browserNotification.close.bind(browserNotification), 10000);
+            browserNotification.onclick = function (event) {
+              log('browserNotification.onclick event', event);
+              parent.focus();
+              window.focus();
+              $scope.answer();
+              this.close();
+            };
+          }
+        }
+
+        if (Notification.permission === "granted") {
+          log('Notification permission granted already');
+          showNotification();
+        }
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== 'denied') {
+          log('Asking for Notification permission');
+          Notification.requestPermission().then(function (permission) {
+            if (permission === "granted") {
+              log('Notification permission granted');
+              showNotification();
+            }
+          });
+        }
       }
-    }, 500 );
-  }
+    }
 
-  $scope.cancel = function() {
-    finishCall();
-    cleanupCall();
-    navigateBack();
-  };
 
-  $scope.answer = function () {
-    log('Answering...');
-    unsubscribe();
-    api.callAnswered({callId:$stateParams.callId})
-      .then((data)=>{
-        log('Answered', data);
-      })
-      .catch((error)=>{
-        warn('Answer error', error);
+    // Decline call on timeout 29 seconds
+    const declineCallOnTimeout = setTimeout(function () {
+      log('declineCallOnTimeout');
+      $scope.cancel();
+    }, 29 * 1000);
+
+    // Before leave
+    let unregisterBeforeLeave = $scope.$on('$ionicView.beforeLeave', function () {
+      log('$ionicView.beforeLeave');
+      finishCall();
+      cleanupCall();
+    });
+
+    function finishCall() {
+      api.finishCall({callId: $stateParams.callId}).catch((error) => {
         err(error);
-        $scope.cancel();
+        log('finishCall error', error.message);
       });
-    $ionicHistory.nextViewOptions({disableAnimate: true});
-    $state.go('call', {callId: $stateParams.callId});
-  };
+    }
 
+    function unsubscribe() {
+      clearTimeout(declineCallOnTimeout);
+      // Stop ringtone
+      if (ringtonePlayer) { // Android
+        ringtonePlayer.stop()
+      } else { // Web
+        ringtoneAudio.pause();
+        ringtoneAudio.currentTime = 0;
+        ringtoneAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAVFYAAFRWAAABAAgAZGF0YQAAAAA=';
+      }
+      // Stop vibration
+      if (vibrationInterval) clearInterval(vibrationInterval);
+
+      // Stop moving to foreground
+      if (moveToForegroundInterval) clearInterval(moveToForegroundInterval);
+
+      if (callUnsubscribe) {
+        callUnsubscribe();
+        callUnsubscribe = null;
+      }
+      unregisterBeforeLeave();
+      if (browserNotification) {
+        log('Close notification');
+        browserNotification.close();
+      }
+    }
+
+    function cleanupCall() {
+      unsubscribe();
+      $rootScope.busy = false;
+    }
+
+    function navigateBack() {
+      if (isScreenWasOff || AppWasInBackground) {
+        cordova.plugins.backgroundMode.moveToBackground();
+      }
+
+      // 500 ms delay to do not show previous screen before moved to background
+      setTimeout(() => {
+        if ($ionicHistory.backView()) {
+          $ionicHistory.nextViewOptions({disableAnimate: true});
+          $ionicHistory.goBack();
+        } else {
+          // ? if no back view close app?
+          $state.go('stars');
+        }
+      }, 500);
+    }
+
+    $scope.cancel = function () {
+      finishCall();
+      cleanupCall();
+      navigateBack();
+    };
+
+    $scope.answer = function () {
+      log('Answering...');
+      unsubscribe();
+      api.callAnswered({callId: $stateParams.callId})
+        .then((data) => {
+          log('Answered', data);
+        })
+        .catch((error) => {
+          warn('Answer error', error);
+          err(error);
+          $scope.cancel();
+        });
+      $ionicHistory.nextViewOptions({disableAnimate: true});
+      $state.go('call', {callId: $stateParams.callId});
+    };
+  }
 
 }])
 
 .controller('callCtrl', ['$scope', '$stateParams', '$rootScope', '$ionicHistory', '$state', '$interval',
 function ($scope, $stateParams, $rootScope, $ionicHistory, $state, $interval) {
+
+  if (!$ionicHistory.backView()) {
+    $state.go('stars');
+  }
   // Remove incoming call / dialing views from history
   $ionicHistory.removeBackView();
 
@@ -1421,8 +1457,6 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, $interval) {
   let interval = null;
   let price = null;
   let connected  = false;
-
-
 
   // Ping call
   const pingInterval = $interval(function () {

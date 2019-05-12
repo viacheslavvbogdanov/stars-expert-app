@@ -15,12 +15,14 @@ angular.module('app.routes', [])
     })
 
     .state('callLog', {
+      cache: false,
       url: '/callog',
       templateUrl: 'templates/callLog.html',
       controller: 'callLogCtrl'
     })
 
     .state('avatar', {
+      cache: false,
       url: '/avatar',
       templateUrl: 'templates/avatar.html',
       controller: 'avatarCtrl'
@@ -34,6 +36,7 @@ angular.module('app.routes', [])
     })
 
     .state('settings', {
+      cache: false,
       url: '/settings',
       templateUrl: 'templates/settings.html',
       controller: 'settingsCtrl'
@@ -60,12 +63,14 @@ angular.module('app.routes', [])
     })
 
     .state('resetPassword', {
+      cache: false,
       url: '/resetpassword',
       templateUrl: 'templates/resetPassword.html',
       controller: 'resetPasswordCtrl'
     })
 
     .state('register', {
+      cache: false,
       url: '/register',
       templateUrl: 'templates/register.html',
       controller: 'registerCtrl'
@@ -79,30 +84,35 @@ angular.module('app.routes', [])
     })
 
     .state('icomingCallPrice', {
+      cache: false,
       url: '/setprice',
       templateUrl: 'templates/icomingCallPrice.html',
       controller: 'icomingCallPriceCtrl'
     })
 
     .state('withdraw', {
+      cache: false,
       url: '/withdraw',
       templateUrl: 'templates/withdraw.html',
       controller: 'withdrawCtrl'
     })
 
     .state('withdrawalResult', {
+      cache: false,
       url: '/withdrawresult',
       templateUrl: 'templates/withdrawalResult.html',
       controller: 'withdrawalResultCtrl'
     })
 
     .state('topUpBalance', {
+      cache: false,
       url: '/topup',
       templateUrl: 'templates/topUpBalance.html',
       controller: 'topUpBalanceCtrl'
     })
 
     .state('topUpResult', {
+      cache: false,
       url: '/topupresult',
       templateUrl: 'templates/topUpResult.html',
       controller: 'topUpResultCtrl'
@@ -137,6 +147,7 @@ angular.module('app.routes', [])
     })
 
     .state('chat', {
+      cache: false,
       url: '/chat/{uid}',
       templateUrl: 'templates/chat.html',
       controller: 'chatCtrl'

@@ -493,7 +493,8 @@ angular.module('app', [
         .where('to',        '==', user.uid)
         .where('call',      '==', true)
         .where('finished',  '==', false)
-        .where('delivered', '==', false).limit(1)
+        .where('delivered', '==', false)
+        .limit(1)
         .onSnapshot(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
             const data = doc.data();
