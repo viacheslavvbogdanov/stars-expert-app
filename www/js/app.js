@@ -496,21 +496,35 @@ angular.module('app', [
         .where('delivered', '==', false).limit(1)
         .onSnapshot(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
-            if (!$rootScope.busy) {
-              $rootScope.busy = true;
-              log('IncomingCall', doc.id, doc.data());
-              api.callDelivered({callId:doc.id});
-              log('$state', $state);
-              if (!($state.params.callId && $state.params.callId===doc.id)) {
-                $ionicHistory.nextViewOptions({ disableAnimate: true });
-                $state.go('incomingCall', {callId: doc.id});
-              } else {
-                log('We already on this call view');
+            const data = doc.data();
+            log('IncomingCall', doc.id, data);
+            log('serverTimeOffset', api.serverTimeOffset);
+
+            const createdSecondsAgo = ((Date.now()+api.serverTimeOffset) / 1000) - data.created.seconds;
+            log('createdSecondsAgo', createdSecondsAgo);
+
+            // Decline calls when call created more than few seconds ago (frozen, not gracefully finished calls calls)
+            if (createdSecondsAgo>25) {
+              log('Call to old. Incoming call declined', doc.id, doc.data());
+              api.finishCall({callId: doc.id, busy: false});
+            } else {
+              // Accept if no busy and Decline calls when busy
+              if (!$rootScope.busy) {
+                $rootScope.busy = true;
+                log('Marking Call as Delivered', doc.id, doc.data());
+                api.callDelivered({callId: doc.id});
+                log('$state', $state);
+                if (!($state.params.callId && $state.params.callId === doc.id)) {
+                  $ionicHistory.nextViewOptions({disableAnimate: true});
+                  $state.go('incomingCall', {callId: doc.id});
+                } else {
+                  log('We already on this call view');
+                }
+              } else { // if at busy already
+                log('Busy. Incoming call cancelled', doc.id, doc.data());
+                api.finishCall({callId: doc.id, busy: true});
+                //TODO show missed call notification
               }
-            } else { // if at busy already
-              log('Busy. Incoming call cancelled', doc.id, doc.data());
-              api.finishCall({callId:doc.id, busy:true});
-              //TODO show missed call notification
             }
           });
         }, err);
