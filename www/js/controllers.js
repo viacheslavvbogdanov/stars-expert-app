@@ -1207,10 +1207,6 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
   }
 
   // TODO play default android ringtone
-  // Play ringtone
-  // $('audio#ringtoneAudio').each(function(){
-  //   this.play();
-  // });
   const ringtoneAudio = new Audio();
   ringtoneAudio.src = 'ringtones/vivaldi.mp3';
   ringtoneAudio.loop = true;
@@ -1287,6 +1283,13 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
     }
   }
 
+
+  // Decline call on timeout 30 seconds
+  const declineCallOnTimeout = setTimeout( function () {
+    log('declineCallOnTimeout');
+    $scope.cancel();
+  }, 29*1000);
+
   // Before leave
   let unregisterBeforeLeave = $scope.$on('$ionicView.beforeLeave', function(){
     log('$ionicView.beforeLeave');
@@ -1302,13 +1305,8 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
   }
 
   function unsubscribe() {
-
+    clearTimeout(declineCallOnTimeout);
     // Stop ringtone
-    // $('audio#ringtoneAudio').each(function(){
-    //   this.pause();
-    //   this.currentTime = 0;
-    //   this.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAVFYAAFRWAAABAAgAZGF0YQAAAAA=';
-    // });
     ringtoneAudio.pause();
     ringtoneAudio.currentTime = 0;
     ringtoneAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAVFYAAFRWAAABAAgAZGF0YQAAAAA=';
