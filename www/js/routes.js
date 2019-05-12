@@ -109,6 +109,7 @@ angular.module('app.routes', [])
     })
 
     .state('star', {
+      cache: false,
       url: '/star/{uid}',
       templateUrl: 'templates/star.html',
       controller: 'starCtrl'

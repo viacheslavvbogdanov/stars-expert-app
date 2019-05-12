@@ -354,6 +354,12 @@ function ($scope, $stateParams) {
 function ($scope, $stateParams, $state, $rootScope, alerts, $ionicHistory,
           $ionicActionSheet, toast, social, apiUI, gettextCatalog) {
 
+  // Redirect (to fill backView by stars)
+  if (!$ionicHistory.backView()) {
+    $rootScope.redirect = { state:$state.current.name, params:$stateParams};
+    $state.go('stars');
+  }
+
   $rootScope.hideTapForMoreHint = false;
   getLocalStorage($rootScope, 'hideTapForMoreHint');
 
@@ -932,6 +938,13 @@ function ($scope, $stateParams) {
 .controller('starCtrl', ['$scope', '$stateParams', '$rootScope', '$ionicHistory', '$state',
   'alerts', 'toast', 'social', 'apiUI', 'profileFiller', 'gettextCatalog',
 function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, toast, social, apiUI, profileFiller, gettextCatalog) {
+
+  // Redirect (to fill backView by stars)
+  if (!$ionicHistory.backView()) {
+    $rootScope.redirect = { state:$state.current.name, params:$stateParams};
+    $state.go('stars');
+  }
+
   // TODO find user by nick (if uid starts with @)
   // log('$stateParams',$stateParams);
   $rootScope.hideFavoritesHint = false;
@@ -1034,7 +1047,9 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, alerts, toast
       api.updatePrivate($rootScope.private);
       log('$rootScope.private.favorites',$rootScope.private.favorites);
     }
-  }
+  };
+
+
 
 }])
 
