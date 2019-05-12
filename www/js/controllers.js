@@ -1124,8 +1124,10 @@ function ($scope, $ionicHistory, $state, $stateParams, $rootScope, gettextCatalo
 
   // Cancel dialing on timeout 30 seconds
   const cancelDialOnTimeout = setTimeout( function () {
+    log('cancelDialOnTimeout');
+    setCallStatus('declined', gettextCatalog.getString('declined'));
     $scope.cancel();
-  }, 30);
+  }, 30*1000);
 
   // Unwatch on exit from page view
   let unregisterBeforeLeave = $scope.$on('$ionicView.beforeLeave', function(){
