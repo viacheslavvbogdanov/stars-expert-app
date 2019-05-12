@@ -79,7 +79,8 @@
       },
       "cordova-plugin-buildinfo": {},
       "cordova-plugin-network-information": {},
-      "in.lucasdup.bringtofront": {}
+      "in.lucasdup.bringtofront": {},
+      "cordova-plugin-ringtone": {}
     },
     "platforms": [
       "browser",

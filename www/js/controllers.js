@@ -1208,10 +1208,14 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
 
   // TODO play default android ringtone
   const ringtoneAudio = new Audio();
-  ringtoneAudio.src = 'ringtones/vivaldi.mp3';
-  ringtoneAudio.loop = true;
-  ringtoneAudio.play();
-
+  const ringtonePlayer =(typeof cordova !== 'undefined') ? cordova['plugins']['RingtonePlayer'] : null;
+  if(ringtonePlayer) { // Android
+    ringtonePlayer.play()
+  } else { // Web
+    ringtoneAudio.src = 'ringtones/vivaldi.mp3';
+    ringtoneAudio.loop = true;
+    ringtoneAudio.play();
+  }
 
   // Vibrate
   const vibrationInterval = setInterval(()=>{
@@ -1284,7 +1288,7 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
   }
 
 
-  // Decline call on timeout 30 seconds
+  // Decline call on timeout 29 seconds
   const declineCallOnTimeout = setTimeout( function () {
     log('declineCallOnTimeout');
     $scope.cancel();
@@ -1307,10 +1311,13 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
   function unsubscribe() {
     clearTimeout(declineCallOnTimeout);
     // Stop ringtone
-    ringtoneAudio.pause();
-    ringtoneAudio.currentTime = 0;
-    ringtoneAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAVFYAAFRWAAABAAgAZGF0YQAAAAA=';
-
+    if(ringtonePlayer) { // Android
+      ringtonePlayer.stop()
+    } else { // Web
+      ringtoneAudio.pause();
+      ringtoneAudio.currentTime = 0;
+      ringtoneAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAVFYAAFRWAAABAAgAZGF0YQAAAAA=';
+    }
     // Stop vibration
     if (vibrationInterval) clearInterval(vibrationInterval);
 

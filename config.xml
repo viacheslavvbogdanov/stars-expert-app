@@ -140,6 +140,7 @@
     <plugin name="in.lucasdup.bringtofront" spec="https://github.com/markeeftb/cordova-bring-to-front" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <plugin name="cordova-plugin-ringtone" spec="https://github.com/amatakasap/cordova-plugin-ringtone" />
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.1.4" />
 </widget>
