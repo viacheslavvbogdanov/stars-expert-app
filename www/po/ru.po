@@ -56,6 +56,10 @@ msgstr ""
 "*Внимание: Пожалуйста, снова НЕ ОТПРАВЛЯЙТЕ эфир на этот адрес. Для "
 "следующего пополнения вам будет создан новый адрес."
 
+#: login.html:11
+msgid "+1 234 567 7890"
+msgstr "+7 123 456 7890"
+
 #: about.html:1 controllers.js:540
 msgid "About"
 msgstr "О программе"
@@ -231,7 +235,7 @@ msgstr "Введите код из SMS"
 msgid "Enter your desired Star ID"
 msgstr "Введите желаемый Star ID"
 
-#: login.html:11
+#: login.html:7
 msgid "Enter your phone number"
 msgstr "Введите номер вашего телефона"
 
@@ -463,6 +467,10 @@ msgstr "Звезды"
 msgid "Suggest a feature"
 msgstr "Предложите функцию"
 
+#: my.html:6
+msgid "Tap for menu"
+msgstr "Меню"
+
 #: login.html:23
 msgid "Terms of Service"
 msgstr "условиями сервиса"
@@ -487,8 +495,7 @@ msgid ""
 "To mark contact as favorite tap <i class=\"icon ion-star\"></i> icon in the "
 "contact profile"
 msgstr ""
-"Добавление контакта в избранные: нажмите <i class=\"icon ion-star\"></i>  в "
-"профиле"
+"Добавление контакта: нажмите <i class=\"icon ion-star\"></i>  в профиле"
 
 #: services.js:49
 msgid "Top Up Error"

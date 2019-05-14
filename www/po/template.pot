@@ -42,6 +42,10 @@ msgstr ""
 msgid "*Urgent Note: Please DO NOT send ETH to this address again. For next top-up you will have another address."
 msgstr ""
 
+#: login.html:11
+msgid "+1 234 567 7890"
+msgstr ""
+
 #: about.html:1
 #: controllers.js:540
 msgid "About"
@@ -219,7 +223,7 @@ msgstr ""
 msgid "Enter your desired Star ID"
 msgstr ""
 
-#: login.html:11
+#: login.html:7
 msgid "Enter your phone number"
 msgstr ""
 
@@ -448,6 +452,10 @@ msgstr ""
 
 #: controllers.js:538
 msgid "Suggest a feature"
+msgstr ""
+
+#: my.html:6
+msgid "Tap for menu"
 msgstr ""
 
 #: login.html:23

@@ -4,11 +4,11 @@
       <div class="center-horizontally input-form-width">
 
         <form ng-show="otpPhone || otpSending" id="login-form1" class="list transparent">
-          <!--<span class="text-center" translate>Enter your phone number</span>-->
+          <span class="text-center light" style="font-size: 10px" translate>Enter your phone number</span>
           <label class="item item-input transparent padding-horizontal"
-                 focus-me id="login-phone">
+                 focus-me id="login-phone" style="padding-top: 0">
             <input my-enter="otp()" ng-model="user.phone" type="tel" style="color:white; padding-right: 0"
-                   placeholder="{{'Enter your phone number'|translate}}"
+                   placeholder="{{'+1 234 567 7890'|translate}}"
                    class="input-center">
           </label>
 
