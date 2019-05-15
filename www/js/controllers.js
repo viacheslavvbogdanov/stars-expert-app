@@ -1252,12 +1252,14 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
 
     }
 
-    // TODO play default android ringtone
+    // Play Ringtone
     const ringtoneAudio = new Audio();
     const ringtonePlayer = (typeof cordova !== 'undefined') ? cordova['plugins']['RingtonePlayer'] : null;
-    if (ringtonePlayer) { // Android
+    if (ringtonePlayer) { //
+      log('Android ringtonePlayer.play');
       ringtonePlayer.play()
     } else { // Web
+      log('Web ringtone play');
       ringtoneAudio.src = 'ringtones/vivaldi.mp3';
       ringtoneAudio.loop = true;
       ringtoneAudio.play();
