@@ -4,7 +4,7 @@ angular.module('app.services', [])
     return {
       fill: function (profileData) {
         if (!profileData) return null;
-        if (!profileData.photoURL) {
+        if (!profileData.photoURL || profileData.photoURL==='../img/profile_image.png') {
           profileData.photoURL = '../img/profile_image.png';
           profileData.noPhotoURL = true;
         }
