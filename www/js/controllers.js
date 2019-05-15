@@ -1254,7 +1254,7 @@ function ($scope, $stateParams, $rootScope, $ionicHistory, $state, profileFiller
 
     // Play Ringtone
     const ringtoneAudio = new Audio();
-    const ringtonePlayer = (typeof cordova !== 'undefined') ? cordova['plugins']['RingtonePlayer'] : null;
+    const ringtonePlayer = (typeof cordova !== 'undefined')&&(device.platform==='Android') ? cordova['plugins']['RingtonePlayer'] : null;
     if (ringtonePlayer) { //
       log('Android ringtonePlayer.play');
       ringtonePlayer.play()
