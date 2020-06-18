@@ -18,7 +18,7 @@
     "@ionic/app-scripts": "^3.2.1",
     "@ionic/pro": "^2.0.3",
     "@sentry/browser": "^4.5.3",
-    "angular": "^1.7.5",
+    "angular": "^1.8.0",
     "angular-gettext": "^2.4.1",
     "com.napolitano.cordova.plugin.intent": "https://github.com/napolitano/cordova-plugin-intent",
     "cordova-android": "7.1.4",
